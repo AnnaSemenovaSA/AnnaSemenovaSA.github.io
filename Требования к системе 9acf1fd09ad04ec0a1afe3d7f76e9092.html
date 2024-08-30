@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Требования к системе</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9acf1fd0-9ad0-4ec0-a1af-e3d7f76e9092" class="page sans"><header><h1 class="page-title">Требования к системе</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><h1 id="b4a62b74-f6c0-4a86-b5fc-bfcffa35c144" class="">Нефункциональные требования</h1><h3 id="9179b1c4-c696-4518-8309-8d13da96988d" class="">Безопасность</h3><p id="f15077e7-12ae-4d24-ad60-b040c604f514" class=""><strong>НФТ-01</strong> Разделение доступа и доступных функций по ролям. Основные роли: мастер СТО, менеджер СТО. </p><h3 id="e1ea6719-ac56-459d-84fe-12d1ad3bec34" class="">Масштабируемость</h3><p id="a19757ca-b4ed-43b9-bbcc-03d3f6bdc454" class=""><strong>НФТ-02</strong> Сервис должен поддерживать увеличение количества пользователей на 5% в год без потери производительности. </p><h3 id="b9b060dc-65c0-4a03-a935-02ed283f8557" class="">Особенности хранения данных</h3><p id="8b11ddee-c30d-40d9-9469-0a7e07b4a88e" class=""><strong>НФТ-03</strong> Хранение в системе информации за полный календарный год, после этого перемещение в архив и хранение еще 5 лет.</p><h3 id="e785ae85-3daa-44b7-b73c-b9856cd77014" class="">Производительность</h3><p id="89762be4-b9dd-4059-96a1-31145cd67bf7" class=""><strong>НФТ-04</strong> Время поиска по справочнику (любому) не более 3 секунд. </p><h3 id="5419949d-eb53-4715-b4e2-409ecb6a241b" class="">Совместимость </h3><p id="45c84c2e-94e0-4555-a41c-086b614a9053" class=""><strong>НФТ-05 </strong>Совместимость с OC Windows 7 и выше, совместимость с OC Android 7.0 и выше. </p><h3 id="a8163974-5e08-403c-ac31-60d0cbeb9a5e" class="">Доступность </h3><p id="e752c40c-3254-4a7b-a284-09f752d134d0" class=""><strong>НФТ-06</strong> Система должна быть доступна 97 процентов времени в период с 8:00 до 22:00 по местному времени. </p><p id="8fd81139-6963-4b79-99ff-a165bc320f72" class=""><strong>НФТ-07 </strong>Допустимое время простоя в сутки не более 60 минут.</p><h3 id="5e8396c1-5ca0-4bae-91e8-a8ae012c6898" class="">Надежность </h3><p id="1dbb8534-3baa-40b8-a876-f2a06cdbdbf8" class=""><strong>НФТ-08</strong> Время восстановления доступности и функциональности системы после сбоя не более двух часов. </p><h1 id="655628bb-7da3-4c1b-bbaf-5f362612ddf8" class="">Требования к функциям </h1><h2 id="28a7556b-39db-4cb9-bc47-7c47d1aa94e3" class="">UseCase диаграмма</h2><figure id="e44e3f82-5532-44e6-b552-414784225749" class="image"><a href="UC-%25D0%25B4%25D0%25B8%25D0%25B0%25D0%25B3%25D1%2580%25D0%25B0%25D0%25BC%25D0%25BC%25D0%25B0.png"><img style="width:540px" src="UC-%25D0%25B4%25D0%25B8%25D0%25B0%25D0%25B3%25D1%2580%25D0%25B0%25D0%25BC%25D0%25BC%25D0%25B0.png"/></a></figure><h2 id="24d2f207-30da-45f4-9f39-569b875918d1" class="">UseCase, реализуемые в рамках MVP</h2><h3 id="016c5b8b-9241-4e94-b28a-b0ab49b73aa4" class="">UC-01. Создать заказ-наряда</h3><table id="f7b3727f-57d7-4d82-bc8a-93fe9fc7bd1d" class="simple-table"><tbody><tr id="15fed4e3-adce-4e8f-8f2f-ae10a03a57e0"><td id="^zhG" class="" style="width:142px">Название </td><td id="Fy[J" class="" style="width:565px">Создать заказ-наряда (ЗН)</td></tr><tr id="60b74542-b0ed-436d-8984-df07e988aabc"><td id="^zhG" class="" style="width:142px">Уровень</td><td id="Fy[J" class="" style="width:565px">цели пользователя</td></tr><tr id="f259993f-ef2a-4637-8d35-d188acf1d9f7"><td id="^zhG" class="" style="width:142px">Область действия</td><td id="Fy[J" class="" style="width:565px">мастер - система</td></tr><tr id="56a96130-dfbd-48a9-b15b-70952f38139d"><td id="^zhG" class="" style="width:142px">Основной актор</td><td id="Fy[J" class="" style="width:565px">мастер </td></tr><tr id="5c647fd9-ca00-4d18-9af8-2b068bd88fbf"><td id="^zhG" class="" style="width:142px">Участники и интересы</td><td id="Fy[J" class="" style="width:565px">Мастер (отработать обращение клиента), тех.поддержка (обеспечение функционирования системы, анализ ошибок)</td></tr><tr id="755bef80-deeb-471d-8e53-2ba3443b4cd1"><td id="^zhG" class="" style="width:142px">Предусловие</td><td id="Fy[J" class="" style="width:565px">Мастер авторизован, введены данные клиента, зарегистрирован автомобиль клиента</td></tr><tr id="bcad8745-83a6-429d-a39d-8a3e451afee4"><td id="^zhG" class="" style="width:142px">Минимальные гарантии</td><td id="Fy[J" class="" style="width:565px">Черновик ЗН зарегистрирован в системе</td></tr><tr id="9c9e385c-cacf-4460-954a-31855237fbbb"><td id="^zhG" class="" style="width:142px">Гарантии успеха</td><td id="Fy[J" class="" style="width:565px">Предварительный ЗН зарегистрирован в системе</td></tr><tr id="f6a202ca-70b4-4362-87c4-e7fc8a54c958"><td id="^zhG" class="" style="width:142px">Триггер</td><td id="Fy[J" class="" style="width:565px">Мастер нажимает кнопку “Оформить заказ-наряд” </td></tr></tbody></table><p id="918fbb75-9866-4a2f-8f22-2338d997c92a" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="0d02a2a0-2382-4def-9857-6c0904f5d573" class="numbered-list" start="1"><li>Мастер открывает форму ЗН в системе.</li></ol><ol type="1" id="c2aa54f9-f1fc-4268-af8b-58e3b3601c60" class="numbered-list" start="2"><li>Система фиксирует дату и время создания ЗН (текущее системное время).<p id="04a68f44-6a6e-463b-bbf2-2adf7e9b3c0b" class="">2.1 Система не заполнила поля “дата” и “время создания”</p></li></ol><ol type="1" id="e904f03b-0a7b-480e-95f4-9a800ff60c81" class="numbered-list" start="3"><li>Мастер вносит данные клиента: ФИО, дата рождения, номер телефона, адрес электронной почты.</li></ol><ol type="1" id="21996240-32ea-4ea0-97b6-8eef3dc348a3" class="numbered-list" start="4"><li>Мастер вносит данные автомобиля клиента в заказ-наряд: марка, модель, VIN, гос. номер.  </li></ol><ol type="1" id="e64ac714-8477-4ae5-8bd0-fe14abe7c497" class="numbered-list" start="5"><li>Мастер выполняет <a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">UC-02 “Сформировать список работ”</a><p id="87560f19-a948-44a3-8454-f40bb57f2f74" class="">4.1 Пока не понятен список работ</p></li></ol><ol type="1" id="a2fda3e3-6241-4d7f-a7a7-2fe994345ad9" class="numbered-list" start="6"><li>Мастер выполняет <a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">UC-03 “Сформировать список запчастей”</a>.<p id="d66aef6b-29f5-4007-b212-a45eee11b820" class="">5.1 Запчасти не требуются</p></li></ol><ol type="1" id="9d8401fc-6b68-490d-aa91-6ef24a72b0e4" class="numbered-list" start="7"><li>Мастер сохраняет введенные данные. </li></ol><ol type="1" id="760e665f-9102-4d41-ad56-f7e34523345a" class="numbered-list" start="8"><li>Система присваивает заказ-наряду номер.  </li></ol><p id="d373050a-1bf4-4afa-a10e-ceca49e65e9f" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="de0869b0-00d6-45e1-97b6-9f296e8b7794" class="">2.1 Система не заполнила поля “дата” и “время создания”<div class="indented"><p id="5f29918e-4d0c-45c4-a144-5c4babc3a0b1" class="">2.1.1 Мастер вводит текущую дату вручную.</p><p id="83eef3a0-ea03-433a-a8d9-acf1a8bd8374" class="">2.1.2 Мастер вводит время создания вручную (часы, минуты)</p></div></p><p id="a4ec01aa-5b0e-438e-8ee2-2935831de00b" class="">3.1 Автомобиля клиента нет в списке. </p><p id="76ab5d0b-7f56-4e7d-b01f-da2aa57e8e35" class="">4.1 Пока непонятен список работ<div class="indented"><p id="fc26aaa3-37c5-4aa9-a064-6964db6b6760" class="">4.1.1 Мастер сохраняет черновик заказ-наряда. </p></div></p><p id="28d8c72b-1a27-4c75-bc93-067a3b817944" class="">5.1 Запчасти не требуются<div class="indented"><p id="92d2e15f-c9f9-43e3-aa42-119ba407c4de" class="">5.1.1 Мастер сохраняет заказ-наряд.  </p></div></p><p id="4b5dc42a-c942-49d4-95d9-1207d2642bf4" class="">7.1 Система не присвоила ЗН номер.<div class="indented"><p id="35304393-ffe5-4ab5-b889-61340453dd11" class="">7.1.1 Мастер отправляет отчет об ошибке.</p></div></p><h3 id="e74a6ba7-6eb1-4a6d-8053-0c135e15936d" class="">UC-02. Сформировать список работ.</h3><table id="622f43c3-d0cd-4ec8-a23f-aa510e4e00c7" class="simple-table"><tbody><tr id="980edc00-3739-42ad-826e-cfd3fbb75b88"><td id="DlJJ" class="">Название</td><td id="u|c]" class="" style="width:508px">Сформировать список работ</td></tr><tr id="16d420b6-a9d6-4ae0-8a94-e48b5e4960d6"><td id="DlJJ" class="">Уровень</td><td id="u|c]" class="" style="width:508px">цели пользователя</td></tr><tr id="4ff17816-a705-4117-a6db-844a74059dd3"><td id="DlJJ" class="">Область действия</td><td id="u|c]" class="" style="width:508px">мастер - система</td></tr><tr id="fecf1e93-ebc2-47af-9e07-072765e6f0f5"><td id="DlJJ" class="">Основной актор</td><td id="u|c]" class="" style="width:508px">мастер</td></tr><tr id="979ae7cc-f97d-491c-8203-d69955669035"><td id="DlJJ" class="">Участники и интересы</td><td id="u|c]" class="" style="width:508px">Мастер (зафиксировать необходимые работы), тех.поддержка (обеспечение функционирования системы, анализ ошибок), клиент (узнать предварительную стоимость работ) </td></tr><tr id="0e51dfd4-b254-4523-bfb9-a3bcb39191a0"><td id="DlJJ" class="">Предусловие</td><td id="u|c]" class="" style="width:508px">Открыта форма заказ-наряда </td></tr><tr id="67b08306-9dcd-4d78-b7ac-97738d6e9567"><td id="DlJJ" class="">Минимальные гарантии</td><td id="u|c]" class="" style="width:508px">черновик ЗН наряда сохранен в системе </td></tr><tr id="6e79cd95-7c31-490c-b033-f9cd2f7a6ff2"><td id="DlJJ" class="">Гарантии успеха</td><td id="u|c]" class="" style="width:508px"></td></tr><tr id="4f3113af-deef-4166-b271-b00c8d0c1fc8"><td id="DlJJ" class="">Триггер</td><td id="u|c]" class="" style="width:508px">Мастер нажимает кнопку “Добавить работы”</td></tr></tbody></table><p id="e9d7b0ab-067c-4cfc-95af-c2b778c4cdd1" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="9f3b01b9-7b5d-4a98-a5ab-8a64b6758b05" class="numbered-list" start="1"><li>Мастер начал вводить название работы в строку поиска.<p id="d7cd0aa6-e089-4f1b-9f28-54aae7aca34e" class="">1.1 Работы не оказалось в списке</p></li></ol><ol type="1" id="fd3e317e-440c-4d48-9974-6325d2d80c00" class="numbered-list" start="2"><li>Система выдала список возможных работ, содержащих данное сочетание символов.</li></ol><ol type="1" id="dfa2717a-26c5-4225-afc3-794cb92c3a36" class="numbered-list" start="3"><li>Мастер выбрал из предложенного списка необходимую работу.</li></ol><ol type="1" id="9b0f4fa7-ba5e-4de6-ac17-74a02d0a99b5" class="numbered-list" start="4"><li>Мастер добавил выбранную работу в список работ.</li></ol><ol type="1" id="8e7dda88-3a5c-4f7e-b6db-6145c7153598" class="numbered-list" start="5"><li>Мастер повторил шаги 1-4 необходимое количество раз.</li></ol><ol type="1" id="c451eb9e-c890-446c-a9b8-32cf20dddec8" class="numbered-list" start="6"><li>Мастер сохраняет список работ. <p id="a81ca673-4cdc-4ecd-a2f9-c8976db3abeb" class="">6.2 При сохранении списка работ произошел обрыв интернет соединения при клиент-серверном взаимодействии.</p></li></ol><p id="dc71cb55-a695-4e89-8c44-6e2492af32ca" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии </span></p><p id="0d59ce53-122f-4e85-a2ba-6d210ec410d7" class="">1.1 Работы не оказалось в списке <div class="indented"><p id="8ad1f9b1-4034-4f2c-a2b6-98ae9f07caee" class="">1.1.1 Мастер добавляет новый вид работ. </p><p id="bc33d761-b97a-4d1b-ab62-21198dbe47e2" class="">1.1.2 Мастер завел название новой работы. </p><p id="7199bfa6-61d2-4739-b1c2-48a3e2fe5048" class="">1.1.3. Система подтверждает корректность введенных данных (проверка на орфографические ошибки). В случае обнаружения некорректного слова подчеркивает красной линией, и не дает сохранить данные до исправления ошибки. </p><p id="d6af81e9-0654-481a-9e50-3aa7cbc39d08" class="">1.1.4 Мастер сохраняет новый вид работ. </p></div></p><p id="1461dfc4-3f45-4ded-a54c-38cb4c4db617" class="">6.2 При добавлении работы произошел обрыв интернет соединения при клиент-серверном взаимодействии.<div class="indented"><p id="e3a824f6-76a8-4ab1-9159-901d09611941" class="">6.2.1 Система выводит сообщение об отсутствии интернета и предложение составить список работ позже. </p><p id="6781999a-5866-457f-a645-1983e3a0c224" class="">6.2.2 Добавленные ранее работы сохранены в черновике ЗН. </p></div></p><h3 id="c974b2df-e367-4ea4-9c36-c5341b2c2ad6" class="">UC-03 Сформировать список запчастей</h3><table id="1f3cc832-ef0c-423f-a721-449539132f27" class="simple-table"><tbody><tr id="42cffe61-f7d1-4c2c-aa0e-9fe8bfc73831"><td id="HRxx" class="">Название</td><td id="T&lt;Gp" class="" style="width:542px">Сформировать список запчастей</td></tr><tr id="c5883e71-1923-4635-9a3f-25aae94e0468"><td id="HRxx" class="">Уровень</td><td id="T&lt;Gp" class="" style="width:542px">цели пользователя</td></tr><tr id="841fd2a2-8746-49a1-8484-f2183eeacf1e"><td id="HRxx" class="">Область действия</td><td id="T&lt;Gp" class="" style="width:542px">мастер - система</td></tr><tr id="a707d076-054d-4e53-9c64-ddf62109c1c0"><td id="HRxx" class="">Основной актор</td><td id="T&lt;Gp" class="" style="width:542px">мастер</td></tr><tr id="cb691fce-db2c-43bd-b6c7-af8fac2a53b3"><td id="HRxx" class="">Участники и интересы</td><td id="T&lt;Gp" class="" style="width:542px">Мастер (зафиксировать запчасти, необходимые для ремонта), тех.поддержка (обеспечение функционирования системы, анализ ошибок), клиент (узнать предварительную стоимость запчастей), работник склада СТО (вести учет запчастей)</td></tr><tr id="c8f46fd9-7d06-4657-a49e-fbf68f1a16b5"><td id="HRxx" class="">Предусловие</td><td id="T&lt;Gp" class="" style="width:542px">Открыта форма заказ-наряда</td></tr><tr id="aa7ac261-c38c-4e60-9e8b-71d0f10c8872"><td id="HRxx" class="">Минимальные гарантии</td><td id="T&lt;Gp" class="" style="width:542px">черновик ЗН наряда сохранен в системе</td></tr><tr id="378134e3-c5b3-431a-b996-4161182a079d"><td id="HRxx" class="">Гарантии успеха</td><td id="T&lt;Gp" class="" style="width:542px">сформирован список запчастей</td></tr><tr id="1cbc5f6c-222c-4d41-b8b1-9d42bdcf7301"><td id="HRxx" class="">Триггер</td><td id="T&lt;Gp" class="" style="width:542px">Мастер нажимает кнопку “Добавить запчасти”</td></tr></tbody></table><p id="bcf7b38d-e7f5-4abe-ad6c-7788b24b7117" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="79f78df9-a42e-4f32-89e5-42bf97c28566" class="numbered-list" start="1"><li>Мастер начал вводить название запчасти в строку поиска.<p id="7f83881d-3f28-46a3-a79d-8da2614bda6a" class="">1.1 Запчасти не оказалось в списке.</p></li></ol><ol type="1" id="2e90c9f1-b4bb-4cd4-b9b4-bdcc968316e1" class="numbered-list" start="2"><li>Система выдала список возможных запчастей для данного авто, содержащих данное сочетание символов.</li></ol><ol type="1" id="32a3b487-edbd-471a-a8c1-565b14fd4610" class="numbered-list" start="3"><li>Мастер выбрал из предложенного списка необходимую запчасть.</li></ol><ol type="1" id="cd21253c-e268-4300-8e9c-c86a775ddca0" class="numbered-list" start="4"><li>Мастер добавил выбранную запчасть в список необходимых запчастей.</li></ol><ol type="1" id="101559f4-f4bf-43ee-8163-0bab06e1ce29" class="numbered-list" start="5"><li>Мастер ввел количество необходимых запчастей данного вида. </li></ol><ol type="1" id="22dd9c9f-8c09-4d8d-b8d9-03c47ba0511d" class="numbered-list" start="6"><li>Мастер повторил шаги 1-5 необходимое количество раз.</li></ol><ol type="1" id="ce1e3ea1-ea02-4613-9076-89a8a6eb85c7" class="numbered-list" start="7"><li>Мастер сохранил необходимые запчасти в заказ-наряде. </li></ol><p id="91dc1fe7-cd9e-44eb-aa94-333546e9b870" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии </span></p><p id="fdd4939a-16f4-44c5-9b23-2298534edf4f" class="">1.1 Запчасти не оказалось в списке <div class="indented"><p id="c8cb6231-4bf4-4dbb-b6d5-48c9f6169d3a" class="">1.1.1 Мастер запрашивает необходимую запчасть.</p><p id="98503a2d-5a89-4ffa-8006-d3dc2f92e766" class="">1.1.2 Мастер вводит название необходимой запчасти. </p><p id="51789379-c608-465e-b78d-2701584da11c" class="">1.1.3. Мастер подтверждает запрос запчасти. </p><p id="505c18ae-a658-4291-84e1-4b2d001f57f0" class="">1.1.4 Мастер сохраняет запрошенную запчасть. </p><p id="29b73105-9ed8-480c-9d8b-08667f9d3c9f" class="">1.1.5 Система отражает введенную в п.1.1.2 запчасть серым цветом. </p><p id="83c50918-acad-41af-9d26-e0f04a946eb1" class="">1.1.6 Система создает заявку на добавление запчастей, добавленных мастером в пунктах 1.1.1 - 1.1.5, в каталог.</p></div></p><h3 id="971c3fb3-80f8-4e07-9e02-1cd05a2d959c" class="">UC-04 Забронировать запчасти на СТО</h3><table id="d47d155f-5b8e-461e-ac6a-f00a43440f94" class="simple-table"><tbody><tr id="d12d7513-4a64-46a5-bde7-fe9db4d5b31c"><td id="BS~I" class="">Название</td><td id="^jM|" class="" style="width:523px">Забронировать запчасти на СТО</td></tr><tr id="b854265f-5bc5-44e8-a0a6-4ce24a174872"><td id="BS~I" class="">Уровень</td><td id="^jM|" class="" style="width:523px">цели пользователя</td></tr><tr id="5815ec3b-b5c8-4b96-b722-dcfe27b8f19d"><td id="BS~I" class="">Область действия</td><td id="^jM|" class="" style="width:523px">мастер - система</td></tr><tr id="5876b265-b1d2-4499-a586-87ecf298daae"><td id="BS~I" class="">Основной актор</td><td id="^jM|" class="" style="width:523px">мастер</td></tr><tr id="ad2bc7bb-8668-4f25-a194-63a97baafecf"><td id="BS~I" class="">Участники и интересы</td><td id="^jM|" class="" style="width:523px">Мастер (забронировать запчасти, необходимые для ремонта), тех.поддержка (обеспечение функционирования системы, анализ ошибок), работник склада СТО (вести учет запчастей)</td></tr><tr id="6a179d19-6043-45d9-bc62-28a857c5a2a7"><td id="BS~I" class="">Предусловие</td><td id="^jM|" class="" style="width:523px">Сформирован список запчастей (выполнен UC-04)</td></tr><tr id="d216b6dd-2d16-47eb-b5e4-91148ea46578"><td id="BS~I" class="">Минимальные гарантии</td><td id="^jM|" class="" style="width:523px">мастер видит наличие запчастей на локальном складе</td></tr><tr id="9d96fbc7-702e-45cb-bc31-607d2223194f"><td id="BS~I" class="">Гарантии успеха</td><td id="^jM|" class="" style="width:523px">запчасти, необходимые для ремонта, будут забронированы</td></tr><tr id="500349df-3a57-4a3a-a068-c4f42f2badb3"><td id="BS~I" class="">Триггер</td><td id="^jM|" class="" style="width:523px">Мастер нажимает кнопку “Добавить запчасти”</td></tr></tbody></table><p id="5ee9c0a8-55f6-4f0c-8779-09e74e84d45c" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="0ef190bb-b602-421d-b7ce-4532a353b145" class="numbered-list" start="1"><li>Мастер проверяет наличие запчастей заказ-наряда.</li></ol><ol type="1" id="2b27cdba-84a0-49a2-8d37-dcda1baad38c" class="numbered-list" start="2"><li>Система отражает наличие запчасти на локальном складе по каждой позиции из списка запчастей.</li></ol><ol type="1" id="7767291f-72cb-4c20-a2a0-87a43f83ec54" class="numbered-list" start="3"><li>Мастер бронирует запчасти на локальном складе.</li></ol><ol type="1" id="bf3d7508-f70f-432b-814b-f721583b8247" class="numbered-list" start="4"><li>Система подтверждает бронирование запчасти информационным сообщением на экране.</li></ol><ol type="1" id="79811a68-6073-4419-9318-6f838cffd908" class="numbered-list" start="5"><li>Система уменьшает количество доступных на локальном складе запчастей данного вида на количество забронированных запчастей. </li></ol><h3 id="59812672-95e6-4239-9d08-be4354945c5c" class="">UC-05 Заказать запчасти</h3><table id="9b42739d-116a-442c-84c8-db480f5dfb79" class="simple-table"><tbody><tr id="66b6880a-7afe-4967-b416-dd9a3601fde8"><td id="T_GE" class="">Название</td><td id="zJt&gt;" class="" style="width:525px">Заказать запчасти</td></tr><tr id="d418ded6-67d3-47c4-adc1-64638beef4ab"><td id="T_GE" class="">Уровень</td><td id="zJt&gt;" class="" style="width:525px">цели пользователя</td></tr><tr id="c5044af1-8ce3-4a6a-ba0a-2b315b6044a4"><td id="T_GE" class="">Область действия</td><td id="zJt&gt;" class="" style="width:525px">мастер - система</td></tr><tr id="39e04651-1ccc-4dc7-af43-19594023bf2c"><td id="T_GE" class="">Основной актор</td><td id="zJt&gt;" class="" style="width:525px">мастер</td></tr><tr id="8b8b64b5-325d-4a3a-8c8e-585334e75d63"><td id="T_GE" class="">Участники и интересы</td><td id="zJt&gt;" class="" style="width:525px">Мастер (заказать недостающие для ремонта запчасти), тех.поддержка (обеспечение функционирования системы, анализ ошибок), работник склада СТО (вести учет запчастей), центральный склад (обработать заявку)</td></tr><tr id="014bed1a-9fcf-48da-8fbd-e3d92fde9c51"><td id="T_GE" class="">Предусловие</td><td id="zJt&gt;" class="" style="width:525px">В заказ-наряде сформирован список необходимых запчастей</td></tr><tr id="5df0e44a-a269-4005-9352-7a5426643bc2"><td id="T_GE" class="">Минимальные гарантии</td><td id="zJt&gt;" class="" style="width:525px">мастер выделяет список недостающих запчастей</td></tr><tr id="01d4cbaa-a396-432d-8080-4517433953f5"><td id="T_GE" class="">Гарантии успеха</td><td id="zJt&gt;" class="" style="width:525px">мастер оформляет заявку на заказ запчастей на центральном складе</td></tr><tr id="1b1e7463-eb06-41ff-9b2b-e50723446fa5"><td id="T_GE" class="">Триггер</td><td id="zJt&gt;" class="" style="width:525px">Мастер нажимает кнопку “Заказать запчасти”</td></tr></tbody></table><p id="d79444f9-905e-489b-8cba-a370721bf570" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="a84ed3bc-258f-4bb8-92ea-0851343aa46d" class="numbered-list" start="1"><li>Мастер запрашивает список запчастей, которых нет на локальном складе.</li></ol><ol type="1" id="b970a730-6cf6-4365-ae08-b9cccd543c5b" class="numbered-list" start="2"><li>Система формирует и выводит на экран список запчастей из ЗН, которых нет на локальном складе.</li></ol><ol type="1" id="e6d7f1a2-1968-4c1b-a3cb-32896e2dfc6c" class="numbered-list" start="3"><li>Мастер подтверждает корректность списка необходимых запчастей, который сформировала система.</li></ol><ol type="1" id="5efcc616-8559-4019-ab4a-7e05c4ecab0b" class="numbered-list" start="4"><li>Мастер вводит количество необходимых запчастей по каждому наименованию в списке.</li></ol><ol type="1" id="361f27d4-4def-4696-939d-698c3915dc22" class="numbered-list" start="5"><li>Мастер оформляет заявку на заказ запчастей. </li></ol><ol type="1" id="a23550e6-e593-4956-90e2-89e25a575720" class="numbered-list" start="6"><li>Система сохраняет заявку на заказ запчастей.</li></ol><ol type="1" id="0f9157be-ec31-4a11-96c9-186c7baeb2d0" class="numbered-list" start="7"><li>Система присваивает заявке текущую дату и время. </li></ol><ol type="1" id="b44a5376-ef85-49d9-959c-52ece1256ee5" class="numbered-list" start="8"><li>Система фиксирует автора заявки. </li></ol><ol type="1" id="ec9a3f32-e55c-43fb-bbda-f34ab23b1aba" class="numbered-list" start="9"><li>Система отправляет заявку на заказ запчастей на центральный склад.  </li></ol><h2 id="649449c5-4c18-4591-bcbf-627256a5bfb5" class="">UseCase, реализуемые в рамках первого релиза</h2><h3 id="f5965629-f230-4cd6-ad4d-3cde90dfcd3d" class="">UC-06 Добавить данных о клиенте в заказ-наряд</h3><table id="9fe7eeda-86ea-46fe-af35-777792b1dcf0" class="simple-table"><tbody><tr id="04f928a2-de7c-4480-a039-b69dab4b1c3e"><td id="Q}^g" class="">Название</td><td id="YKzg" class="" style="width:522px">Добавить данных о клиенте в заказ-наряд</td></tr><tr id="5fcc2c70-6d57-40cf-b885-51a31a91b6d2"><td id="Q}^g" class="">Уровень</td><td id="YKzg" class="" style="width:522px">цели пользователя</td></tr><tr id="1acbf773-bd3a-4487-835f-6669ec7bc9bb"><td id="Q}^g" class="">Область действия</td><td id="YKzg" class="" style="width:522px">мастер  - система</td></tr><tr id="d6cc1904-e19a-48aa-a3dd-ff39271ce965"><td id="Q}^g" class="">Основной актор</td><td id="YKzg" class="" style="width:522px">мастер</td></tr><tr id="26023551-7d1f-4fb1-83a1-40207788db30"><td id="Q}^g" class="">Участники и интересы</td><td id="YKzg" class="" style="width:522px">Мастер (сохранить информацию о клиенте), тех.поддержка (обеспечение функционирования системы, анализ ошибок), менеджер СТО (формирование клиентской базы)</td></tr><tr id="a3f356a8-ce9c-476d-9e81-ad7eabed40df"><td id="Q}^g" class="">Предусловие</td><td id="YKzg" class="" style="width:522px">Мастер авторизован, открыта форма заказ-наряда</td></tr><tr id="f653dfa6-c961-4d38-9b00-7de4eb64cdce"><td id="Q}^g" class="">Минимальные гарантии</td><td id="YKzg" class="" style="width:522px">Данные о клиенте сохранены в заказ-наряде</td></tr><tr id="ed306b8b-a1db-45b4-ba65-78e26ac5cf56"><td id="Q}^g" class="">Гарантии успеха</td><td id="YKzg" class="" style="width:522px"></td></tr><tr id="9e03c33f-bae4-4f22-acc5-d7d0a7531bb8"><td id="Q}^g" class="">Триггер</td><td id="YKzg" class="" style="width:522px">Мастер нажимает кнопку “Выбрать клиента”</td></tr></tbody></table><p id="c0395c3e-042a-4bf7-ab79-e10651b4d2b7" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="75a3b71b-cf54-4403-9860-13341f7a72fc" class="numbered-list" start="1"><li>Мастер вводит в строку поиска номер телефона клиента.</li></ol><ol type="1" id="ecc88c46-2597-4878-b8f0-ec17399eeadf" class="numbered-list" start="2"><li>Система выводит ФИО клиента, у которого совпадают введенные данные. <p id="f3b99010-f4c8-4010-a1e8-d7c3931a48b9" class="">3.1 Клиент не зарегистрирован, совпадений нет.</p></li></ol><ol type="1" id="7105d688-e18b-465e-9947-86c54cbad596" class="numbered-list" start="3"><li>Мастер выбирает клиента.</li></ol><ol type="1" id="41dd8fa2-146b-4a16-abf4-23ecf85ccea2" class="numbered-list" start="4"><li>Система выводит на экране все данные клиента: ФИО, дата рождения, телефон, адрес электронной почты.<p id="4101d3eb-bf00-436b-8965-f5224729846b" class="">5.1 У клиента изменились данные.</p></li></ol><ol type="1" id="4d4a8ddd-3c07-4a5d-b2f4-a77fe2fbce8e" class="numbered-list" start="5"><li>Мастер подтверждает корректность заполненных данных. </li></ol><ol type="1" id="c0ceb7aa-babd-475d-a78d-8bbee1fe90be" class="numbered-list" start="6"><li>Мастер добавляет клиента в заказ-наряд.</li></ol><p id="802369f7-d117-43e3-8890-fe762071d353" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="bcbcd7e8-894b-4374-89f8-8b58d48539ea" class="">3.1  Клиент не зарегистрирован, совпадений нет.<div class="indented"><p id="256d8a46-96c9-41b8-a27d-e1bf54a1b1c9" class="">3.1.1 Мастер реализует <a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">UC-07 “Зарегистрировать клиента”</a></p></div></p><p id="56b737f3-a091-470a-a1c2-f59504041e87" class="">5.1 У клиента изменились данные.<div class="indented"><p id="41cb2c37-3408-4162-b387-63682a160da9" class="">5.1.1 Мастер инициирует изменение данных клиента. </p><p id="afeb3e0b-9389-48d3-bab3-c6e1bab6e764" class="">5.1.2 Система открывает карточку клиента с полями, доступными для редактирования.</p><p id="dd31a7eb-62f5-47f3-ab0d-1e43c5844099" class="">5.1.3 Мастер вносит необходимые изменения в данные клиента.</p><p id="34f04b3a-e717-4e56-9368-95504d788372" class="">5.1.4 Мастер сохраняет внесенные данные. </p><p id="4b330ee8-7f86-487a-ad97-84aa80c05c61" class="">5.1.5 Система выводит на экране все данные клиента: ФИО, дата рождения, телефон, адрес электронной почты.</p><p id="3a6e1a22-d270-4c87-b143-3e0e55ff3c0f" class="">5.1.6 Мастер подтверждает корректность данных.</p><p id="4e9542d8-19a1-4b10-8fc7-49476ef96bbb" class="">5.1.7 Мастер сохраняет изменения данных. </p><p id="d9d89278-bb3c-45be-883f-e8ad9f3a6b3a" class="">5.1.8 Система сохраняет измененные данные. </p></div></p><h3 id="a569f518-b3b5-48b7-8d19-7da5e4bf4ed1" class="">UC-07 Зарегистрировать клиента</h3><table id="4c0d3db9-a027-48f7-889f-1f1c16f770dc" class="simple-table"><tbody><tr id="735336d4-151e-4b77-9fc3-559a7f016089"><td id="XlD:" class="">Название</td><td id="GX]v" class="" style="width:543px">Зарегистрировать клиента</td></tr><tr id="5670163c-9eec-4619-b509-284fa535e0c0"><td id="XlD:" class="">Уровень</td><td id="GX]v" class="" style="width:543px">цели пользователя</td></tr><tr id="7c683703-0533-4e71-8992-038deb9f6633"><td id="XlD:" class="">Область действия</td><td id="GX]v" class="" style="width:543px">мастер - система</td></tr><tr id="bcd1d752-ae68-4bb8-b6c9-d77e45b03306"><td id="XlD:" class="">Основной актор</td><td id="GX]v" class="" style="width:543px">мастер</td></tr><tr id="f4e97fbd-702c-413f-92a2-b9e24fd4193d"><td id="XlD:" class="">Участники и интересы</td><td id="GX]v" class="" style="width:543px">Мастер (забронировать запчасти, необходимые для ремонта), тех.поддержка (обеспечение функционирования системы, анализ ошибок), работник склада СТО (вести учет запчастей)</td></tr><tr id="23131678-63fc-4830-ace1-615f4a62db70"><td id="XlD:" class="">Предусловие</td><td id="GX]v" class="" style="width:543px">Сформирован список запчастей (выполнен UC-04)</td></tr><tr id="b6bcfe49-aa86-4fd6-9d2b-be13f68ca1a1"><td id="XlD:" class="">Минимальные гарантии</td><td id="GX]v" class="" style="width:543px">мастер видит наличие запчастей на локальном складе</td></tr><tr id="a1c80404-9576-46ea-8854-136f34259459"><td id="XlD:" class="">Гарантии успеха</td><td id="GX]v" class="" style="width:543px">запчасти, необходимые для ремонта, будут забронированы</td></tr><tr id="4a15046b-b32f-461b-a38c-eb3285e81d76"><td id="XlD:" class="">Триггер</td><td id="GX]v" class="" style="width:543px">Мастер нажимает кнопку “Зарегистрировать клиента”</td></tr></tbody></table><p id="8c8b45c1-5e48-49db-a001-a02575b1ad64" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="d45a4d62-6e6a-4881-b2bc-aa5d20146761" class="numbered-list" start="1"><li>Мастер вводит в поле “фамилия” фамилию клиента.</li></ol><ol type="1" id="689725dc-290e-4dee-bdfd-01f76c37f50c" class="numbered-list" start="2"><li>Мастер вводит в поле “имя” имя клиента.</li></ol><ol type="1" id="fb67d0a3-03e9-43b1-8b31-17dede8223c0" class="numbered-list" start="3"><li>Мастер вводит в поле “отчество” отчество клиента. </li></ol><ol type="1" id="65005dcf-5bc0-4eb5-a5fe-285949a83a26" class="numbered-list" start="4"><li>Мастер вводит в поле “дата рождения” дату рождения клиента.</li></ol><ol type="1" id="4d29da78-0d05-4892-993a-b669566da1a3" class="numbered-list" start="5"><li>Система подтверждает, что клиент не зарегистрирован. </li></ol><ol type="1" id="043ba7a6-3b54-4e0c-b947-71772143e5da" class="numbered-list" start="6"><li>Мастер вводит номер телефона клиента в формате +7 (111)111 11 11<p id="2abb13d2-e075-4150-a7d2-ab928ee2c46d" class="">6.1 Мастер начал вводить номер с 8</p></li></ol><ol type="1" id="600ad7b2-fdd3-4d95-a0fa-24195820ff50" class="numbered-list" start="7"><li>Мастер вводит в поле “email” адрес электронной почты клиента.</li></ol><ol type="1" id="a8cbd06e-9c08-416c-b35c-10f27d7a5e09" class="numbered-list" start="8"><li>Мастер регистрирует клиента. </li></ol><ol type="1" id="c2b9ae99-d6f1-4112-8dad-1a932643f084" class="numbered-list" start="9"><li>Система выводит на экран все введенные данные по клиенту (п.1-7)</li></ol><ol type="1" id="84afdc1c-fd42-4f87-9c54-3ae8b6045b26" class="numbered-list" start="10"><li>Мастер подтверждает корректность заполненных данных.<p id="a0751976-7327-4441-9d35-f4a5d193fcd8" class="">10.1 В введенных данных есть ошибка. </p></li></ol><ol type="1" id="97aee269-5a1d-4222-a1b8-b5b1dcef6f73" class="numbered-list" start="11"><li>Мастер сохраняет данные клиента. </li></ol><ol type="1" id="5df269a5-8ce2-4feb-a16d-2bac225b9706" class="numbered-list" start="12"><li>Система присваивает карточке клиента текущую дату и время.</li></ol><ol type="1" id="66d91dde-57ab-406c-b4cf-153ceffa2aa9" class="numbered-list" start="13"><li>Система сохраняет данные о клиенте в “Справочник клиентов” </li></ol><p id="a3066364-8ec1-4840-8090-cf86caf2b456" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="fd8f337b-5f6f-4845-be75-34bd5bb19c84" class="">6.1 Мастер начал вводить номер с 8<div class="indented"><p id="958bc1b2-4ffb-4221-9dc9-b80517863020" class="">6.1 Система изменила 8 на +7.</p></div></p><p id="e707b4c9-ccaf-413f-aed0-40316922b968" class="">10.1 В введенных данных есть ошибка.<div class="indented"><p id="a63517b5-8a95-4602-a982-f02285fdc942" class="">10.1.1 Мастер инициирует изменение данных клиента. </p><p id="1a4f9795-d5da-4db3-91d0-ad3ec8ebf80e" class="">10.1.2. Мастер корректирует данные.</p><p id="8f82f342-6fde-4546-baaf-ed9383e8aa24" class="">10.1.3 Мастер сохраняет изменения. </p></div></p><h3 id="233138cb-9a49-4809-bd44-b76a1222b21b" class="">UC-08 Добавить данные об автомобиле клиента в заказ-наряд</h3><table id="a4928a4e-9ba6-49b0-b1a7-bc8a22571192" class="simple-table"><tbody><tr id="7c9e5d9d-4279-4983-a607-be2313f4bcf5"><td id="iJ\m" class="">Название</td><td id="hfrh" class="" style="width:510px">Добавление данных об автомобиле в заказ-наряд</td></tr><tr id="5e85e49a-e36c-4796-abae-b5bee872ddcd"><td id="iJ\m" class="">Уровень</td><td id="hfrh" class="" style="width:510px">цели пользователя</td></tr><tr id="a15781d5-0734-4386-8776-0ee33448987e"><td id="iJ\m" class="">Область действия</td><td id="hfrh" class="" style="width:510px">мастер  - система</td></tr><tr id="26621dbb-41b7-4b83-808d-63f38aa5a825"><td id="iJ\m" class="">Основной актор</td><td id="hfrh" class="" style="width:510px">мастер</td></tr><tr id="bb466483-2a4f-4d8e-9def-c34ddd06f2cd"><td id="iJ\m" class="">Участники и интересы</td><td id="hfrh" class="" style="width:510px">Мастер (сохранить информацию об автомобиле), тех.поддержка (обеспечение функционирования системы, анализ ошибок)</td></tr><tr id="904873f6-c101-4552-ad4a-7d3fc6a61a45"><td id="iJ\m" class="">Предусловие</td><td id="hfrh" class="" style="width:510px">Мастер авторизован, открыта форма заказ-наряда, введены данные клиента</td></tr><tr id="af5b95f6-be21-493a-9459-f40bcfcaddbc"><td id="iJ\m" class="">Минимальные гарантии</td><td id="hfrh" class="" style="width:510px">Данные об автомобиле сохранены в заказ-наряде</td></tr><tr id="3d4e512a-578b-4676-abe2-636b7b44bc77"><td id="iJ\m" class="">Гарантии успеха</td><td id="hfrh" class="" style="width:510px"></td></tr><tr id="c7247e1b-3169-44da-b367-14e0b564c737"><td id="iJ\m" class="">Триггер</td><td id="hfrh" class="" style="width:510px">Мастер нажимает кнопку “Добавить автомобиль”</td></tr></tbody></table><p id="29d0a9aa-7363-45c3-a70d-86ae47efd94c" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="7f62387b-ef4a-4997-b269-cd42ec724ae3" class="numbered-list" start="1"><li>Мастер добавляет автомобиль клиента в заказ-наряд. </li></ol><ol type="1" id="abbe1c41-2d90-447d-91bb-20e869bf0d68" class="numbered-list" start="2"><li>Система выдает список автомобилей клиента.<p id="8c57f399-1670-4807-834a-6232a0240123" class="">2.1 В списке нет нужного автомобиля. </p></li></ol><ol type="1" id="aec0f518-9c17-4cb9-a56c-9e1d707df9f5" class="numbered-list" start="3"><li>Мастер выбирает нужный автомобиль.</li></ol><ol type="1" id="92b1af0a-8ab8-47bd-b5e5-6b5d842a9f48" class="numbered-list" start="4"><li>Система отражает на экране данные по автомобилю: марка, модель, VIN, гос. номер.</li></ol><ol type="1" id="65da3981-94a7-4fcb-a974-9b6602c800c5" class="numbered-list" start="5"><li>Мастер подтверждает корректность данных по автомобилю.<p id="fe56bbff-dc8e-4a06-9349-59ee2508349d" class="">5.1 У автомобиля поменялся гос. номер. </p></li></ol><ol type="1" id="1496a2d6-08f8-445b-863c-22bceaf70ef8" class="numbered-list" start="6"><li>Мастер добавляет автомобиль в заказ-наряд. </li></ol><p id="61d21f24-97ff-403c-b217-14d90cc1da38" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="bc632824-e651-461c-9782-9207e6b86246" class="">2.1 В списке нет нужного автомобиля<div class="indented"><p id="6c4ca4bf-8a9a-429d-841a-b0ced1c259fd" class="">2.1.1 Мастер реализует <a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">UC-09 “Регистрация автомобиля клиента”</a></p><p id="6c0f7605-68f3-4084-9639-26e52c07240d" class="">2.1.2 Система отражает зарегистрированный автомобиль в списке автомобилей клиента.</p><p id="75982c05-97fa-42b9-bed7-54745e084d6f" class="">2.1.3 Мастер выбирает автомобиль из списка автомобилей клиента. </p></div></p><p id="1da8d91f-976f-46c2-839c-45bd533fa4b0" class="">5.1 У автомобиля поменялся гос. номер.<div class="indented"><p id="3adbf426-38b8-40d3-95cf-7b4c3fa29edf" class="">5.1.1 Мастер инициирует изменение гос. номера. </p><p id="89fa006e-43c8-4014-9a32-107a28911829" class="">5.1.2 Система открывает карточку автомобиля с полями, доступными для редактирования.</p><p id="2d6416fd-9e56-4475-b5bb-2a001faccadc" class="">5.1.3 Мастер вносит новый гос. номер.</p><p id="c9435e87-2d26-4fac-bdb8-266df03bacf7" class="">5.1.4 Мастер сохраняет изменения. </p></div></p><h3 id="606c7876-8f81-46c6-ab2a-70ae8d1fa215" class="">UC-09. Зарегистрировать автомобиль клиента.</h3><table id="f2891b8a-952b-46cd-8182-be811bbd5cd9" class="simple-table"><tbody><tr id="312e10d3-46a3-4ece-9d08-6877240e3917"><td id="AkmB" class="" style="width:145px">Название</td><td id="hP;P" class="" style="width:591px">Регистрация автомобиля клиента</td></tr><tr id="557322f8-0bbb-4379-9d18-0d6229c50650"><td id="AkmB" class="" style="width:145px">Уровень</td><td id="hP;P" class="" style="width:591px">цели пользователя</td></tr><tr id="70154098-95d4-48ef-a719-09e56797b4f0"><td id="AkmB" class="" style="width:145px">Область действия</td><td id="hP;P" class="" style="width:591px">мастер  - система</td></tr><tr id="523b8025-ecaf-4774-bc99-b175d7a58644"><td id="AkmB" class="" style="width:145px">Основной актор</td><td id="hP;P" class="" style="width:591px">мастер</td></tr><tr id="c10fc3e9-8003-4e55-9034-226982fa0102"><td id="AkmB" class="" style="width:145px">Участники и интересы</td><td id="hP;P" class="" style="width:591px">Мастер (внести данные об автомобиле клиента в заказ-наряд), тех.поддержка (обеспечение функционирования системы, анализ ошибок)</td></tr><tr id="47625d32-a9f7-4167-a96a-81cc0e32ab93"><td id="AkmB" class="" style="width:145px">Предусловие</td><td id="hP;P" class="" style="width:591px">Мастер авторизован, введены данные клиента</td></tr><tr id="8e3dd8ba-4cc9-4351-84b9-488d728950cd"><td id="AkmB" class="" style="width:145px">Минимальные гарантии</td><td id="hP;P" class="" style="width:591px">Черновик карточки “Регистрация автомобиля” сохранен в системе. </td></tr><tr id="046975f8-3219-423e-9657-e837d3856cfd"><td id="AkmB" class="" style="width:145px">Гарантии успеха</td><td id="hP;P" class="" style="width:591px">Автомобиль клиента зарегистрирован в системе</td></tr><tr id="a19a7e32-c28c-4e9f-a845-30d8f747de05"><td id="AkmB" class="" style="width:145px">Триггер</td><td id="hP;P" class="" style="width:591px">Мастер нажимает кнопку “Зарегистрировать авто”</td></tr></tbody></table><p id="d2d2c1de-2328-412c-a299-58b90323d26a" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="44f58ca1-d65d-4038-b168-4ec27527edf8" class="numbered-list" start="1"><li>Мастер начал вводить название марки автомобиля в строку поиска.</li></ol><ol type="1" id="38b46c84-f030-4e06-8772-2065eeef795b" class="numbered-list" start="2"><li>Система выдала список возможных марок автомобилей, содержащих введенные символы.<p id="de9d5902-4059-4ca0-9340-58100df96a15" class="">2.1. Совпадений по символам не найдено.</p></li></ol><ol type="1" id="7c25411f-2717-45d0-bccc-7a7d2a527fc0" class="numbered-list" start="3"><li>Мастер выбрал из предложенного списка необходимую марку машины. </li></ol><ol type="1" id="14748843-57a0-4a3c-876e-1923a2a33ce2" class="numbered-list" start="4"><li>Система выдала список моделей автомобилей выбранной марки.<p id="b36ca933-cdea-4c81-937c-f713fe4b2425" class="">4.1.Система не выдала список доступных моделей автомобилей.</p></li></ol><ol type="1" id="cd17f473-c5ca-4f76-ada7-c670f96bd17d" class="numbered-list" start="5"><li>Мастер выбрал из предложенного списка необходимую модель автомобиля.</li></ol><ol type="1" id="cac44b8c-bd3d-4087-ad66-8c4b24b5c770" class="numbered-list" start="6"><li>Мастер вводит VIN номер автомобиля.</li></ol><ol type="1" id="cdd83050-63f7-4f71-ae00-db2975c67a37" class="numbered-list" start="7"><li>Система подтверждает достаточное количество введенных символов.<p id="a681b92d-7408-42d2-a3ab-d5194270abb0" class="">7.1. Не хватает символов с VIN номере. </p></li></ol><ol type="1" id="e51ca24f-4177-46fa-8ece-6948a80da41f" class="numbered-list" start="8"><li>Мастер вводить гос. номер автомобиля.</li></ol><ol type="1" id="61ba3507-a332-4f55-b27f-f2c2a26639d2" class="numbered-list" start="9"><li>Мастер регистрирует новый автомобиль в системе. <p id="e1d0b6df-cb6a-4de4-a32b-88377ca13f16" class="">9.1. Потеряно соединение с сервером. </p></li></ol><p id="3e2bfbed-09de-4d18-a535-0beb9e449b2f" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии</span><strong>.</strong></p><p id="0172ab71-73e4-4313-91ed-fc73fc70a213" class="">2.1. Совпадений по символам не найдено.<div class="indented"><ol type="1" id="78332d3c-7821-41cb-a766-f1dd88a75e26" class="numbered-list" start="1"><li>Мастер вводит марку автомобиля вручную.</li></ol><ol type="1" id="79145ef6-e446-4211-ad4e-9487c0f5af7a" class="numbered-list" start="2"><li>Система инициирует заявку на добавление марки автомобиля в справочник.</li></ol></div></p><p id="286d8fff-f887-4033-a8d8-03adeae7808f" class="">4.1. Система не выдала список доступных моделей автомобилей.<div class="indented"><ol type="1" id="6777a4a1-0620-4dbf-863e-25b7c8b2e102" class="numbered-list" start="1"><li>Мастер вводит модель автомобиля вручную.</li></ol><ol type="1" id="a49bb400-d04a-495d-9775-2209cb66f668" class="numbered-list" start="2"><li>Система инициирует заявку на добавление модели автомобиля в справочник.</li></ol></div></p><p id="211b735a-cefe-4b8a-919c-c4742a23dbaf" class="">7.1. Не хватает символов с VIN номере. <div class="indented"><ol type="1" id="ed588c89-150d-4824-b8e3-69b4b20a4235" class="numbered-list" start="1"><li>Система подсвечивает поля ввода VIN номера красным. Система сигнализирует пользователю об ошибке. </li></ol></div></p><p id="b18ee282-f583-490a-9fb9-b627a2b419c9" class="">9.1. Потеряно соединение с сервером.<div class="indented"><ol type="1" id="ff360eac-692a-4475-9422-753f40b0b8db" class="numbered-list" start="1"><li>Система сохраняет черновик карточки “Регистрация автомобиля” в базе.</li></ol><ol type="1" id="3ff730b7-cc9a-4980-b9ad-3e44885f4a61" class="numbered-list" start="2"><li>Мастер может вернуться к заполнению карточки при восстановлении соединения. </li></ol></div></p><p id="522e8381-d2f0-4bdb-99bd-6fd414d03bf6" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

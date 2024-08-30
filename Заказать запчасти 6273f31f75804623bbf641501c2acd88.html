@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Заказать запчасти</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6273f31f-7580-4623-bbf6-41501c2acd88" class="page sans"><header><h1 class="page-title">Заказать запчасти</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="227dfa8d-3c0e-4935-8d0b-935a00efd4f2" class="simple-table"><tbody><tr id="a0562e8f-4007-4f7f-abe1-b9e33b9bb31c"><td id="=bR_" class="">Контекст задачи</td><td id="=~jU" class="" style="width:489px">После бронирования запчастей, которые есть на СТО,  пользователю необходимо заказать недостающие запчасти с центрального склада. </td></tr><tr id="2e68433d-dee2-49bb-b004-5e561fa625fd"><td id="=bR_" class="">Заинтересованные стороны</td><td id="=~jU" class="" style="width:489px">Мастер СТО, менеджер СТО, работник склада</td></tr><tr id="f902557d-8494-45e0-8382-a79e8fc76a38"><td id="=bR_" class="">Ключевые источники информации</td><td id="=~jU" class="" style="width:489px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a></td></tr><tr id="f36b750d-5d9f-44b4-b4c5-b3804863872c"><td id="=bR_" class="">Атрибуты качества и ограничения (НФТ)</td><td id="=~jU" class="" style="width:489px"></td></tr></tbody></table><h3 id="8dd08c0a-a371-4be5-81f7-13da45c8d136" class="">Критерии приемки результата</h3><ol type="1" id="b332bf7a-ea8d-450a-9b2c-6632b1d4b5bc" class="numbered-list" start="1"><li>Система по запросу формирует отдельный список, в котором отражены запчасти, необходимые для выполнения заказ-наряда и которых нет на СТО.</li></ol><ol type="1" id="4e6f57da-f53a-46e8-a191-ad1d976a8fe7" class="numbered-list" start="2"><li>Система позволяет оформить и сохранить заявку на заказ недостающих запчастей.</li></ol><ol type="1" id="c71cef14-1a35-466d-b595-2e6a92b14951" class="numbered-list" start="3"><li>Система фиксирует дату, время создания заявки на заказ запчастей, а также автора </li></ol><ol type="1" id="33869c81-6fb7-432b-8e73-32283182dd45" class="numbered-list" start="4"><li>Система через API взаимодействует с системой складского учета на центральном складе. </li></ol><hr id="c49613fa-4c64-4589-90a3-0e15b797b5a3"/><h2 id="e4d2517b-7a7b-4734-a797-7fc5f724be8c" class="">Описание решения</h2><h3 id="1bca796e-8f8b-4a24-ba86-42f3788eb22d" class="">Приложение 1. UC “Заказать запчасти”</h3><p id="5a285742-1488-484b-b431-dd420a8229df" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="9290e608-1736-4981-bd6f-c295b4a587f5" class="numbered-list" start="1"><li>Мастер запрашивает список запчастей, которых нет на локальном складе.</li></ol><ol type="1" id="159ab3bd-44bb-4693-a0ce-a2e3ca22e8d5" class="numbered-list" start="2"><li>Система формирует и выводит на экран список запчастей из ЗН, которых нет на локальном складе.</li></ol><ol type="1" id="7f059c73-4562-4c17-8791-d11e58ddf546" class="numbered-list" start="3"><li>Мастер подтверждает корректность списка необходимых запчастей, который сформировала система.</li></ol><ol type="1" id="0de56839-3b18-4086-aebc-2504f429cc84" class="numbered-list" start="4"><li>Мастер вводит количество необходимых запчастей по каждому наименованию в списке.</li></ol><ol type="1" id="1860c590-6674-48e9-b453-851fa79e3a85" class="numbered-list" start="5"><li>Мастер оформляет заявку на заказ запчастей. </li></ol><ol type="1" id="d32bcb18-fb34-46ec-90ed-fe25a3dd90e5" class="numbered-list" start="6"><li>Система сохраняет заявку на заказ запчастей.</li></ol><ol type="1" id="e10a6fc2-7024-4f53-acff-7af57785555e" class="numbered-list" start="7"><li>Система присваивает заявке текущую дату и время. </li></ol><ol type="1" id="76f60b9d-64c8-47bf-943c-3434df6eb667" class="numbered-list" start="8"><li>Система фиксирует автора заявки (Фамилия и инициалы). </li></ol><ol type="1" id="22815106-75cc-4832-ad32-0aebe1e33433" class="numbered-list" start="9"><li>Система отправляет заявку на заказ запчастей на центральный склад.  </li></ol><h3 id="6e344175-301c-4119-a2ac-45027d119d28" class="">Приложение 2. ER-диаграмма</h3><p id="dbb99884-6b70-4658-957c-8b280920a0a6" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a> </p><h3 id="89b0cf35-ac2a-4dd5-901c-376ac46583ec" class="">Приложение 3. Словарь данных </h3><p id="6c6aef78-4b50-41da-8630-5936ffdee8ea" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#d13981dd13bc48f5a4c7fd1b5c89fac5</a> </p><h3 id="21fa578b-64af-4169-8c37-0a99105dfaf8" class="">Приложение 4. Вайрфреймы</h3><p id="1a268696-75cf-4c9a-b9e3-525a83a0294a" class="">
+</p><h3 id="7d936527-4999-4248-8c40-00e42dfc599c" class="">Сценарии тестирования</h3><ul id="c49ef6ee-2210-44ab-9aeb-935cb03d187c" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 10. Оформление заявки на заказ запчастей. </strong></summary><table id="4f413451-23b7-4837-aeae-fea3329c77b2" class="simple-table"><tbody><tr id="f8e4c3a1-43df-4a92-b031-3c31b36af352"><th id="c_bM" class="simple-table-header-color simple-table-header">id, название</th><td id="[xC|" class="" style="width:540px">10. Оформление заявки на заказ запчастей. </td></tr><tr id="60cc1053-fd0c-4e63-b381-87786b8b8ada"><th id="c_bM" class="simple-table-header-color simple-table-header">предусловие</th><td id="[xC|" class="" style="width:540px">В наличии на локальном складе есть запчасти “свеча зажигания” - 10 штук, эта информация отражена в справочнике запчастей.</td></tr><tr id="5071cb77-6e34-4c81-b58a-cbfb2b0afa75"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">Открыта форма заказ-наряда</td></tr><tr id="362b6a9f-e30f-4dc7-881b-cf71e00805d6"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">Раздел “Необходимые запчасти” в заказ-наряде состоит из 2 строк: “свеча зажигания” - 2 шт., “колодки” - 2 шт.</td></tr><tr id="04f15a47-cbf9-4650-826f-284485edf931"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">Создан документ “Забронированный запчасти”, в котором существует одна строка “Свеча зажигания - 2 шт.”</td></tr><tr id="e986f607-9db4-4b27-904b-28e25aca7e09"><th id="c_bM" class="simple-table-header-color simple-table-header">шаги</th><td id="[xC|" class="" style="width:540px">1. Нажать “Остальные запчасти” на экране заказ-наряда.</td></tr><tr id="db6e4bda-249d-45f9-8c97-2f24e0fdd959"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">2. Система составила список из одной строки: “колодки”</td></tr><tr id="24bbc1d4-388c-44d1-820c-00a730a31dd3"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">3. Ввести количество необходимых запчастей колодки, равное 2 штуки. </td></tr><tr id="e6dad6d3-83eb-46ac-bc08-2f9b50d91e51"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">4. Нажать “Оформить заказ” </td></tr><tr id="cfedc219-87a9-4b7c-8fec-c79d494ddcb4"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">5. Система зафиксировала текущую дату и время как дату и время создания заявки.</td></tr><tr id="c168c077-56a5-45fa-ad0a-0b6ff24e317b"><th id="c_bM" class="simple-table-header-color simple-table-header"></th><td id="[xC|" class="" style="width:540px">6. Система сохранила Фамилию и инициалы пользователя как автора заявки.  </td></tr><tr id="45f738d6-80d1-4c13-9374-4f00665b13ce"><th id="c_bM" class="simple-table-header-color simple-table-header">ОР</th><td id="[xC|" class="" style="width:540px">В системе существует заявка на заказ запчастей, в которой содержится одна строка “Колодки- 2 шт.”, в качестве автора указаны данные пользователя (фамилия и инициалы), заявке присвоены дата и время создания. </td></tr><tr id="5c6235c1-fd10-405a-b63e-720b58755cc6"><th id="c_bM" class="simple-table-header-color simple-table-header">Постусловия</th><td id="[xC|" class="" style="width:540px">удалить заявку на заказ запчастей.</td></tr></tbody></table></details></li></ul><h3 id="2635be43-f891-4e4a-a89a-656ee7c11126" class="">Подзадачи (передача в разработку)</h3><ul id="852d8e4f-d974-4caf-9553-a456f6ecef99" class="toggle"><li><details open=""><summary><strong>017_Добавить возможность формировать отдельный список для запчастей заказ-наряда, которых нет на СТО.</strong></summary><table id="5f545710-1733-4ea2-b4d3-c018e6141087" class="simple-table"><tbody><tr id="a4495473-d304-48c2-8df3-c9840994c1d3"><th id="Q?~Z" class="simple-table-header-color simple-table-header">ID задачи</th><td id="bOTY" class="" style="width:481px">017</td></tr><tr id="63ccc20e-ce31-4c2b-8e8f-089a6a2b3118"><th id="Q?~Z" class="simple-table-header-color simple-table-header">название задачи</th><td id="bOTY" class="" style="width:481px">Добавить возможность формировать отдельный список для запчастей заказ-наряда, которых нет на СТО. </td></tr><tr id="c8086cca-300e-458a-b140-6a4334599eb0"><th id="Q?~Z" class="simple-table-header-color simple-table-header">краткое описание</th><td id="bOTY" class="" style="width:481px">После проверки наличия запчастей на СТО пользователю необходимо сформировать список запчастей, которых нет на СТО</td></tr><tr id="2814c4bd-ee7b-4a15-a97c-23695be54bf1"><th id="Q?~Z" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="bOTY" class="" style="width:481px">Заказать запчасти</td></tr><tr id="b055b92f-b236-4306-996d-b839ceb7b5a2"><th id="Q?~Z" class="simple-table-header-color simple-table-header">автор</th><td id="bOTY" class="" style="width:481px">Семенова Анна</td></tr><tr id="a95abf67-96d2-492d-81c8-ae3418737c06"><th id="Q?~Z" class="simple-table-header-color simple-table-header">кому назначено</th><td id="bOTY" class="" style="width:481px">отдел разработки, бэкэнд</td></tr><tr id="d154d26a-2e89-48d6-a870-94f820c849d9"><th id="Q?~Z" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="bOTY" class="" style="width:481px"> </td></tr><tr id="31974bc7-3ac5-44ed-807b-82f8af81b55a"><th id="Q?~Z" class="simple-table-header-color simple-table-header">статус</th><td id="bOTY" class="" style="width:481px"></td></tr><tr id="1ef40a2b-eb00-4550-976e-a67c240d0c6a"><th id="Q?~Z" class="simple-table-header-color simple-table-header">приоритет</th><td id="bOTY" class="" style="width:481px">средний</td></tr><tr id="916d321d-bcef-4e79-8754-4ee8518bb618"><th id="Q?~Z" class="simple-table-header-color simple-table-header">метка</th><td id="bOTY" class="" style="width:481px">#СТО</td></tr><tr id="3d3255ce-bbd2-4c18-a0b2-446d32dc87a7"><th id="Q?~Z" class="simple-table-header-color simple-table-header">спринт</th><td id="bOTY" class="" style="width:481px"></td></tr><tr id="d81dc792-0594-4993-b857-3c81d7e98d2e"><th id="Q?~Z" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="bOTY" class="" style="width:481px">создана функция проверки наличия запчастей на СТО </td></tr><tr id="5d79b224-d1f1-47ed-9330-b12357d4fcf6"><th id="Q?~Z" class="simple-table-header-color simple-table-header">окружение</th><td id="bOTY" class="" style="width:481px"></td></tr></tbody></table></details></li></ul><ul id="6cac232a-acc9-4f45-b5f5-beac442d3f2f" class="toggle"><li><details open=""><summary><strong>018_Создать экранную форму заявки на заказ запчастей. </strong></summary><table id="ab156530-3aa1-4b42-9ab2-1bac60140142" class="simple-table"><tbody><tr id="7903d7f4-0190-4c50-8152-eeed1a95585b"><th id="~Fyg" class="simple-table-header-color simple-table-header">ID задачи</th><td id="_n[Y" class="" style="width:472px">018.</td></tr><tr id="a4f3469a-18c7-40f2-bcce-9e082ced71d4"><th id="~Fyg" class="simple-table-header-color simple-table-header">название задачи</th><td id="_n[Y" class="" style="width:472px">Создать экранную форму заявки на заказ запчастей для планшета. </td></tr><tr id="1e2ed177-75e4-498e-8fe2-a3b8ead455ce"><th id="~Fyg" class="simple-table-header-color simple-table-header">краткое описание</th><td id="_n[Y" class="" style="width:472px">Экранная форма “заявка на заказ” содержит шапку, блок “запчасти”. В “шапке” содержатся дата и время, которые система присваивает заявке автоматически при создании, блок “запчасти” формируется на основании заказ-наряда и состоит из списка запчастей, которых нет на СТО.</td></tr><tr id="a8f4618a-86c5-4ac0-9012-a690010efb0c"><th id="~Fyg" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="_n[Y" class="" style="width:472px">Заказать запчасти</td></tr><tr id="5b364a09-b206-47b2-bdfc-d4276bfab9a6"><th id="~Fyg" class="simple-table-header-color simple-table-header">автор</th><td id="_n[Y" class="" style="width:472px">Семенова Анна</td></tr><tr id="4ef2f3b8-614b-4720-9085-4f9ca57d9a2d"><th id="~Fyg" class="simple-table-header-color simple-table-header">кому назначено</th><td id="_n[Y" class="" style="width:472px">отдел разработки, фронтенд</td></tr><tr id="b84ff99a-2dff-4834-b9a2-d71ecdb5809c"><th id="~Fyg" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="_n[Y" class="" style="width:472px">,  </td></tr><tr id="790ec296-9bf2-473f-ae9a-2d45fc0988ee"><th id="~Fyg" class="simple-table-header-color simple-table-header">статус</th><td id="_n[Y" class="" style="width:472px">в разработке</td></tr><tr id="88bda2e0-85b2-43d9-b15c-5f6a5576caae"><th id="~Fyg" class="simple-table-header-color simple-table-header">приоритет</th><td id="_n[Y" class="" style="width:472px">средний</td></tr><tr id="40b1f2d8-7af9-4b23-8b87-6e8a4b178307"><th id="~Fyg" class="simple-table-header-color simple-table-header">метка</th><td id="_n[Y" class="" style="width:472px">#СТО</td></tr><tr id="fef340b0-b4a0-4062-848d-3384cf3654f8"><th id="~Fyg" class="simple-table-header-color simple-table-header">спринт</th><td id="_n[Y" class="" style="width:472px"></td></tr><tr id="93eb5b23-e9f7-4a70-a2a7-17b252ab02c6"><th id="~Fyg" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="_n[Y" class="" style="width:472px">создана форма заказ-наряда, создан справочник запчастей</td></tr><tr id="92568e0c-b8e9-4f20-baa5-6b270cd17d89"><th id="~Fyg" class="simple-table-header-color simple-table-header">окружение</th><td id="_n[Y" class="" style="width:472px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="c2db2a01-db0b-416d-8ec6-6864e2826369" class="toggle"><li><details open=""><summary><strong>019_Спроектировать интеграцию с системой центрального склада. </strong></summary><table id="cccffff3-7dea-454a-9d32-2706c736e4d8" class="simple-table"><tbody><tr id="a3cd8035-8313-40b2-bcb4-8660c3f2a6b4"><th id="OGW;" class="simple-table-header-color simple-table-header">ID задачи</th><td id="VjPj" class="" style="width:474px">019</td></tr><tr id="97f2cc7d-0d0b-49ab-8301-2ec78499fe21"><th id="OGW;" class="simple-table-header-color simple-table-header">название задачи</th><td id="VjPj" class="" style="width:474px">Спроектировать интеграцию с системой центрального склада</td></tr><tr id="9d615af6-b188-4176-b88a-65402ecae22b"><th id="OGW;" class="simple-table-header-color simple-table-header">краткое описание</th><td id="VjPj" class="" style="width:474px">После оформления и сохранения заявки на заказ запчастей система через интеграцию должна отправить заявку на центральный склад.</td></tr><tr id="924d800a-7bfc-4245-85c2-01fb36e69ff3"><th id="OGW;" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="VjPj" class="" style="width:474px">Заказать запчасти</td></tr><tr id="fc235de8-b7b2-4f56-9cd8-52405dcb6021"><th id="OGW;" class="simple-table-header-color simple-table-header">автор</th><td id="VjPj" class="" style="width:474px">Семенова Анна</td></tr><tr id="9cdde8e1-1025-4247-a86a-b08ac6635d40"><th id="OGW;" class="simple-table-header-color simple-table-header">кому назначено</th><td id="VjPj" class="" style="width:474px">отдел разработки, аналитик </td></tr><tr id="2c1a3b0b-f39f-4493-bd35-fb8a9a921427"><th id="OGW;" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="VjPj" class="" style="width:474px">, ,    </td></tr><tr id="dc8bf6ab-9088-4b24-a1fd-160a2361d543"><th id="OGW;" class="simple-table-header-color simple-table-header">статус</th><td id="VjPj" class="" style="width:474px"></td></tr><tr id="190bcec4-4a92-41b2-b043-5e462158f9e4"><th id="OGW;" class="simple-table-header-color simple-table-header">приоритет</th><td id="VjPj" class="" style="width:474px">средний</td></tr><tr id="7417bc66-ad79-40d9-8dc9-a1fda823a802"><th id="OGW;" class="simple-table-header-color simple-table-header">метка</th><td id="VjPj" class="" style="width:474px">#СТО</td></tr><tr id="96bb459d-4e0c-4991-946d-234b8d7ea56a"><th id="OGW;" class="simple-table-header-color simple-table-header">спринт</th><td id="VjPj" class="" style="width:474px"></td></tr><tr id="59b4d13f-a5e8-4460-99cc-4da2a98c1627"><th id="OGW;" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="VjPj" class="" style="width:474px">Спроектирован API для интеграции с системой центрального склада</td></tr><tr id="f511c925-65d8-40e1-adbe-cf4150f5bd83"><th id="OGW;" class="simple-table-header-color simple-table-header">окружение</th><td id="VjPj" class="" style="width:474px"></td></tr></tbody></table></details></li></ul><ul id="f5317f2e-bbbc-4fea-89fe-df5e262a22b7" class="toggle"><li><details open=""><summary><strong>020_Создать интеграцию с системой центрального склада.</strong></summary><table id="6b8ff802-ec43-452b-b6bc-c1ae7e767913" class="simple-table"><tbody><tr id="3708a44b-ecb6-4ed6-b10f-39c14b27cbbd"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">ID задачи</th><td id="gK\l" class="" style="width:481px">020</td></tr><tr id="b70b9e5e-ae57-4d9d-b6b8-0e5264712885"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">название задачи</th><td id="gK\l" class="" style="width:481px">Создать интеграцию с системой центрального склада</td></tr><tr id="15025803-484f-44c5-9247-0efd4d2014cb"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">краткое описание</th><td id="gK\l" class="" style="width:481px">После оформления и сохранения заявки на заказ запчастей система через интеграцию должна отправить заявку на центральный склад. </td></tr><tr id="9f96e0f6-b636-4a43-bcd4-084d33592c8f"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="gK\l" class="" style="width:481px">Заказать запчасти</td></tr><tr id="ece25b3f-5d86-4f57-82db-c87e4904464c"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">автор</th><td id="gK\l" class="" style="width:481px">Семенова Анна</td></tr><tr id="392d3cf6-f803-4b8c-8992-494cf93f316c"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">кому назначено</th><td id="gK\l" class="" style="width:481px">отдел разработки, бэкэнд</td></tr><tr id="a370a01a-0349-4cac-b321-949ee59417f3"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="gK\l" class="" style="width:481px">, ,     </td></tr><tr id="ccfc08c0-d1c7-4e2b-b13d-1fd8c2635b89"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">статус</th><td id="gK\l" class="" style="width:481px"></td></tr><tr id="6347c7c2-c6d9-4bd3-a6d2-0729fe4605da"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">приоритет</th><td id="gK\l" class="" style="width:481px">средний</td></tr><tr id="980aa339-abf1-47a7-96ea-c649cde86b66"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">метка</th><td id="gK\l" class="" style="width:481px">#СТО</td></tr><tr id="bc567d6d-385b-4d03-bf78-942871c8f916"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">спринт</th><td id="gK\l" class="" style="width:481px"></td></tr><tr id="400da4f4-a64a-43f7-ba95-e15803fdbc55"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="gK\l" class="" style="width:481px">Спроектирован API для интеграции с системой центрального склада </td></tr><tr id="bf52d3b7-b1d8-4816-a686-40dc404ab2a1"><th id="&lt;qa]" class="simple-table-header-color simple-table-header">окружение</th><td id="gK\l" class="" style="width:481px"></td></tr></tbody></table></details></li></ul><ul id="30e90ec8-3ceb-4cda-9fef-72af52629777" class="toggle"><li><details open=""><summary><strong>021_Проверить реализацию решения “Заказать запчасти” </strong></summary><table id="1e48eece-8e16-4a19-8cc4-77abf16fcfdc" class="simple-table"><tbody><tr id="ad4de201-931f-48cb-8020-a6f14f0bf0f9"><th id="?Dbu" class="simple-table-header-color simple-table-header">ID задачи</th><td id="MEUy" class="" style="width:482px">021</td></tr><tr id="6d7d497d-758f-45a0-b99e-ec0980cce4ca"><th id="?Dbu" class="simple-table-header-color simple-table-header">название задачи</th><td id="MEUy" class="" style="width:482px">Проверить реализацию решения “Заказать запчасти”</td></tr><tr id="f1f0a324-db49-4f69-a955-ea3af8efce81"><th id="?Dbu" class="simple-table-header-color simple-table-header">краткое описание</th><td id="MEUy" class="" style="width:482px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="6a9fe161-39c2-4e00-babd-67861e7e4785"><th id="?Dbu" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="MEUy" class="" style="width:482px">Заказать запчасти</td></tr><tr id="ac85d109-6ff7-4cb4-a593-d80fed7d8af0"><th id="?Dbu" class="simple-table-header-color simple-table-header">автор</th><td id="MEUy" class="" style="width:482px">Семенова Анна</td></tr><tr id="d9e4dc55-2b88-4931-a2e4-b11a2969eddf"><th id="?Dbu" class="simple-table-header-color simple-table-header">кому назначено</th><td id="MEUy" class="" style="width:482px">отдел тестирования</td></tr><tr id="9352ae77-a24e-42c2-b8f6-0613a3258683"><th id="?Dbu" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="MEUy" class="" style="width:482px"> </td></tr><tr id="12b856df-5154-4d20-b13a-88223167b48f"><th id="?Dbu" class="simple-table-header-color simple-table-header">статус</th><td id="MEUy" class="" style="width:482px">в разработке</td></tr><tr id="7ae6707f-bb37-45d9-b74f-b13210c11f60"><th id="?Dbu" class="simple-table-header-color simple-table-header">приоритет</th><td id="MEUy" class="" style="width:482px">средний</td></tr><tr id="fb2af430-bb68-41e1-af3c-8a3ae26b47bb"><th id="?Dbu" class="simple-table-header-color simple-table-header">метка</th><td id="MEUy" class="" style="width:482px">#СТО</td></tr><tr id="fbb58830-9c34-4140-b419-3303b355f5bd"><th id="?Dbu" class="simple-table-header-color simple-table-header">спринт</th><td id="MEUy" class="" style="width:482px"></td></tr><tr id="da5b8d9b-21de-4f21-be77-55a460d20efe"><th id="?Dbu" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="MEUy" class="" style="width:482px">Добавлена возможность формировать список запчастей заказ-наряда которых нет на СТО, формировать заявку на заказ запчастей, настроена интеграция с системой центрального склада. </td></tr><tr id="70a18595-7667-4043-93d0-5c7565a52239"><th id="?Dbu" class="simple-table-header-color simple-table-header">окружение</th><td id="MEUy" class="" style="width:482px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

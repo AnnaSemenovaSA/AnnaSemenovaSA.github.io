@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Зарегистрировать клиента</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6be1c2be-b1b3-4fdc-8c6b-55574be74d0f" class="page sans"><header><h1 class="page-title">Зарегистрировать клиента</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="466925fc-c103-41a1-bda1-a75107534d8d" class="simple-table"><tbody><tr id="bbec9162-fdc9-45b4-8aa9-7212fe7c5eee"><th id="tt}M" class="simple-table-header-color simple-table-header">Контекст задачи</th><td id="bNn|" class="" style="width:485px">В документе “заказ-наряд” должны быть зафиксированы данные о клиенте. Если клиент обращается на СТО впервые и в справочнике клиентов о нем нет информации, мастер регистрирует нового клиента</td></tr><tr id="3461744c-111b-4906-80d1-9628e39510c7"><th id="tt}M" class="simple-table-header-color simple-table-header">Заинтересованные стороны</th><td id="bNn|" class="" style="width:485px">Мастер СТО</td></tr><tr id="9cc4ac6a-35a9-45bd-ab9d-075f4b7a8e7e"><th id="tt}M" class="simple-table-header-color simple-table-header">Ключевые источники информации</th><td id="bNn|" class="" style="width:485px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a></td></tr><tr id="713c0184-5ffe-4fa5-a287-ea26603fafa1"><th id="tt}M" class="simple-table-header-color simple-table-header">Атрибуты качества и ограничения (НФТ)</th><td id="bNn|" class="" style="width:485px"></td></tr></tbody></table><h3 id="42415844-7c0b-44be-a936-15f4d9458ac8" class="">Критерии приемки результата</h3><ol type="1" id="7d2d5858-5b98-41ad-b363-4d33e239471b" class="numbered-list" start="1"><li>Добавлена экранная форма карточки клиента с пустыми полями, в которые пользователь вносит соответствующие данные.</li></ol><ol type="1" id="d38f9064-fa52-4e9f-b5fd-d33b2bf83c7e" class="numbered-list" start="2"><li>Реализована функция замены в номере телефона “8” на “+7”</li></ol><ol type="1" id="442963e5-d71b-4599-8ae2-f86d8f267815" class="numbered-list" start="3"><li>Номера телефонов хранятся в базе в формате “+7 (111) 111 11 11”</li></ol><ol type="1" id="5b3013e6-5307-4873-a64a-a6890d9f65e1" class="numbered-list" start="4"><li>Система сохраняет данные нового клиента в базу данных в справочник клиентов. </li></ol><hr id="dce1abe3-170b-4ded-9e18-da8bd4bcd9f9"/><h2 id="43d6cddb-7470-4968-8048-3376c1ca933d" class="">Описание решения</h2><h3 id="bb938d1f-1ab4-4c53-8f4f-33521dcd08f7" class="">Приложение 1. UC “Зарегистрировать клиента”</h3><p id="48686b84-3340-4486-9725-ef36dd9a49bc" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="d1a2d789-e3f8-4d0e-8e33-f08bb8650ec4" class="numbered-list" start="1"><li>Мастер вводит в поле “фамилия” фамилию клиента.</li></ol><ol type="1" id="5521731a-31f5-4c31-a22c-7390b583abee" class="numbered-list" start="2"><li>Мастер вводит в поле “имя” имя клиента.</li></ol><ol type="1" id="936a45f8-63c9-4f7d-8e5a-8f9a8a62c7e5" class="numbered-list" start="3"><li>Мастер вводит в поле “отчество” отчество клиента. </li></ol><ol type="1" id="8e541127-47b7-40ab-b942-1e874a6dcaa0" class="numbered-list" start="4"><li>Мастер вводит в поле “дата рождения” дату рождения клиента.</li></ol><ol type="1" id="a22f97ec-657e-4a8b-9c3e-beebbee0e45e" class="numbered-list" start="5"><li>Система подтверждает, что клиент не зарегистрирован. </li></ol><ol type="1" id="f46bc90f-c5a4-409d-ac21-e63e8cad4738" class="numbered-list" start="6"><li>Мастер вводит номер телефона клиента в формате +7 (111)111 11 11<p id="f746dbda-f89f-438d-b6bf-b19e452dac5a" class="">6.1 Мастер начал вводить номер с 8</p></li></ol><ol type="1" id="1fd379bc-0b3f-467c-afc1-5c789f1fd979" class="numbered-list" start="7"><li>Мастер вводит в поле “email” адрес электронной почты клиента.</li></ol><ol type="1" id="e542a45a-f854-459d-a69e-e51fb64c2c7d" class="numbered-list" start="8"><li>Мастер регистрирует клиента. </li></ol><ol type="1" id="5dabb217-0407-4c43-972b-5e39e0f4fe57" class="numbered-list" start="9"><li>Система выводит на экран все введенные данные по клиенту (п.1-7)</li></ol><ol type="1" id="1920f320-83b1-4025-970e-a0c9bcce7d81" class="numbered-list" start="10"><li>Мастер подтверждает корректность заполненных данных.<p id="29870d43-c619-4d11-a557-7ba48a640cf3" class="">10.1 В введенных данных есть ошибка. </p></li></ol><ol type="1" id="d9485075-83c1-4c06-8112-92f73e179d77" class="numbered-list" start="11"><li>Мастер сохраняет данные клиента. </li></ol><ol type="1" id="38d8c9c0-999c-4e71-8fe9-58d2c2ccd2b4" class="numbered-list" start="12"><li>Система присваивает карточке клиента текущую дату и время.</li></ol><ol type="1" id="8891fb9a-8c9f-4a05-b4ed-5f672d247e02" class="numbered-list" start="13"><li>Система сохраняет данные о клиенте в “Справочник клиентов” </li></ol><p id="8dc689f4-a1e2-4bc9-8e42-0820e5e4c494" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="0aef2c4b-4664-4d47-811f-1c3cd24a57a7" class="">6.1 Мастер начал вводить номер с 8<div class="indented"><p id="58ecf22c-1e59-4d69-9b26-2f53c036d1c9" class="">6.1 Система изменила 8 на +7.</p></div></p><p id="abd45d4a-2157-4d7d-b11b-77aebdf0d61a" class="">10.1 В введенных данных есть ошибка.<div class="indented"><p id="73790822-a7a3-460c-a8a0-bed0a6f79873" class="">10.1.1 Мастер инициирует изменение данных клиента. </p><p id="a33469cf-3445-48c0-82b9-2fc864f084c1" class="">10.1.2 Мастер корректирует данные.</p><p id="e021b2b1-9e71-434c-9b7e-1aece13e04bd" class="">10.1.3 Мастер сохраняет изменения. </p></div></p><h3 id="f6715fde-d6b0-493b-9241-c82f61333783" class="">Приложение 2. ER-диаграмма </h3><p id="617cb0bc-8cd6-4b26-afcd-daaacbf07851" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a></p><h3 id="75a198ef-a82a-421e-af45-bb42e31e7deb" class="">Приложение 3. Словарь данных</h3><p id="85a0e0d8-c8d9-4786-8a57-fed71698b048" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#d13981dd13bc48f5a4c7fd1b5c89fac5</a></p><h3 id="8f2d467b-a8b1-47df-ade5-8c237be65e31" class="">Приложение 4. Вайрфреймы </h3><p id="8c2ae0c3-5771-483c-8d36-464a5b2fe534" class="">
+</p><h3 id="071fa03c-fc3b-47f3-8ee8-6c7e4945b812" class="">Сценарии тестирования</h3><ul id="34a10a6b-578f-4865-b145-c57110d3b4d3" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 13. Регистрация нового клиента </strong></summary></details></li></ul><ul id="537de184-2bf2-46ea-87b3-3bf7e0251d49" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 14. Проверка замены “8” на “+7” в номере телефона</strong></summary></details></li></ul><h3 id="faad7446-2303-40cf-8828-23ded45874e3" class="">Подзадачи (передача в разработку)</h3><ul id="f99b0d4d-fee7-4322-acce-b3313d3bb1cc" class="toggle"><li><details open=""><summary><strong>027_Добавить экранную форму пустой карточки клиента.</strong></summary><table id="634d2a3c-5efa-44c5-a78d-38dc8eaf7290" class="simple-table"><tbody><tr id="616e6a02-8f16-4d4b-a6f2-d9516f9b3e4d"><td id="qPm]" class="">ID задачи</td><td id="@azI" class="" style="width:493px">024</td></tr><tr id="1b72d797-a04b-4725-b83e-3085b1b81eec"><td id="qPm]" class="">название задачи</td><td id="@azI" class="" style="width:493px">Добавить экранную форму пустой карточки клиента</td></tr><tr id="2ec36567-0f1d-49ee-a780-4ad2340d3ab0"><td id="qPm]" class="">краткое описание</td><td id="@azI" class="" style="width:493px">Добавить экранную форму на основе карточки клиента, в которой все поля будут пустыми с возможностью их заполнения</td></tr><tr id="c9c62a80-7f3b-4838-bb20-1ca41ea81b37"><td id="qPm]" class="">вышестоящая задача</td><td id="@azI" class="" style="width:493px">Зарегистрировать клиента</td></tr><tr id="c7084ef6-c33e-436a-9cdd-bfdf26c1e3f3"><td id="qPm]" class="">автор</td><td id="@azI" class="" style="width:493px">Семенова Анна</td></tr><tr id="1043d68f-7081-4ba6-8e45-453c943df574"><td id="qPm]" class="">кому назначено</td><td id="@azI" class="" style="width:493px">отдел разработки, фронтенд</td></tr><tr id="f922cdc6-c5a6-43f1-a6b4-f2d8eccbb586"><td id="qPm]" class="">размещение постановки</td><td id="@azI" class="" style="width:493px">,   </td></tr><tr id="c02d1121-fa2c-4a10-b398-248488c56d14"><td id="qPm]" class="">статус</td><td id="@azI" class="" style="width:493px">в разработке</td></tr><tr id="e85f03e8-7c1a-4fd5-9578-51c28c4d418f"><td id="qPm]" class="">приоритет</td><td id="@azI" class="" style="width:493px">средний</td></tr><tr id="82955c8c-35f1-4c48-a657-931bf7df314f"><td id="qPm]" class="">метка</td><td id="@azI" class="" style="width:493px">#СТО</td></tr><tr id="8b1ecf55-62fe-43f9-82ff-4448c45afc84"><td id="qPm]" class="">спринт</td><td id="@azI" class="" style="width:493px"></td></tr><tr id="50b1aa2d-0c45-4ccc-bed9-96640fc6cd9f"><td id="qPm]" class="">предусловие выполнения</td><td id="@azI" class="" style="width:493px">создана экранная форма карточки клиента</td></tr><tr id="1c975954-8f64-494e-aace-33fe958c48d4"><td id="qPm]" class="">окружение</td><td id="@azI" class="" style="width:493px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="3f304e13-02d7-4e85-b407-c6d564d456bf" class="toggle"><li><details open=""><summary><strong>028_Добавить возможности регистрации нового клиента. </strong></summary><table id="8256f295-ab03-4088-b4f7-9552544a7bd5" class="simple-table"><tbody><tr id="c3a9c8ab-d70a-407e-b4c4-f54f8fbc6b2e"><td id="ealt" class="">ID задачи</td><td id="^lpq" class="" style="width:500px">028</td></tr><tr id="10eb9df1-f3e2-4f41-9dc4-b30cbd22d95b"><td id="ealt" class="">название задачи</td><td id="^lpq" class="" style="width:500px">Добавить возможность регистрации нового клиента</td></tr><tr id="4b370909-6f01-4bb2-8e2c-ed67ce8508a1"><td id="ealt" class="">краткое описание</td><td id="^lpq" class="" style="width:500px">Если в справочнике клиентов нет данных о клиенте, пользователь будет его регистрировать. Для этого ему нужно заполнить все данные о клиенте в соответствии со словарем данных () </td></tr><tr id="392e26e0-a2f5-4044-b9c8-113e852bf56a"><td id="ealt" class="">вышестоящая задача</td><td id="^lpq" class="" style="width:500px">Зарегистрировать клиента</td></tr><tr id="81cb3c67-130d-421c-9ec1-a0aa99c34401"><td id="ealt" class="">автор</td><td id="^lpq" class="" style="width:500px">Семенова Анна</td></tr><tr id="cbf02ab2-c63e-4892-8637-ca2fe33d95a3"><td id="ealt" class="">кому назначено</td><td id="^lpq" class="" style="width:500px">отдел разработки, бэкэнд</td></tr><tr id="4986339a-450b-41e6-b03c-5cbf23336976"><td id="ealt" class="">размещение постановки</td><td id="^lpq" class="" style="width:500px">, ,     </td></tr><tr id="efaacb52-9058-4731-9dc5-7b3b08d52c8d"><td id="ealt" class="">статус</td><td id="^lpq" class="" style="width:500px"></td></tr><tr id="3e2a9b02-ca92-4848-9041-54bce303c342"><td id="ealt" class="">приоритет</td><td id="^lpq" class="" style="width:500px">средний</td></tr><tr id="b6a52b5d-1970-4d2c-bf29-1e50ac93ae58"><td id="ealt" class="">метка</td><td id="^lpq" class="" style="width:500px">#СТО</td></tr><tr id="790cda80-1529-4fa2-a31f-cbf2828b9a57"><td id="ealt" class="">спринт</td><td id="^lpq" class="" style="width:500px"></td></tr><tr id="f3f99c46-6633-42a1-b446-ebf7885e3ca2"><td id="ealt" class="">предусловие выполнения</td><td id="^lpq" class="" style="width:500px">создан справочник клиентов, создана экранная форма пустой карточки клиента</td></tr><tr id="b4bc2b86-2fec-46c7-90aa-c1e702e9a492"><td id="ealt" class="">окружение</td><td id="^lpq" class="" style="width:500px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="7d5b26f4-e094-4324-bba4-a21c3d9d1bed" class="toggle"><li><details open=""><summary><strong>029_Проверить реализацию решения “Зарегистрировать клиента”</strong></summary><table id="ccc6aec9-5af1-4627-9258-3bcae01a4db3" class="simple-table"><tbody><tr id="6f911943-bf3d-4ac9-9006-3435117cfa99"><th id="e@lY" class="simple-table-header-color simple-table-header">ID задачи</th><td id="PgLE" class="" style="width:497px">026</td></tr><tr id="13afb6bd-f37e-447d-a17c-167bdb376173"><th id="e@lY" class="simple-table-header-color simple-table-header">название задачи</th><td id="PgLE" class="" style="width:497px">Проверить реализацию решения “Зарегистрировать клиента”</td></tr><tr id="c4cff544-dbe3-40d4-a17d-c8e6ba4fd9b6"><th id="e@lY" class="simple-table-header-color simple-table-header">краткое описание</th><td id="PgLE" class="" style="width:497px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="86a7b007-eca6-4bf3-85cf-83fc224169e1"><th id="e@lY" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="PgLE" class="" style="width:497px">Зарегистрировать клиента</td></tr><tr id="73d8b954-2955-4d14-97b3-3acfdd36d663"><th id="e@lY" class="simple-table-header-color simple-table-header">автор</th><td id="PgLE" class="" style="width:497px">Семенова Анна</td></tr><tr id="9a20b4c3-0f01-4596-97d4-1881cef9c949"><th id="e@lY" class="simple-table-header-color simple-table-header">кому назначено</th><td id="PgLE" class="" style="width:497px">отдел тестирования</td></tr><tr id="b5769337-abc0-4204-ac6c-09cf49c364b6"><th id="e@lY" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="PgLE" class="" style="width:497px"> </td></tr><tr id="ca6a07f8-97f8-4282-b56d-46ada24b3b22"><th id="e@lY" class="simple-table-header-color simple-table-header">статус</th><td id="PgLE" class="" style="width:497px">в разработке</td></tr><tr id="95c7953e-e8d1-42c5-b230-3731aa51f6e8"><th id="e@lY" class="simple-table-header-color simple-table-header">приоритет</th><td id="PgLE" class="" style="width:497px">средний</td></tr><tr id="cd7ca213-6be1-42be-adc4-63f7ce020c43"><th id="e@lY" class="simple-table-header-color simple-table-header">метка</th><td id="PgLE" class="" style="width:497px">#СТО</td></tr><tr id="e61edf9c-679c-426a-bd55-0c606691dbf6"><th id="e@lY" class="simple-table-header-color simple-table-header">спринт</th><td id="PgLE" class="" style="width:497px"></td></tr><tr id="3f43249d-3e20-44b8-9650-5c7467dfaf11"><th id="e@lY" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="PgLE" class="" style="width:497px">В базе данных создан справочник клиентов, добавлена экранная форма пустой карточки клиента, реализована функция регистрации клиента.</td></tr><tr id="cd044e3c-5377-4e37-bce7-6fcdad9712dc"><th id="e@lY" class="simple-table-header-color simple-table-header">окружение</th><td id="PgLE" class="" style="width:497px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><p id="628fac69-8f72-4a7a-ad26-603c25144f97" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

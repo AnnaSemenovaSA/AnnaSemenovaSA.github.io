@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Зарегистрировать автомобиль клиента</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c235960c-97e2-4512-932e-19c086fc166f" class="page sans"><header><h1 class="page-title">Зарегистрировать автомобиль клиента</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="c9df26d5-c3d2-4225-a815-d5e4fdb16aff" class="simple-table"><tbody><tr id="96c7f380-3770-4199-809d-b16c0310b3f5"><th id="|xAB" class="simple-table-header-color simple-table-header">Контекст задачи</th><td id="kEN?" class="" style="width:485px">В документе “заказ-наряд” должны быть зафиксированы данные об автомобиле клиенте. Если клиент сменил автомобиль и о нем нет информации в системе, мастер регистрирует новый автомобиль клиента.</td></tr><tr id="6ea5c759-a612-451f-9d52-50cc97db868c"><th id="|xAB" class="simple-table-header-color simple-table-header">Заинтересованные стороны</th><td id="kEN?" class="" style="width:485px">Мастер СТО</td></tr><tr id="c5b2125b-059f-419c-90ad-524bdaac7313"><th id="|xAB" class="simple-table-header-color simple-table-header">Ключевые источники информации</th><td id="kEN?" class="" style="width:485px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a></td></tr><tr id="85d287ba-d0fb-4323-97de-e0adedba1fd4"><th id="|xAB" class="simple-table-header-color simple-table-header">Атрибуты качества и ограничения (НФТ)</th><td id="kEN?" class="" style="width:485px"></td></tr></tbody></table><h3 id="8dc9f395-89d5-462e-84c7-7a491157e9d6" class="">Критерии приемки результата</h3><ol type="1" id="53158985-cbdb-4b1b-bdd5-6629ea46b3f8" class="numbered-list" start="1"><li>На ввод части символов из названия марки автомобиля система выдает все названия марок автомобилей, в которых встречаются введенные символы.</li></ol><ol type="1" id="4e27b7b5-c60d-4ec3-b70f-8a473a6dd657" class="numbered-list" start="2"><li>На ввод символов из названия модели автомобиля система выдает все названия марок выбранной модели автомобиля, в которых встречаются введенные символы.</li></ol><ol type="1" id="1afa6c9a-0419-48b0-9ef5-6525cb2800d4" class="numbered-list" start="3"><li>Пользователь может добавить новую марку автомобиля.</li></ol><ol type="1" id="664a04ec-7424-459c-a3d0-80058edeeb38" class="numbered-list" start="4"><li>Пользователь может добавить новую модель выбранной марки автомобиля.</li></ol><ol type="1" id="dd7883f6-780e-43c2-aad0-617f4d536751" class="numbered-list" start="5"><li>Система проверяет корректность ввода VIN автомобиля и уведомляет пользователя об ошибке ввода. </li></ol><ol type="1" id="006e70a7-2c8f-4b2d-8f98-5cde970e09d2" class="numbered-list" start="6"><li>Пользователь может изменить гос. номер зарегистрированного автомобиля.</li></ol><ol type="1" id="7aafba91-d6b5-4e49-b080-2132a57aef9c" class="numbered-list" start="7"><li> Система сохраняет зарегистрированный автомобиль в базе с привязкой к определенному клиенту. </li></ol><hr id="6265394e-58d3-456d-b123-23dbb2be0cb6"/><h2 id="73daef7e-be7d-48d2-807f-8a59f179e2c3" class="">Описание решения</h2><h3 id="cb73d458-30a1-4074-b302-f200e2cd5d29" class="">Приложение 1. UC “Зарегистрировать автомобиль клиента”</h3><p id="8e48f05b-3203-400d-ad3e-7dd15904ef8b" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="9e9c426f-9c50-4bff-8d63-1f9737f6d551" class="numbered-list" start="1"><li>Мастер начал вводить название марки автомобиля в строку поиска.</li></ol><ol type="1" id="0f84d5d7-ec8d-47af-856f-945928ccafc4" class="numbered-list" start="2"><li>Система выдала список возможных марок автомобилей, содержащих введенные символы.<p id="d5ab6241-a8e9-431d-8ee7-a4e47a9bf4e4" class="">2.1. Совпадений по символам не найдено.</p></li></ol><ol type="1" id="4a1345cf-89fa-42e0-aaac-f59cf3270abe" class="numbered-list" start="3"><li>Мастер выбрал из предложенного списка необходимую марку машины. </li></ol><ol type="1" id="950eb699-6b93-4425-b55b-f5b2906ccac3" class="numbered-list" start="4"><li>Система выдала список моделей автомобилей выбранной марки.<p id="6c9eec0b-cc15-46f8-848b-9aa487ea5a56" class="">4.1.Система не выдала список доступных моделей автомобилей.</p></li></ol><ol type="1" id="b0be1662-a7f1-408f-bbc7-66cbcdf4ae4f" class="numbered-list" start="5"><li>Мастер выбрал из предложенного списка необходимую модель автомобиля.</li></ol><ol type="1" id="10cadb81-e6af-40aa-9df2-3d1922247334" class="numbered-list" start="6"><li>Мастер вводит VIN номер автомобиля.</li></ol><ol type="1" id="95e9a9c1-8cb7-41c1-8ff5-c676f08bec67" class="numbered-list" start="7"><li>Система подтверждает достаточное количество введенных символов.<p id="0766a280-b069-49dd-ba52-06d4bcb62b10" class="">7.1. Не хватает символов с VIN номере. </p></li></ol><ol type="1" id="599aa58a-8c8b-4bb3-87b2-21b6b52f869f" class="numbered-list" start="8"><li>Мастер вводить гос. номер автомобиля.</li></ol><ol type="1" id="b82e7c8f-52dd-4810-bd30-60b07cfa0a35" class="numbered-list" start="9"><li>Мастер регистрирует новый автомобиль в системе. <p id="44a1471b-7c10-4088-86df-fd1ae88bfdec" class="">9.1. Потеряно соединение с сервером. </p></li></ol><p id="accdafcb-38ac-422a-a657-d6cb692e35ea" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии</span><strong>.</strong></p><p id="aafb447b-7741-4562-8679-7f14be997787" class="">2.1. Совпадений по символам не найдено.<div class="indented"><ol type="1" id="7f162d02-1371-4b4b-ab79-b6b0208e7d6e" class="numbered-list" start="1"><li>Мастер вводит марку автомобиля вручную.</li></ol><ol type="1" id="9c58905d-8fd9-456b-aa35-c8677fd73ff4" class="numbered-list" start="2"><li>Система инициирует заявку на добавление марки автомобиля в справочник.</li></ol></div></p><p id="256efd95-ea24-4394-8dd9-e436d5b4a419" class="">4.1. Система не выдала список доступных моделей автомобилей.<div class="indented"><ol type="1" id="64d03f96-959e-44f3-8d08-070af2fb9132" class="numbered-list" start="1"><li>Мастер вводит модель автомобиля вручную.</li></ol><ol type="1" id="4cb72b39-ac4b-4b1b-8147-fa8b6562dab0" class="numbered-list" start="2"><li>Система инициирует заявку на добавление модели автомобиля в справочник.</li></ol></div></p><p id="92ca68a4-23ca-446c-b1cb-19aaa128ba0b" class="">7.1. Не хватает символов с VIN номере. <div class="indented"><ol type="1" id="5698d734-939f-4d60-82f9-746d4c853607" class="numbered-list" start="1"><li>Система подсвечивает поля ввода VIN номера красным. Система сигнализирует пользователю об ошибке. </li></ol></div></p><p id="e6648cb9-5295-41b0-935e-5abc5695b815" class="">9.1. Потеряно соединение с сервером.<div class="indented"><ol type="1" id="2c944678-595c-4094-930b-387e27fa845d" class="numbered-list" start="1"><li>Система сохраняет черновик карточки “Регистрация автомобиля” в базе.</li></ol><ol type="1" id="7bfaab3e-7eeb-444d-b879-12ce2c6cf563" class="numbered-list" start="2"><li>Мастер может вернуться к заполнению карточки при восстановлении соединения. </li></ol></div></p><h3 id="c73e2e79-7d23-49d9-bbde-feb9d3de092f" class="">Приложение 2. ER-диаграмма</h3><p id="e95c35e4-8121-4858-a1bc-2c8924c39d81" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a></p><h3 id="2290f8be-6cf5-4312-806d-853e04c85b9f" class="">Приложение 3. Словарь данных</h3><p id="3676a14b-1464-4880-917e-ae6f48ea7d98" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#d13981dd13bc48f5a4c7fd1b5c89fac5</a> </p><h3 id="7c6bd2e0-8259-4da0-a6d6-76d65b4ca14b" class="">Приложение 4. Вайрфреймы</h3><p id="e95bc7b7-1773-4f81-994b-daec04e58db7" class="">
+</p><h3 id="f6a219fb-9740-403e-bba9-bf1dfdb98f3a" class="">Сценарии тестирования </h3><ul id="1371f658-f1bc-4f09-891b-85406d049157" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 17. Добавить новый автомобиль клиента. </strong></summary></details></li></ul><ul id="063a953c-3d00-4eda-a1a6-f01ae61daa63" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 18. Проверка корректности заполнения VIN </strong></summary></details></li></ul><ul id="ca9d7ae7-0c0a-4312-a83e-62077b23013d" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 19. Добавление новой марки автомобиля в справочник. </strong></summary></details></li></ul><ul id="c2bba4a1-6019-4bb8-a221-40d0f7305d01" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 20. Добавление новой модели автомобиля определенной марки в справочник автомобилей. </strong></summary></details></li></ul><h3 id="1b4aa04c-865d-4875-b949-deee6a6d5507" class="">Подзадачи (передача в разработку)</h3><ul id="c96bccb9-da62-4774-bb34-7d5632512670" class="toggle"><li><details open=""><summary><strong>034_Добавить экранную форму пустой карточки автомобиля клиента. </strong></summary><table id="d01c4091-ac97-4428-af25-b6dfecae4422" class="simple-table"><tbody><tr id="ea64a864-7cd4-4575-bb57-fae782c73c46"><th id="~bsP" class="simple-table-header-color simple-table-header">ID задачи</th><td id="Zvr^" class="" style="width:504px">034</td></tr><tr id="22d0ad84-ecd7-42a5-adf6-802cdc112df2"><th id="~bsP" class="simple-table-header-color simple-table-header">название задачи</th><td id="Zvr^" class="" style="width:504px">Добавить экранную форму пустой карточки автомобиля клиента</td></tr><tr id="b31c8381-65a9-48c6-9b95-9da4dd4f2a76"><th id="~bsP" class="simple-table-header-color simple-table-header">краткое описание</th><td id="Zvr^" class="" style="width:504px">Добавить экранную форму на основе карточки автомобиля клиента, в которой все поля будут пустыми с возможностью их заполнения</td></tr><tr id="800cb268-c5ee-4825-b026-cbb29f9f6f7f"><th id="~bsP" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="Zvr^" class="" style="width:504px">Зарегистрировать автомобиль клиента</td></tr><tr id="3245ab64-4443-468e-bfd5-f0fcd1fd2d12"><th id="~bsP" class="simple-table-header-color simple-table-header">автор</th><td id="Zvr^" class="" style="width:504px">Семенова Анна</td></tr><tr id="308a3a06-c7ed-452c-9d7d-4acb7742e8fe"><th id="~bsP" class="simple-table-header-color simple-table-header">кому назначено</th><td id="Zvr^" class="" style="width:504px">отдел разработки, фронтенд</td></tr><tr id="fe57a6be-ca9e-42b0-8df8-b9409574f56c"><th id="~bsP" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="Zvr^" class="" style="width:504px">, ,     </td></tr><tr id="469b0b27-ebb9-458b-814e-6707a1b3a912"><th id="~bsP" class="simple-table-header-color simple-table-header">статус</th><td id="Zvr^" class="" style="width:504px">в разработке</td></tr><tr id="e9622cd6-f684-4db1-b806-99d0b2121d4d"><th id="~bsP" class="simple-table-header-color simple-table-header">приоритет</th><td id="Zvr^" class="" style="width:504px">средний</td></tr><tr id="59ea6aca-e2c9-4771-8c69-d9e77ad8572e"><th id="~bsP" class="simple-table-header-color simple-table-header">метка</th><td id="Zvr^" class="" style="width:504px">#СТО</td></tr><tr id="9b38b56a-6aae-4358-92bb-a7a127a7902e"><th id="~bsP" class="simple-table-header-color simple-table-header">спринт</th><td id="Zvr^" class="" style="width:504px"></td></tr><tr id="caadb346-c888-4200-a92f-0f30ba452614"><th id="~bsP" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="Zvr^" class="" style="width:504px">создана экранная форма карточки автомобиля клиента</td></tr><tr id="2a9ff5f1-60d3-4b1a-a834-65606d895a57"><th id="~bsP" class="simple-table-header-color simple-table-header">окружение</th><td id="Zvr^" class="" style="width:504px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="7a6050cf-10e5-43f2-9490-9f54215086e1" class="toggle"><li><details open=""><summary><strong>035_Добавить возможность регистрации нового автомобиля клиента. </strong></summary><table id="29bf8b1c-efa6-481d-95d8-8b0ba8b4b8d5" class="simple-table"><tbody><tr id="b697aa0e-ce1a-4cd2-905a-8d6fb91eeb40"><th id="?\?_" class="simple-table-header-color simple-table-header">ID задачи</th><td id="W&lt;pg" class="" style="width:504px">035</td></tr><tr id="55784581-be1e-41ae-994c-792c254bc4f2"><th id="?\?_" class="simple-table-header-color simple-table-header">название задачи</th><td id="W&lt;pg" class="" style="width:504px">Добавить возможность регистрации нового автомобиля клиента</td></tr><tr id="0e89bf19-b831-4f6f-8168-a112d2623281"><th id="?\?_" class="simple-table-header-color simple-table-header">краткое описание</th><td id="W&lt;pg" class="" style="width:504px">Если в базе нет данных об автомобиле клиента, пользователь будет его регистрировать. Для этого ему нужно заполнить все данные об автомобиле клиента в соответствии со словарем данных ( )</td></tr><tr id="c225c341-9a25-4edd-9b57-4cb1447b235d"><th id="?\?_" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="W&lt;pg" class="" style="width:504px">Зарегистрировать автомобиль клиента</td></tr><tr id="2c134c52-c8b2-417e-9919-11c4501a1de0"><th id="?\?_" class="simple-table-header-color simple-table-header">автор</th><td id="W&lt;pg" class="" style="width:504px">Семенова Анна</td></tr><tr id="0ff50a9a-d582-45dc-8cfe-a43c9f32a846"><th id="?\?_" class="simple-table-header-color simple-table-header">кому назначено</th><td id="W&lt;pg" class="" style="width:504px">отдел разработки, бэкэнд</td></tr><tr id="8a9bf7d0-192d-49ad-97f6-32d522a1eb09"><th id="?\?_" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="W&lt;pg" class="" style="width:504px">,    </td></tr><tr id="cc37a752-9258-4b5c-8fc2-5b56b508c0a1"><th id="?\?_" class="simple-table-header-color simple-table-header">статус</th><td id="W&lt;pg" class="" style="width:504px"></td></tr><tr id="929fd48e-ca97-479a-ac4e-0a3213288e7b"><th id="?\?_" class="simple-table-header-color simple-table-header">приоритет</th><td id="W&lt;pg" class="" style="width:504px">средний</td></tr><tr id="21da2d6b-60f6-4cb8-a74c-f79afef7d88c"><th id="?\?_" class="simple-table-header-color simple-table-header">метка</th><td id="W&lt;pg" class="" style="width:504px">#СТО</td></tr><tr id="0b344a97-9526-4c9e-b92b-ec1a1609a374"><th id="?\?_" class="simple-table-header-color simple-table-header">спринт</th><td id="W&lt;pg" class="" style="width:504px"></td></tr><tr id="46a2ad01-61c7-4749-9ba1-2955a546aa3c"><th id="?\?_" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="W&lt;pg" class="" style="width:504px">, создана база данных создана экранная форма пустой карточки автомобиля клиента</td></tr><tr id="3069d9ac-2ddf-48fc-970a-875f333b52f4"><th id="?\?_" class="simple-table-header-color simple-table-header">окружение</th><td id="W&lt;pg" class="" style="width:504px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="7e0f5057-f726-4f38-a345-c8e69c0f71f5" class="toggle"><li><details open=""><summary><strong>036_Проверить реализацию решения “Зарегистрировать автомобиль клиента”</strong></summary><table id="e5f324e1-2b63-499e-8d81-42506accd33b" class="simple-table"><tbody><tr id="714151a0-cb47-46df-a6c4-7ef10034aa88"><th id="TrT=" class="simple-table-header-color simple-table-header">ID задачи</th><td id="wB~i" class="" style="width:501px">036</td></tr><tr id="440f5826-30ba-454b-91a0-6e7f2a29fd20"><th id="TrT=" class="simple-table-header-color simple-table-header">название задачи</th><td id="wB~i" class="" style="width:501px">Проверить реализацию решения “Зарегистрировать автомобиль клиента”</td></tr><tr id="582dbcb2-bf65-4ad3-b4e0-dc4e23477a53"><th id="TrT=" class="simple-table-header-color simple-table-header">краткое описание</th><td id="wB~i" class="" style="width:501px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="d2a229e2-cb27-42f4-90b6-6fd1be700457"><th id="TrT=" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="wB~i" class="" style="width:501px">Зарегистрировать автомобиль клиента</td></tr><tr id="21bf962f-2196-4761-a63b-61bc5b31f816"><th id="TrT=" class="simple-table-header-color simple-table-header">автор</th><td id="wB~i" class="" style="width:501px">Семенова Анна</td></tr><tr id="a1d0ac8c-6efb-4905-b77e-90884de495bf"><th id="TrT=" class="simple-table-header-color simple-table-header">кому назначено</th><td id="wB~i" class="" style="width:501px">отдел тестирования</td></tr><tr id="6ff33707-1b9b-46d9-921e-3b0b2e3ab99c"><th id="TrT=" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="wB~i" class="" style="width:501px"> </td></tr><tr id="3cbb3896-21d3-46ee-9103-8e7ba66e6c86"><th id="TrT=" class="simple-table-header-color simple-table-header">статус</th><td id="wB~i" class="" style="width:501px">в разработке</td></tr><tr id="c509a0ff-985a-40b5-b78f-4d03ed8f85aa"><th id="TrT=" class="simple-table-header-color simple-table-header">приоритет</th><td id="wB~i" class="" style="width:501px">средний</td></tr><tr id="f65eedde-80d1-4ad6-9d85-6e7bd953e563"><th id="TrT=" class="simple-table-header-color simple-table-header">метка</th><td id="wB~i" class="" style="width:501px">#СТО</td></tr><tr id="d31488f3-cd1d-4a44-975a-f0277b9263c4"><th id="TrT=" class="simple-table-header-color simple-table-header">спринт</th><td id="wB~i" class="" style="width:501px"></td></tr><tr id="c0d5aa99-981c-4a4b-ae79-fb57b70363da"><th id="TrT=" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="wB~i" class="" style="width:501px">В базе данных создан справочник автомобилей, добавлена экранная форма пустой карточки автомобиля клиента, реализована функция регистрации автомобиля клиента.</td></tr><tr id="0b4c8eb4-9a8d-47fa-8380-1815d0106cc2"><th id="TrT=" class="simple-table-header-color simple-table-header">окружение</th><td id="wB~i" class="" style="width:501px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

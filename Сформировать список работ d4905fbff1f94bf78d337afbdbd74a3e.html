@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Сформировать список работ</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d4905fbf-f1f9-4bf7-8d33-7afbdbd74a3e" class="page sans"><header><h1 class="page-title">Сформировать список работ</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="c3cf19a8-4313-478e-b9fb-7a716df0adc3" class="simple-table"><tbody><tr id="dbcb476e-fa53-4c93-88bc-e897c4fdc5a6"><th id="N{~{" class="simple-table-header-color simple-table-header">Контекст задачи</th><td id="VkWM" class="" style="width:485px">В документе “заказ-наряд” должны быть зафиксированы работы, которые необходимо выполнить по конкретному автомобилю. </td></tr><tr id="99cf3e4f-1e81-4087-8274-0d6ec68e5e00"><th id="N{~{" class="simple-table-header-color simple-table-header">Заинтересованные стороны</th><td id="VkWM" class="" style="width:485px">Мастер СТО</td></tr><tr id="74b03f9b-d45a-4a0b-8a23-3a035c343772"><th id="N{~{" class="simple-table-header-color simple-table-header">Ключевые источники информации</th><td id="VkWM" class="" style="width:485px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a> </td></tr><tr id="22770861-26d0-46fd-91e5-9c146d166b01"><th id="N{~{" class="simple-table-header-color simple-table-header">Атрибуты качества и ограничения (НФТ)</th><td id="VkWM" class="" style="width:485px"></td></tr></tbody></table><h3 id="0b240f16-cdd4-4115-87d3-a35402ea96aa" class="">Критерии приемки результата</h3><ol type="1" id="7557be81-527d-4ad7-b792-6fa3ff696c5c" class="numbered-list" start="1"><li>При введении нескольких символов из названия вида работы в строку поиска система выдает список возможных возможных работ, содержащих данное сочетание символов.</li></ol><ol type="1" id="f4ecfb94-d0ea-45f4-9167-44f980158679" class="numbered-list" start="2"><li>При нажатии кнопки “Добавить” выбранная работа попадает в список работ заказ-наряда.</li></ol><ol type="1" id="a6c9beab-b6d6-4fd2-badf-386816bfd766" class="numbered-list" start="3"><li>Есть возможность выбирать и добавлять работы в заказ-наряд неограниченное количество раз.</li></ol><ol type="1" id="acd6217e-552d-4ee0-b27d-099ee66ee7e4" class="numbered-list" start="4"><li>Существует кнопка “Добавить новый вид работ”</li></ol><ol type="1" id="4f28bfb1-3bda-4633-bf39-a8c80f33c8f2" class="numbered-list" start="5"><li>При вводе нового вида работ система проверяет орфографию и указывает на ошибки. </li></ol><ol type="1" id="23ce5287-d2d2-4eec-b6fe-64cdfd9b737c" class="numbered-list" start="6"><li>При разрыве соединения система сохраняет добавленные до разрыва работы в черновик заказ-наряда.</li></ol><p id="b2607a58-5c28-4ac0-99b1-6bd8634d6e5a" class="">
+</p><hr id="aacb7504-a881-410d-90ae-dd647dfdd6ac"/><h2 id="dcdf27e7-e025-4cb0-8a68-911603dbd4f3" class="">Описание решения</h2><h3 id="9b381841-377e-4c0e-ae28-25d837d63452" class="">Приложение 1. UC-02 “Сформировать список работ”</h3><p id="c3f07870-6e3a-4a19-8501-3854706a72ec" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="58355c29-7843-48bb-81ee-b64397d02b84" class="numbered-list" start="1"><li>Мастер начал вводить название работы в строку поиска.<p id="640a83b9-4d96-4a4a-866d-b82de7368392" class="">1.1 Работы не оказалось в списке</p></li></ol><ol type="1" id="5b9a6f85-5b7c-4e48-afe9-9b7afda97c41" class="numbered-list" start="2"><li>Система выдала список возможных работ, содержащих данное сочетание символов.</li></ol><ol type="1" id="1fe5af62-c871-4da9-9847-ad51a8139b9c" class="numbered-list" start="3"><li>Мастер выбрал из предложенного списка необходимую работу.</li></ol><ol type="1" id="58abdbc9-ce5a-45d8-9b61-1077c2fe68d0" class="numbered-list" start="4"><li>Мастер добавил выбранную работу в список работ.</li></ol><ol type="1" id="afb69863-bfe7-457b-8369-427dae8bb983" class="numbered-list" start="5"><li>Мастер повторил шаги 1-4 необходимое количество раз.</li></ol><ol type="1" id="e530a29a-44f9-4213-b310-7fb1c43b173f" class="numbered-list" start="6"><li>Мастер сохраняет список работ. <p id="ee7148fc-558b-417c-bdc1-09be9f693af8" class="">6.2 При сохранении списка работ произошел обрыв интернет соединения при клиент-серверном взаимодействии.</p></li></ol><p id="084d9c55-404c-47d6-b5c0-eb983e8f983d" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии </span></p><p id="b9f9ee5c-0a33-420d-b9c8-be8a3f59ca44" class="">1.1 Работы не оказалось в списке <div class="indented"><p id="48a4abf2-71c0-4690-85c5-e474850a1b05" class="">1.1.1 Мастер добавляет новый вид работ. </p><p id="b50fd91e-0558-44ad-898d-adc458ca3c5b" class="">1.1.2 Мастер завел название новой работы. </p><p id="d84601f4-eecb-4a27-901d-975678b5fb1c" class="">1.1.3. Система подтверждает корректность введенных данных (проверка на орфографические ошибки). В случае обнаружения некорректного слова подчеркивает красной линией, и не дает сохранить данные до исправления ошибки. </p><p id="c03de75f-a2fe-4da0-a7a4-ce95d68284f9" class="">1.1.4 Мастер сохраняет новый вид работ. </p></div></p><p id="47ee1ecd-76b1-4a9b-90ab-cd90ea36cbf7" class="">6.2 При добавлении работы произошел обрыв интернет соединения при клиент-серверном взаимодействии.<div class="indented"><p id="2a666b72-3095-4dbe-aca0-76a783a77c76" class="">6.2.1 Система выводит сообщение об отсутствии интернета и предложение составить список работ позже. </p><p id="c3b78d88-8dda-403f-9354-d56ada4d5ca0" class="">6.2.2 Добавленные ранее работы сохранены в черновике ЗН. </p></div></p><h3 id="42fdad9d-5dc6-43cd-9dde-fe216e50c23c" class="">Приложение 2. ER-диаграмма</h3><p id="e4fa67f4-bc63-40f5-9586-48c2754884a3" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a></p><h3 id="59100ddf-558a-48eb-b0ef-c42d04a000a9" class="">Приложение 3. Словарь данных</h3><p id="0ee31949-a8a8-4a3f-99ca-e8e69f960299" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#d13981dd13bc48f5a4c7fd1b5c89fac5</a></p><h3 id="a3a32e3a-6dd9-4468-b7c8-785f104ef8bb" class="">Приложение 4. Вайрфреймы</h3><p id="f7998ad9-fce5-49da-ba9b-13a9e42de6bb" class="">
+</p><h3 id="84b97b24-83f2-4009-9215-190f780f88b6" class="">Сценарии тестирования </h3><ul id="c0a3510a-3ad0-4104-88fb-5e8bf700a2da" class="toggle"><li><details open=""><summary>Сценарий тестирования 04. “Составление списка работ”</summary><table id="981f6a79-020b-4a45-a8be-38ada2421eb9" class="simple-table"><tbody><tr id="6e29114e-3b3d-4b47-b569-51fee786f0e5"><th id="JUrd" class="simple-table-header-color simple-table-header">id, название</th><td id="RS=w" class="" style="width:538px">04. Составление списка работ</td></tr><tr id="b3c6a2b3-81da-4838-96c6-68f1946b554b"><th id="JUrd" class="simple-table-header-color simple-table-header">предусловие</th><td id="RS=w" class="" style="width:538px">В справочнике работ есть работы “замена масла”, “замена свечей зажигания”, “замена колес”, “диагностика”</td></tr><tr id="fae5e209-2fb1-4d54-ae30-2b60de155282"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">Открыта форма заказ-наряда</td></tr><tr id="dc588532-ef9e-4a86-919a-3cddd0d0f4ab"><th id="JUrd" class="simple-table-header-color simple-table-header">шаги</th><td id="RS=w" class="" style="width:538px">1. Ввести символы “зам” в строку поиска работ.</td></tr><tr id="f5086845-d474-4824-803d-da40fb213df1"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">2. Система выдала варианты “замена масла”, “замена свечей зажигания”, “замена колес”</td></tr><tr id="8c88d779-b9f1-4be6-8280-5a458f1a3c35"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">3. Выбрать вид работы “замена масла”</td></tr><tr id="47804a47-c77c-4288-b59e-94df21326d8a"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">4. Нажать кнопку “Добавить”</td></tr><tr id="c7d9d8fc-e039-45a7-a22e-3f3bec54187c"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">5. Ввести символы “диа” в сроку поиска</td></tr><tr id="bee49b12-c001-4f25-880c-55c1767cdd41"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">6. Система выдала вариант “диагностика”</td></tr><tr id="3b97faf2-f068-49f8-819b-3d2808d568d0"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">7. Выбрать вид работы “диагностика”</td></tr><tr id="ef54a9ab-7213-44d8-916b-fdda944ee509"><th id="JUrd" class="simple-table-header-color simple-table-header"></th><td id="RS=w" class="" style="width:538px">8. Нажать кнопку “добавить”</td></tr><tr id="5b4f3f68-bc02-4dfa-adab-f11871a8147b"><th id="JUrd" class="simple-table-header-color simple-table-header">ОР</th><td id="RS=w" class="" style="width:538px">Заполненный раздел “работы” в заказ-наряде, состоящий из двух строк “замена масла”, “диагностика”</td></tr><tr id="ce4fd129-76e9-4c8f-8317-08dbf23ae3a5"><th id="JUrd" class="simple-table-header-color simple-table-header">Постусловия</th><td id="RS=w" class="" style="width:538px">закрыть заказ-наряд без сохранения введенных данных</td></tr></tbody></table></details></li></ul><ul id="ece1f263-0d73-4f76-a1c7-df32d464e7a8" class="toggle"><li><details open=""><summary>Сценарий тестирования 05 “Проверка орфографии при добавлении нового вида работ”</summary><table id="346e6f16-e6ca-423d-b118-2e519b25f7b0" class="simple-table"><tbody><tr id="f6d57336-4e9a-49bc-9be3-a5905b0bc69c"><th id="@NiK" class="simple-table-header-color simple-table-header">id, название</th><td id="YgXs" class="">05. Проверка орфографии при добавлении нового вида работ</td><td id="CJ{Q" class="" style="width:309px"></td></tr><tr id="e9c4a13b-8001-4b58-a211-30fb7b474483"><th id="@NiK" class="simple-table-header-color simple-table-header">предусловие</th><td id="YgXs" class="">В справочнике работ нет вида работы “установка лобового стекла</td><td id="CJ{Q" class="" style="width:309px"></td></tr><tr id="3b442b72-8b86-4d7d-b21b-8f31be642621"><th id="@NiK" class="simple-table-header-color simple-table-header">шаги</th><td id="YgXs" class="">1. Нажать кнопку “добавить новый вид работ”</td><td id="CJ{Q" class="" style="width:309px"></td></tr><tr id="8ae8b187-520f-45de-a7fd-2cff17e1e27c"><th id="@NiK" class="simple-table-header-color simple-table-header"></th><td id="YgXs" class="">2. Ввести в поле ввода “установка лобовово стекла”</td><td id="CJ{Q" class="" style="width:309px">ОР: система подчеркивает слово “лобовово” красной линией; кнопка “сохранить” неактивна</td></tr><tr id="eb106916-457d-4ff6-b40f-0fcb6f5c415b"><th id="@NiK" class="simple-table-header-color simple-table-header"></th><td id="YgXs" class="">3. Исправить слово “лобовово” на “лобового”</td><td id="CJ{Q" class="" style="width:309px">ОР: исчезло подчеркивание красной линией, кнопка “сохранить” активна</td></tr><tr id="beb1cf4d-8854-4993-9d47-2d649354b897"><th id="@NiK" class="simple-table-header-color simple-table-header"></th><td id="YgXs" class="">4. Нажать кнопку “сохранить”</td><td id="CJ{Q" class="" style="width:309px"></td></tr><tr id="82b61fa7-c47e-4db1-9fe4-f1e4e6c2ed07"><th id="@NiK" class="simple-table-header-color simple-table-header">постусловия</th><td id="YgXs" class="">удалить из списка работ “установка лобового стекла”</td><td id="CJ{Q" class="" style="width:309px"></td></tr></tbody></table></details></li></ul><h3 id="c1b31868-22a5-432b-9f6b-2a6bf66555d6" class="">Подзадачи (передача в разработку)</h3><ul id="70ec6d7c-0921-4990-8f76-0b2aa6a50148" class="toggle"><li><details open=""><summary><strong>004_Создать справочник работ в базе данных</strong></summary><table id="8a8a4c9d-93d4-46fb-a757-f7d194ddaaaf" class="simple-table"><tbody><tr id="5625a11c-228c-4669-ae61-b9a5e52def66"><th id="SQpv" class="simple-table-header-color simple-table-header">ID задачи</th><td id="i;Ce" class="" style="width:503px">004</td></tr><tr id="60d07c57-8406-4988-a6e6-f81ade2d65ba"><th id="SQpv" class="simple-table-header-color simple-table-header">название задачи</th><td id="i;Ce" class="" style="width:503px">Создать справочник работ в базе данных </td></tr><tr id="e2704c74-3d5a-428b-a139-1e6a0ed82693"><th id="SQpv" class="simple-table-header-color simple-table-header">краткое описание</th><td id="i;Ce" class="" style="width:503px">Создать в базе данных справочник, над которым можно совершать CRUD-операции, в котором будут отражены виды работ со всеми атрибутами в соответствии со словарем данных ()</td></tr><tr id="d3983209-3fb2-4393-abaa-641a228d8e12"><th id="SQpv" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="i;Ce" class="" style="width:503px">Сформировать список работ</td></tr><tr id="f037eb14-5569-4603-a052-22ba5a2aad68"><th id="SQpv" class="simple-table-header-color simple-table-header">автор</th><td id="i;Ce" class="" style="width:503px">Семенова Анна</td></tr><tr id="a876671b-0595-4acf-a2ad-21780543738d"><th id="SQpv" class="simple-table-header-color simple-table-header">кому назначено</th><td id="i;Ce" class="" style="width:503px">отдел разработки, администратор БД</td></tr><tr id="9c6be5a1-235a-4641-98f3-4cac1022e14a"><th id="SQpv" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="i;Ce" class="" style="width:503px">, ,  </td></tr><tr id="fe3d8fb4-301e-4b16-a050-25c6140161b3"><th id="SQpv" class="simple-table-header-color simple-table-header">статус</th><td id="i;Ce" class="" style="width:503px"></td></tr><tr id="b6de771e-f25b-48ac-b415-130fc750e1ff"><th id="SQpv" class="simple-table-header-color simple-table-header">приоритет</th><td id="i;Ce" class="" style="width:503px">средний</td></tr><tr id="b4953e15-e55b-44fd-8cfd-f7637b8b1b26"><th id="SQpv" class="simple-table-header-color simple-table-header">метка</th><td id="i;Ce" class="" style="width:503px">#СТО</td></tr><tr id="58b5292d-3992-4577-8fde-b8213cee34ae"><th id="SQpv" class="simple-table-header-color simple-table-header">спринт</th><td id="i;Ce" class="" style="width:503px"></td></tr><tr id="860fe578-a6a3-4ead-8dc3-6d2a3cb4a67c"><th id="SQpv" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="i;Ce" class="" style="width:503px">создана база данных</td></tr><tr id="15b51012-08c2-4af7-bffe-57f4389c0017"><th id="SQpv" class="simple-table-header-color simple-table-header">окружение</th><td id="i;Ce" class="" style="width:503px"></td></tr></tbody></table></details></li></ul><ul id="0e291fae-5bac-4d32-be6d-91c1e75e5f57" class="toggle"><li><details open=""><summary><strong>005_Добавить возможность заполнения блока “Необходимые работы” в сущность “Заказ-наряд”</strong></summary><table id="2130828b-4edd-4029-b329-d4b6371055dc" class="simple-table"><tbody><tr id="422b9fc3-cf31-4bd4-a557-b7d0931a5314"><th id="HOdn" class="simple-table-header-color simple-table-header">ID задачи</th><td id="XnAC" class="" style="width:473px">004</td></tr><tr id="f58cf4ba-22b6-4ad6-b093-50bb649bd9f3"><th id="HOdn" class="simple-table-header-color simple-table-header">название задачи</th><td id="XnAC" class="" style="width:473px">Добавить возможность заполнения блока “Необходимые работы” в сущность “Заказ-наряд”</td></tr><tr id="ad903583-0765-4138-b169-e282b16c3572"><th id="HOdn" class="simple-table-header-color simple-table-header">краткое описание</th><td id="XnAC" class="" style="width:473px">В сущности “заказ-наряд” есть блок “Необходимые работы”, которые мастер СТО должен выбирать из справочника работ через поиск по нескольким символам и добавлять в заказ-наряд. Мастер может добавлять новый вид работ, если в справочнике нет подходящего. </td></tr><tr id="829df70e-1552-4da9-bfb5-55d84c0c3e10"><th id="HOdn" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="XnAC" class="" style="width:473px">Сформировать список работ</td></tr><tr id="ec1e18a6-0e2f-4935-bb44-65c6baf30bcd"><th id="HOdn" class="simple-table-header-color simple-table-header">автор</th><td id="XnAC" class="" style="width:473px">Семенова Анна</td></tr><tr id="7ef1327f-bbe2-4380-a7e5-f76d9141e643"><th id="HOdn" class="simple-table-header-color simple-table-header">кому назначено</th><td id="XnAC" class="" style="width:473px">отдел разработки, бэкэнд </td></tr><tr id="df34b26c-9e5a-46f9-8f0a-1833db2f949e"><th id="HOdn" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="XnAC" class="" style="width:473px">,  </td></tr><tr id="4d52ed42-f745-4ef3-a053-f93b2ace3298"><th id="HOdn" class="simple-table-header-color simple-table-header">статус</th><td id="XnAC" class="" style="width:473px"></td></tr><tr id="1b865cce-66f6-4626-a102-fa57b49acae7"><th id="HOdn" class="simple-table-header-color simple-table-header">приоритет</th><td id="XnAC" class="" style="width:473px">средний</td></tr><tr id="175f547f-0768-42b1-b13f-d134dcb4a239"><th id="HOdn" class="simple-table-header-color simple-table-header">метка</th><td id="XnAC" class="" style="width:473px">#СТО</td></tr><tr id="8ca122a6-9bce-464a-beb7-80e82e1c3223"><th id="HOdn" class="simple-table-header-color simple-table-header">спринт</th><td id="XnAC" class="" style="width:473px"></td></tr><tr id="c0428727-28c9-4689-adbd-e73355305bf0"><th id="HOdn" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="XnAC" class="" style="width:473px">создана база данных, создан справочник работ, создана экранная форма заказ-наряда </td></tr><tr id="224a44ee-cfff-4ac7-b3ca-fd1b320c0b02"><th id="HOdn" class="simple-table-header-color simple-table-header">окружение</th><td id="XnAC" class="" style="width:473px"></td></tr></tbody></table></details></li></ul><ul id="9684839e-3c03-4969-8afa-779d91cc0b2f" class="toggle"><li><details open=""><summary><strong>006_Создать экранную форму поиска работ для планшета.</strong></summary><table id="9caf4c4f-1906-4f22-b591-7ccf3b8f9901" class="simple-table"><tbody><tr id="bb260aaf-4350-46c1-bbf6-91408062f8df"><th id=";EKI" class="simple-table-header-color simple-table-header">ID задачи</th><td id="CCZa" class="" style="width:481px">006</td></tr><tr id="075167fa-5b3a-444a-97e2-9952c470deaf"><th id=";EKI" class="simple-table-header-color simple-table-header">название задачи</th><td id="CCZa" class="" style="width:481px">Создать экранную форму поиска работ для планшета</td></tr><tr id="7ad18b81-5123-4159-990e-2029aec6d8a7"><th id=";EKI" class="simple-table-header-color simple-table-header">краткое описание</th><td id="CCZa" class="" style="width:481px">Создать экранную форму, в которую пользователь с планшета будет вводить необходимые работы по заказ-наряду</td></tr><tr id="beda31dd-084a-4526-b6b8-d9a362bd8986"><th id=";EKI" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="CCZa" class="" style="width:481px">Сформировать список работ </td></tr><tr id="475e555a-ec4e-4981-84c1-53ad03eb06ab"><th id=";EKI" class="simple-table-header-color simple-table-header">автор</th><td id="CCZa" class="" style="width:481px">Семенова Анна</td></tr><tr id="8c915c9c-f148-4bba-bd76-10029815158c"><th id=";EKI" class="simple-table-header-color simple-table-header">кому назначено</th><td id="CCZa" class="" style="width:481px">отдел разработки, фронтенд</td></tr><tr id="70319143-fb63-43e5-8180-49126fcba50d"><th id=";EKI" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="CCZa" class="" style="width:481px">,  </td></tr><tr id="10a53507-ec47-4957-b935-3364c4f3f902"><th id=";EKI" class="simple-table-header-color simple-table-header">статус</th><td id="CCZa" class="" style="width:481px">в разработке</td></tr><tr id="219b1afd-f402-48f8-9e6c-324a2e90fced"><th id=";EKI" class="simple-table-header-color simple-table-header">приоритет</th><td id="CCZa" class="" style="width:481px">средний</td></tr><tr id="87d57024-3370-42b0-88bc-7b39cec79f29"><th id=";EKI" class="simple-table-header-color simple-table-header">метка</th><td id="CCZa" class="" style="width:481px">#СТО</td></tr><tr id="6f533837-fc08-4623-a88a-bdd5069575f0"><th id=";EKI" class="simple-table-header-color simple-table-header">спринт</th><td id="CCZa" class="" style="width:481px"></td></tr><tr id="0c6a587f-f0ad-4f58-b38e-2434afad8bef"><th id=";EKI" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="CCZa" class="" style="width:481px">создана БД заказ-наряда, в базу данных добавлен справочник работ </td></tr><tr id="30091ae8-1af4-4598-b395-8c56b058553a"><th id=";EKI" class="simple-table-header-color simple-table-header">окружение</th><td id="CCZa" class="" style="width:481px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="6bfd3b0f-477f-4061-95a4-c06f5c079cd5" class="toggle"><li><details open=""><summary><strong>007_Создать экранную форму добавления нового вида работ для планшета.</strong></summary><table id="8f729103-824f-4fb1-bc7f-c48b2960efb0" class="simple-table"><tbody><tr id="1a11deed-3396-4da3-baa4-94464b6e47b2"><th id="\EgH" class="simple-table-header-color simple-table-header">ID задачи</th><td id="RBno" class="" style="width:486px">006</td></tr><tr id="cf20b7fc-349d-4029-bea7-13856ccf6acd"><th id="\EgH" class="simple-table-header-color simple-table-header">название задачи</th><td id="RBno" class="" style="width:486px">Создать экранную форму добавления нового вида работ для планшета</td></tr><tr id="045c883f-9558-4299-9886-6d75b2c18ec0"><th id="\EgH" class="simple-table-header-color simple-table-header">краткое описание</th><td id="RBno" class="" style="width:486px">Создать экранную форму, через которую пользователь будет добавлять новый вид работ</td></tr><tr id="c06a15ef-960e-4aac-9bc7-c5976e2534da"><th id="\EgH" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="RBno" class="" style="width:486px">Сформировать список работ</td></tr><tr id="18430896-7241-41d5-9538-03ac435135d7"><th id="\EgH" class="simple-table-header-color simple-table-header">автор</th><td id="RBno" class="" style="width:486px">Семенова Анна</td></tr><tr id="25c1a0b3-d49f-4f35-9780-e9e19d4d91d3"><th id="\EgH" class="simple-table-header-color simple-table-header">кому назначено</th><td id="RBno" class="" style="width:486px">отдел разработки, фронтенд</td></tr><tr id="162a94c8-3df6-412d-91c5-a1684b0f74ec"><th id="\EgH" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="RBno" class="" style="width:486px">, ,   </td></tr><tr id="f5d9d573-3fed-4e4c-aead-05f57fb65b44"><th id="\EgH" class="simple-table-header-color simple-table-header">статус</th><td id="RBno" class="" style="width:486px">в разработке</td></tr><tr id="50720e3b-efeb-400a-9a91-8e0c3c11005d"><th id="\EgH" class="simple-table-header-color simple-table-header">приоритет</th><td id="RBno" class="" style="width:486px">средний</td></tr><tr id="b7af4f39-5b05-4f96-af63-41ae3f81e9db"><th id="\EgH" class="simple-table-header-color simple-table-header">метка</th><td id="RBno" class="" style="width:486px">#СТО</td></tr><tr id="3f327a91-0865-42a3-822f-db516b2c44d3"><th id="\EgH" class="simple-table-header-color simple-table-header">спринт</th><td id="RBno" class="" style="width:486px"></td></tr><tr id="92ab4a2c-e530-45d1-85fd-4857032cada9"><th id="\EgH" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="RBno" class="" style="width:486px">создана БД заказ-наряда, в базу данных добавлен справочник работ</td></tr><tr id="3a4a1f6d-7e59-48ab-8a2d-d355ff706624"><th id="\EgH" class="simple-table-header-color simple-table-header">окружение</th><td id="RBno" class="" style="width:486px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="779955af-a507-4d09-b2d7-c22ae413059f" class="toggle"><li><details open=""><summary><strong>008_Проверить реализацию решения “Сформировать список работ”</strong></summary><table id="6ab2f506-c514-4653-afc2-f3b339b6dfee" class="simple-table"><tbody><tr id="c3e692fd-1e23-4add-b52e-eb04766d66ab"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">ID задачи</th><td id="tvR`" class="" style="width:481px">008</td></tr><tr id="8d64f461-e4c2-4f6f-9d81-a5f4aa8d9a0b"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">название задачи</th><td id="tvR`" class="" style="width:481px">Проверить реализацию решения “Сформировать список работ” </td></tr><tr id="15b2d1c6-23a2-42fe-9e56-24e543c30913"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">краткое описание</th><td id="tvR`" class="" style="width:481px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="b307ffd1-5a7f-4fbf-9887-51ef3908e95b"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="tvR`" class="" style="width:481px">Сформировать список работ </td></tr><tr id="ea5fa17e-9dee-41ee-a0e4-6150c32cb469"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">автор</th><td id="tvR`" class="" style="width:481px">Семенова Анна</td></tr><tr id="ddbf7bfb-d9f3-4861-b9a5-e70121de9eae"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">кому назначено</th><td id="tvR`" class="" style="width:481px">отдел тестирования</td></tr><tr id="31d2cd61-1ead-4cce-b206-0dcfb9298380"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="tvR`" class="" style="width:481px">,  </td></tr><tr id="02a8a2b3-c8d8-4c61-b2d3-7348d8ecea60"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">статус</th><td id="tvR`" class="" style="width:481px">в разработке</td></tr><tr id="f9249228-5108-4a54-8aaa-c5aa8b251c87"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">приоритет</th><td id="tvR`" class="" style="width:481px">средний</td></tr><tr id="85a0d317-d8b6-406f-9323-8d918890a0fc"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">метка</th><td id="tvR`" class="" style="width:481px">#СТО</td></tr><tr id="931abe68-c762-4233-a1e9-ccce0851ddea"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">спринт</th><td id="tvR`" class="" style="width:481px"></td></tr><tr id="13e0beb1-7108-4c9c-9bed-bc1afac23c54"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="tvR`" class="" style="width:481px">В базе данных создан справочник работ, добавлена возможность заполнения блока “Необходимые работы” в “Заказ-наряде”, создана экранная форма поиска работ. </td></tr><tr id="357d55d2-6c2f-4810-a841-b5d47939f0ed"><th id="NNp&lt;" class="simple-table-header-color simple-table-header">окружение</th><td id="tvR`" class="" style="width:481px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

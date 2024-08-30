@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Добавить данные о клиенте в ЗН</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a1c80c04-8e2d-4d3d-aa37-f8e7cd677586" class="page sans"><header><h1 class="page-title">Добавить данные о клиенте в ЗН</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="07b4d941-ab78-4bed-a87f-46f286c6ffb0" class="simple-table"><tbody><tr id="271d7eda-290d-4070-80ac-d2c77e41cb98"><th id="PrMS" class="simple-table-header-color simple-table-header">Контекст задачи</th><td id="jsHS" class="" style="width:464px">В документе “заказ-наряд” должны быть зафиксированы данные о клиенте. Если клиент уже обращался на СТО, то пользователь может выбрать данные клиента из справочника клиентов. </td></tr><tr id="e1b3e6e1-0794-4e31-9ff7-6ea42af3ea80"><th id="PrMS" class="simple-table-header-color simple-table-header">Заинтересованные стороны</th><td id="jsHS" class="" style="width:464px">Мастер СТО</td></tr><tr id="80507c6b-0e98-4550-8ceb-4ea5893642fe"><th id="PrMS" class="simple-table-header-color simple-table-header">Ключевые источники информации</th><td id="jsHS" class="" style="width:464px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a></td></tr><tr id="193ed2a2-9f5e-49c8-8a74-0833bef1ca0e"><th id="PrMS" class="simple-table-header-color simple-table-header">Атрибуты качества и ограничения (НФТ)</th><td id="jsHS" class="" style="width:464px"></td></tr></tbody></table><h3 id="bdbcaf31-b85f-4dad-b626-cf02629287d6" class="">Критерии приемки результата. </h3><ol type="1" id="91ca6614-c362-47af-b247-b2c6d2b9ce6d" class="numbered-list" start="1"><li>Создан справочник клиентов.</li></ol><ol type="1" id="a64802d4-7023-41d9-ac05-7e5d68e4bf16" class="numbered-list" start="2"><li>При введение фамилии и имени клиента в строку поиска система выводит на экран список всех совпадений. </li></ol><ol type="1" id="c7ee5f0d-62e5-467b-8ae8-635998af7e41" class="numbered-list" start="3"><li>Создана карточка клиента.</li></ol><ol type="1" id="6201005d-a914-4c92-9d29-6a2192f99ac5" class="numbered-list" start="4"><li>При выборе конкретного клиента система выводит на экран все данные из карточки клиента. </li></ol><ol type="1" id="f838f60d-2e66-453b-884b-03f122e01882" class="numbered-list" start="5"><li>Пользователь может вносить изменения в карточку клиента</li></ol><hr id="564df1d9-2d0a-49eb-9152-4de8c08ca5f6"/><h2 id="d2faa0d8-c12d-4069-8de3-b0b84ab0700d" class="">Описание решения</h2><h3 id="fc6a9b18-9913-41a9-aaa5-ee8bacd6883c" class="">Приложение 1 UC “Добавить данные о клиенте в заказ-наряд”</h3><p id="7728009a-ab01-46d9-8525-fd0ef221e140" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="64c0a42c-bbea-48ce-8849-21ac78adec4f" class="numbered-list" start="1"><li>Мастер вводит в строку поиска номер телефона клиента.</li></ol><ol type="1" id="b898498c-bc80-4c46-b004-89edb605d6fe" class="numbered-list" start="2"><li>Система выводит ФИО клиента, у которого совпадают введенные данные. <p id="1c7dffbc-13a9-44f7-962e-d351674b739e" class="">3.1 Клиент не зарегистрирован, совпадений нет.</p></li></ol><ol type="1" id="39b6f130-de53-4d09-9a33-eb8057b95cdf" class="numbered-list" start="3"><li>Мастер выбирает клиента.</li></ol><ol type="1" id="58fa0f6e-40bb-4ce4-ac47-9d89231f4e0b" class="numbered-list" start="4"><li>Система выводит на экране все данные клиента: ФИО, дата рождения, телефон, адрес электронной почты.<p id="26aeb8f6-e945-4f82-bb7b-8e990f331e08" class="">5.1 У клиента изменились данные.</p></li></ol><ol type="1" id="709cdda5-bf52-447c-9cbd-721a42faad02" class="numbered-list" start="5"><li>Мастер подтверждает корректность заполненных данных. </li></ol><ol type="1" id="ddf085dc-8d81-40e5-8d87-14a4ac701f6d" class="numbered-list" start="6"><li>Мастер добавляет клиента в заказ-наряд.</li></ol><p id="94666eca-47af-454f-b54e-9a260f74cc0a" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="ca7c7f86-7748-4b45-a51b-5afb5fdcfe94" class="">3.1  Клиент не зарегистрирован, совпадений нет.<div class="indented"><p id="353e0bed-f6d9-43b2-9701-197d6d764e44" class="">3.1.1 Мастер реализует <a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">UC-07 “Зарегистрировать клиента”</a></p></div></p><p id="cb06b8a2-9be9-483f-889c-1adc559f3325" class="">5.1 У клиента изменились данные.<div class="indented"><p id="73e00ab1-722d-4495-a98a-ad5dc5cd5801" class="">5.1.1 Мастер нажимает кнопку “Изменить”</p><p id="800965e0-24df-453a-931f-7853e3813fb4" class="">5.1.2 Система открывает карточку клиента с полями, доступными для редактирования.</p><p id="c71da344-8417-4275-a8d7-d47b530bc27e" class="">5.1.3 Мастер вносит необходимые изменения в данные клиента.</p><p id="73697a53-11df-453d-ae5c-24bcadbdb621" class="">5.1.4 Мастер сохраняет внесенные данные. </p><p id="82b2be50-3e13-4d29-a1b9-a0b24edb4b1a" class="">5.1.5 Система выводит на экране все данные клиента: ФИО, дата рождения, телефон, адрес электронной почты.</p><p id="3c9a68a7-ff1b-4951-b31e-fc6b209f1110" class="">5.1.6 Мастер подтверждает корректность данных.</p><p id="40fdb9fb-aa37-4111-8050-3d18e76b6ed7" class="">5.1.7 Мастер сохраняет изменения данных. </p><p id="67186381-b324-4765-983b-96c740c116df" class="">5.1.8 Система сохраняет измененные данные. </p></div></p><h3 id="cf9f583f-16f7-4dfe-ba68-843c94ece765" class="">Приложение 2. ER-диаграмма</h3><p id="3d8d8de9-114d-41d3-88dd-a902141da8d5" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a></p><h3 id="5ecc857d-2b3a-4196-9a17-cf9d2416640a" class="">Приложение 3. Словарь данных </h3><p id="2144fa76-8753-4736-8f04-ea2403789601" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#d13981dd13bc48f5a4c7fd1b5c89fac5</a></p><h3 id="a71ad69e-c2f4-4455-8374-1572085fe579" class="">Приложение 4. Вайрфреймы</h3><p id="6998d0ca-5d23-423d-a234-2883ce7f9704" class="">
+</p><h3 id="48c6948b-1a59-47aa-8d10-00db9b07441b" class="">Сценарии тестирования</h3><ul id="d2640376-85a5-458d-8790-d18d4a68261c" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 11. Добавление данных клиента в заказ-наряд.</strong></summary></details></li></ul><ul id="0a17a6a9-0e21-46ab-b17f-083d2a836bb6" class="toggle"><li><details open=""><summary><strong>Сценарий тестирования 12. Изменение данных клиента в карточке клиента. </strong></summary></details></li></ul><h3 id="4fbec4c9-25b7-47e8-b1e1-961c3433b119" class="">Подзадачи (передача в разработку)</h3><ul id="d8bdd6b4-37a3-460b-abe2-3ccde02434bd" class="toggle"><li><details open=""><summary><strong>022_Создать справочник клиентов в базе данных</strong></summary><table id="3b12cde0-7137-4393-b3f0-38020a69d5e0" class="simple-table"><tbody><tr id="4de5586e-d01f-463e-9be7-7d55114128dd"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">ID задачи</th><td id="CN&gt;f" class="" style="width:503px">022</td></tr><tr id="aad12ebd-a1d5-4373-ad85-de318a0ba1af"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">название задачи</th><td id="CN&gt;f" class="" style="width:503px">Создать справочник клиентов в базе данных</td></tr><tr id="07c3d0be-e0f4-4e7c-b719-bfb73fda2d3b"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">краткое описание</th><td id="CN&gt;f" class="" style="width:503px">Создать в базе данных справочник, над которым можно совершать CRUD-операции, в котором будут сохраняться данные о клиентах со всеми атрибутами в соответствии со словарем данных ()</td></tr><tr id="5175c140-ecc2-49c2-9ded-822b76ae1a2f"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="CN&gt;f" class="" style="width:503px">Добавить данные о клиенте в заказ-наряд</td></tr><tr id="64c3c5f4-99c8-4d81-aab1-629f71501bea"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">автор</th><td id="CN&gt;f" class="" style="width:503px">Семенова Анна</td></tr><tr id="4fecb484-4081-48ab-a71d-a15323575bf3"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">кому назначено</th><td id="CN&gt;f" class="" style="width:503px">отдел разработки, администратор БД</td></tr><tr id="6ec3bd2f-6a95-4049-ba22-40211e448af1"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="CN&gt;f" class="" style="width:503px">,  </td></tr><tr id="422b25ac-e9e1-42d6-a869-d76844374fd7"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">статус</th><td id="CN&gt;f" class="" style="width:503px"></td></tr><tr id="eee0035a-48b2-4e56-9b14-1159c93def83"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">приоритет</th><td id="CN&gt;f" class="" style="width:503px">средний</td></tr><tr id="0860bcb5-caac-4400-b09c-afa3aa14980d"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">метка</th><td id="CN&gt;f" class="" style="width:503px">#СТО</td></tr><tr id="fa054832-e153-4a84-b63b-2e2f57bd9254"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">спринт</th><td id="CN&gt;f" class="" style="width:503px"></td></tr><tr id="67c29c3b-bb6d-4171-9cb2-ab01eeb013aa"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="CN&gt;f" class="" style="width:503px">создана база данных</td></tr><tr id="e49ed079-0939-4b72-bf26-c6b739f62eb0"><th id="HN&lt;Q" class="simple-table-header-color simple-table-header">окружение</th><td id="CN&gt;f" class="" style="width:503px"></td></tr></tbody></table></details></li></ul><ul id="8fb3b8bd-a572-4174-bec9-4dde8fc51d27" class="toggle"><li><details open=""><summary><strong>023_Добавить функцию поиска клиента по номеру телефона. </strong></summary><table id="4cd2a17b-0608-4e51-8945-adca0be7ccf8" class="simple-table"><tbody><tr id="1432fbe6-e8b7-4e4a-be2d-037c5f80ca77"><th id="]`hG" class="simple-table-header-color simple-table-header">ID задачи</th><td id="Kpm}" class="" style="width:497px">023</td></tr><tr id="be74295c-293b-4f56-ac55-754bd28404a1"><th id="]`hG" class="simple-table-header-color simple-table-header">название задачи</th><td id="Kpm}" class="" style="width:497px">Добавить функцию поиска клиента по номеру телефона</td></tr><tr id="55950b29-1004-4639-93bd-3dba0a1f688f"><th id="]`hG" class="simple-table-header-color simple-table-header">краткое описание</th><td id="Kpm}" class="" style="width:497px">Пользователь вводит номер телефона клиента в строку поиска. В случае наличия совпадений в справочнике клиентов, система показывает пользователю ФИО клиента, которому принадлежит данный номер телефона. </td></tr><tr id="c279adc7-a92a-4df1-8e1d-5d444ef8ad03"><th id="]`hG" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="Kpm}" class="" style="width:497px">Добавить данные о клиенте в заказ-наряд</td></tr><tr id="c9e1ff63-ccaa-4fb4-923e-e908561e149a"><th id="]`hG" class="simple-table-header-color simple-table-header">автор</th><td id="Kpm}" class="" style="width:497px">Семенова Анна</td></tr><tr id="136a24ad-906a-4b20-b3bd-c17e32a4ed54"><th id="]`hG" class="simple-table-header-color simple-table-header">кому назначено</th><td id="Kpm}" class="" style="width:497px">отдел разработки, бэкэнд</td></tr><tr id="5d746d2b-9844-4e33-9174-50fa3bb3d6ea"><th id="]`hG" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="Kpm}" class="" style="width:497px">,  </td></tr><tr id="0565d242-7848-4d46-a0a5-7b37c072b687"><th id="]`hG" class="simple-table-header-color simple-table-header">статус</th><td id="Kpm}" class="" style="width:497px"></td></tr><tr id="75036ead-ae91-4122-8e05-4e1d82c8ff5b"><th id="]`hG" class="simple-table-header-color simple-table-header">приоритет</th><td id="Kpm}" class="" style="width:497px">средний</td></tr><tr id="e12d6063-8d0a-438f-a55c-a2baf7097aed"><th id="]`hG" class="simple-table-header-color simple-table-header">метка</th><td id="Kpm}" class="" style="width:497px">#СТО</td></tr><tr id="86634500-ffbe-4520-b55f-1c3c0e0e87a6"><th id="]`hG" class="simple-table-header-color simple-table-header">спринт</th><td id="Kpm}" class="" style="width:497px"></td></tr><tr id="7d6db606-a909-4d4e-8531-21614bc17d47"><th id="]`hG" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="Kpm}" class="" style="width:497px">создана база данных, создан справочник клиентов</td></tr><tr id="5a87204f-4df7-41b1-8357-902e930a0ee4"><th id="]`hG" class="simple-table-header-color simple-table-header">окружение</th><td id="Kpm}" class="" style="width:497px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="a2b0451a-f1a6-47b6-995e-91f516999ff1" class="toggle"><li><details open=""><summary><strong>024_Создать экранную форму карточки клиента</strong></summary><table id="f039f1db-4553-4cb0-b722-417a2865712f" class="simple-table"><tbody><tr id="2c45cc1b-89fd-46f1-bc4f-1a6e50ea4dd2"><th id="ahNY" class="simple-table-header-color simple-table-header">ID задачи</th><td id="=@Nt" class="" style="width:501px">024</td></tr><tr id="9ea6b926-71b5-495e-8c06-e5cba66ac92d"><th id="ahNY" class="simple-table-header-color simple-table-header">название задачи</th><td id="=@Nt" class="" style="width:501px">Создать экранную форму карточки клиента</td></tr><tr id="98954782-6e79-48b8-ba04-61b7eda5f5f6"><th id="ahNY" class="simple-table-header-color simple-table-header">краткое описание</th><td id="=@Nt" class="" style="width:501px">Создать экранную форму, в которой будут отражаться все данные о клиенте в соответствии со словарем данных () </td></tr><tr id="f6e2888f-f1ad-42f0-87c5-4185b35e7ff1"><th id="ahNY" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="=@Nt" class="" style="width:501px">Добавить данные о клиенте в заказ-наряд</td></tr><tr id="61078d23-ecf7-47a7-a316-8a9fab28e64c"><th id="ahNY" class="simple-table-header-color simple-table-header">автор</th><td id="=@Nt" class="" style="width:501px">Семенова Анна</td></tr><tr id="e4b4f7a6-d9bc-49ac-a3b0-75674a9c02da"><th id="ahNY" class="simple-table-header-color simple-table-header">кому назначено</th><td id="=@Nt" class="" style="width:501px">отдел разработки, фронтенд</td></tr><tr id="da951cc1-a8c9-42b4-a9e5-59f20070d720"><th id="ahNY" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="=@Nt" class="" style="width:501px">, ,     </td></tr><tr id="a206716f-5970-482c-a669-1e6ff7ef9ab6"><th id="ahNY" class="simple-table-header-color simple-table-header">статус</th><td id="=@Nt" class="" style="width:501px">в разработке</td></tr><tr id="32f60bbc-924e-48be-8933-bc2377bd45ed"><th id="ahNY" class="simple-table-header-color simple-table-header">приоритет</th><td id="=@Nt" class="" style="width:501px">средний</td></tr><tr id="b5f4650c-87a0-4f77-bfa4-faa486f305cc"><th id="ahNY" class="simple-table-header-color simple-table-header">метка</th><td id="=@Nt" class="" style="width:501px">#СТО</td></tr><tr id="99e0ab5a-7c81-4d1d-8dab-5c0f4ecd7f43"><th id="ahNY" class="simple-table-header-color simple-table-header">спринт</th><td id="=@Nt" class="" style="width:501px"></td></tr><tr id="78f96c99-9034-442e-a075-01e2d06f3290"><th id="ahNY" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="=@Nt" class="" style="width:501px">создана БД, в базу данных добавлен справочник клиентов </td></tr><tr id="f4a521f5-02a6-4935-b1ae-b3376d766472"><th id="ahNY" class="simple-table-header-color simple-table-header">окружение</th><td id="=@Nt" class="" style="width:501px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="90a7ec31-59f1-4e70-988f-5b67295defd0" class="toggle"><li><details open=""><summary><strong>025_Добавить возможность менять данные клиента в карточке клиента</strong></summary><table id="9634b3ed-85d8-4fc0-930d-80c9959cb58f" class="simple-table"><tbody><tr id="7f7965db-c05c-49c9-a679-307c3f16ad0d"><th id="opOn" class="simple-table-header-color simple-table-header">ID задачи</th><td id="Yh_r" class="" style="width:500px">025 </td></tr><tr id="d461735c-7d26-4777-8d8e-8e46788c79a6"><th id="opOn" class="simple-table-header-color simple-table-header">название задачи</th><td id="Yh_r" class="" style="width:500px">Добавить возможность менять данные клиента в карточке клиента </td></tr><tr id="3874c9dd-4a56-4b94-8e8b-963a0a795c9a"><th id="opOn" class="simple-table-header-color simple-table-header">краткое описание</th><td id="Yh_r" class="" style="width:500px">У клиента могут меняться личные данные, поэтому мастер должен иметь возможность вносить изменения в данные клиента. Внесенные изменения должны сохраняться в базе данных в справочнике клиентов. </td></tr><tr id="622c02b7-471f-4324-9b00-cb618a2d499b"><th id="opOn" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="Yh_r" class="" style="width:500px">Добавить данные о клиенте в заказ-наряд</td></tr><tr id="3464d3a4-0ce8-4344-94f3-ec1f7ad024a2"><th id="opOn" class="simple-table-header-color simple-table-header">автор</th><td id="Yh_r" class="" style="width:500px">Семенова Анна</td></tr><tr id="9a887362-47f4-48df-b2ab-b993ff5fa03b"><th id="opOn" class="simple-table-header-color simple-table-header">кому назначено</th><td id="Yh_r" class="" style="width:500px">отдел разработки, бэкэнд</td></tr><tr id="b5465b3d-79bb-46a6-9dfb-17274dc81a73"><th id="opOn" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="Yh_r" class="" style="width:500px">, ,    </td></tr><tr id="76259148-0ebe-4084-bc7e-f7a40cd425cb"><th id="opOn" class="simple-table-header-color simple-table-header">статус</th><td id="Yh_r" class="" style="width:500px"></td></tr><tr id="b8b27102-ec5c-4d67-a9ed-6534e88ec173"><th id="opOn" class="simple-table-header-color simple-table-header">приоритет</th><td id="Yh_r" class="" style="width:500px">средний</td></tr><tr id="15f099e4-ad0c-4879-be98-4e2dfd425859"><th id="opOn" class="simple-table-header-color simple-table-header">метка</th><td id="Yh_r" class="" style="width:500px">#СТО</td></tr><tr id="6755e4a2-aca5-4290-a6bf-74184d8d1abc"><th id="opOn" class="simple-table-header-color simple-table-header">спринт</th><td id="Yh_r" class="" style="width:500px"></td></tr><tr id="200a065a-9cd0-4eff-b7ea-99cf5a0d0448"><th id="opOn" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="Yh_r" class="" style="width:500px">создана база данных, создан справочник клиентов, создана экранная форма карточки клиента</td></tr><tr id="b84cc173-9238-4997-92ec-315a21dcd099"><th id="opOn" class="simple-table-header-color simple-table-header">окружение</th><td id="Yh_r" class="" style="width:500px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="0663063e-240b-4449-abd2-a0ec7eff3d7c" class="toggle"><li><details open=""><summary><strong>026_Проверить реализацию решения “Добавление данных о клиенте в заказ-наряд”</strong></summary><table id="a07dfd0c-1c91-40a8-aa78-78d2963b653a" class="simple-table"><tbody><tr id="f92f631d-25c8-435e-b340-463a5af62f6d"><th id="kzVA" class="simple-table-header-color simple-table-header">ID задачи</th><td id="@ngg" class="" style="width:501px">026</td></tr><tr id="7c22d5ae-6ba1-4b7d-bc71-a2d8a43a2bc8"><th id="kzVA" class="simple-table-header-color simple-table-header">название задачи</th><td id="@ngg" class="" style="width:501px">Проверить реализацию решения “Добавить данных о клиенте в заказ-наряд”</td></tr><tr id="d3f954f4-62cf-41b4-83c0-6883a20f3498"><th id="kzVA" class="simple-table-header-color simple-table-header">краткое описание</th><td id="@ngg" class="" style="width:501px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="360fc159-387e-4954-ad49-3dfbdfa47666"><th id="kzVA" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="@ngg" class="" style="width:501px">Добавить данные о клиенте в заказ-наряд</td></tr><tr id="03b99f49-a805-4106-a1c4-01ef61b0d421"><th id="kzVA" class="simple-table-header-color simple-table-header">автор</th><td id="@ngg" class="" style="width:501px">Семенова Анна</td></tr><tr id="d3746e7c-c152-411c-93cb-cffaa3cc7eb0"><th id="kzVA" class="simple-table-header-color simple-table-header">кому назначено</th><td id="@ngg" class="" style="width:501px">отдел тестирования</td></tr><tr id="f3bf9dbf-2d13-4b08-bda2-63be2b61dbfb"><th id="kzVA" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="@ngg" class="" style="width:501px"> </td></tr><tr id="07d69b6d-de10-466f-a381-49bd00f6f7cd"><th id="kzVA" class="simple-table-header-color simple-table-header">статус</th><td id="@ngg" class="" style="width:501px">в разработке</td></tr><tr id="94a1d621-3799-4912-b129-9281805cb71e"><th id="kzVA" class="simple-table-header-color simple-table-header">приоритет</th><td id="@ngg" class="" style="width:501px">средний</td></tr><tr id="116b4e45-fe7a-4e9e-af41-f710047a556b"><th id="kzVA" class="simple-table-header-color simple-table-header">метка</th><td id="@ngg" class="" style="width:501px">#СТО</td></tr><tr id="799d61b5-6b25-499b-a46d-2aae99094bf6"><th id="kzVA" class="simple-table-header-color simple-table-header">спринт</th><td id="@ngg" class="" style="width:501px"></td></tr><tr id="64a9f18e-680c-41e9-a03d-5f9e361a55e8"><th id="kzVA" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="@ngg" class="" style="width:501px">В базе данных создан справочник клиентов, создана экранная форма карточки клиента, реализована функция внесения изменений в карточку клиента. </td></tr><tr id="aefb271f-4e09-4008-85c7-815df3eef4f9"><th id="kzVA" class="simple-table-header-color simple-table-header">окружение</th><td id="@ngg" class="" style="width:501px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
