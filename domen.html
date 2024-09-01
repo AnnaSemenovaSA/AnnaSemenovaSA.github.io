@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Описание предметной области</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3e332949-706a-4779-961c-814568bc382c" class="page sans"><header><h1 class="page-title"><mark class="highlight-red"><strong>Описание предметной области</strong></mark></h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><h2 id="90e6571d-225e-4c00-88ca-a1616eac4f44" class="">Сущности</h2><table id="58479ba0-ee97-4f00-a169-2aaccb85b205" class="simple-table"><thead class="simple-table-header"><tr id="34dc7227-23bb-4279-ae5a-b5e4f6cf29b5"><th id="SW^A" class="simple-table-header-color simple-table-header" style="width:37px">№</th><th id="Z@Ww" class="simple-table-header-color simple-table-header" style="width:150px">Наименование</th><th id="Mi_l" class="simple-table-header-color simple-table-header" style="width:323px">Описание в реальном мире</th><th id="m`vv" class="simple-table-header-color simple-table-header" style="width:243px">Откуда появляется </th><th id="UJLp" class="simple-table-header-color simple-table-header" style="width:292px">Где используется </th></tr></thead><tbody><tr id="65ea3330-eb17-404d-adf8-4a93b5f6b789"><td id="SW^A" class="" style="width:37px">1</td><td id="Z@Ww" class="" style="width:150px">Клиент</td><td id="Mi_l" class="" style="width:323px">Человек, обращающийся на СТО</td><td id="m`vv" class="" style="width:243px">Клиенты обращаются на СТО за оказанием услуг для автомобилей</td><td id="UJLp" class="" style="width:292px">Используется для наполнения справочника клиентов</td></tr><tr id="ecc8d4f8-22c9-4110-985d-f005a77ace97"><td id="SW^A" class="" style="width:37px">2</td><td id="Z@Ww" class="" style="width:150px">Автомобиль</td><td id="Mi_l" class="" style="width:323px">Автомобиль конкретной марки и модели, принадлежащий одному (нескольким) клиентам</td><td id="m`vv" class="" style="width:243px">Клиент привозит автомобиль на диагностику/ ремонт</td><td id="UJLp" class="" style="width:292px">Используется для наполнения справочника автомобилей, для создания заказ-наряда</td></tr><tr id="ed6c698e-02a8-403d-9d29-bd00418f9235"><td id="SW^A" class="" style="width:37px">3</td><td id="Z@Ww" class="" style="width:150px">Мастер СТО</td><td id="Mi_l" class="" style="width:323px">Сотрудник СТО в должности “мастер”, выполняющий работы в соответствии со квалификацией</td><td id="m`vv" class="" style="width:243px">Назначается управляющим СТО</td><td id="UJLp" class="" style="width:292px">Используется для наполнения справочника мастеров, для оказания услуг клиентам, для заказа запчастей </td></tr><tr id="79d01022-3df1-4fa1-9972-a9576e07ce0b"><td id="SW^A" class="" style="width:37px">4</td><td id="Z@Ww" class="" style="width:150px">Заказ-наряд</td><td id="Mi_l" class="" style="width:323px">Документ, содержащий информацию о клиенте, автомобиле, необходимых работах и запчастях, исполнителе</td><td id="m`vv" class="" style="width:243px">Создается мастером СТО в момент обращения клиента на СТО</td><td id="UJLp" class="" style="width:292px">Используется для учета запчастей, для расчета заработной платы мастеров СТО, для выставления счета клиенту</td></tr><tr id="f618e167-e907-436d-be81-59bd46b1597b"><td id="SW^A" class="" style="width:37px">5</td><td id="Z@Ww" class="" style="width:150px">Работы заказ-наряда</td><td id="Mi_l" class="" style="width:323px">Список работ, которые необходимо провести по конкретному автомобилю в рамках одного заказ-наряда</td><td id="m`vv" class="" style="width:243px">Появляется после осмотра автомобиля мастером СТО и создания заказ-наряда</td><td id="UJLp" class="" style="width:292px">Используется для выставления счета клиенту, для расчета заработной платы мастеру СТО</td></tr><tr id="04984c53-3be2-477a-ada0-d538abd3b499"><td id="SW^A" class="" style="width:37px">6</td><td id="Z@Ww" class="" style="width:150px">Запчасти заказ-наряда</td><td id="Mi_l" class="" style="width:323px">Запчасти, необходимые для выполнения работ </td><td id="m`vv" class="" style="width:243px">Появляется после осмотра автомобиля мастером СТО и создания заказ-наряда</td><td id="UJLp" class="" style="width:292px">Используется для выставления счета клиенту, для оформления заказа на запчасти на склад</td></tr><tr id="4dd2f79b-c83e-4177-9845-3768af522eb6"><td id="SW^A" class="" style="width:37px">7</td><td id="Z@Ww" class="" style="width:150px">Справочник работ</td><td id="Mi_l" class="" style="width:323px">Каталог, содержащий исчерпывающий список возможных работ</td><td id="m`vv" class="" style="width:243px">Создается в системе, регулярно актуализируется</td><td id="UJLp" class="" style="width:292px">Используется для заполнения части &quot;работы заказ-наряда&quot; в заказ-наряде</td></tr><tr id="e37e0cb3-6fef-4c18-9d98-5d78ecf424b3"><td id="SW^A" class="" style="width:37px">8</td><td id="Z@Ww" class="" style="width:150px">Справочник запчастей</td><td id="Mi_l" class="" style="width:323px">Каталог, содержащий перечень всех возможных запчастей</td><td id="m`vv" class="" style="width:243px">создается в системе, регулярно дополняется</td><td id="UJLp" class="" style="width:292px">используется для заполнения части &quot;запчасти заказ-наряда&quot; в заказ-наряде</td></tr><tr id="c18b3ed6-8237-46df-974b-e6fce4ddadc5"><td id="SW^A" class="" style="width:37px">9</td><td id="Z@Ww" class="" style="width:150px">Заявка на заказ запчастей </td><td id="Mi_l" class="" style="width:323px">Документ для заказа запчастей со склада</td><td id="m`vv" class="" style="width:243px">Создается, если на СТО нет необходимых запчастей для ремонта</td><td id="UJLp" class="" style="width:292px">На склад</td></tr><tr id="58f31ea9-7d79-4f07-91ee-d08ec50908ff"><td id="SW^A" class="" style="width:37px">10</td><td id="Z@Ww" class="" style="width:150px">Справочник автомобилей</td><td id="Mi_l" class="" style="width:323px">Каталог, содержащий информацию об марках и моделях автомобилей, которые могут обслуживаться на СТО</td><td id="m`vv" class="" style="width:243px">Создается в системе, актуализируется по мере необходимости</td><td id="UJLp" class="" style="width:292px">Используется для создания заказ-наряда </td></tr><tr id="945ddfa9-46fc-4037-98e5-68f2e83d26a1"><td id="SW^A" class="" style="width:37px">11</td><td id="Z@Ww" class="" style="width:150px">СТО</td><td id="Mi_l" class="" style="width:323px">Автосервис, находящийся по конкретному адресу </td><td id="m`vv" class="" style="width:243px">Создается руководством организации</td><td id="UJLp" class="" style="width:292px">Используется для обслуживания авто в конкретном районе, для отправки запчастей в центрального склада</td></tr><tr id="b7f917b4-58a3-47ef-a937-5490c1d91822"><td id="SW^A" class="" style="width:37px">12</td><td id="Z@Ww" class="" style="width:150px">Справочник СТО</td><td id="Mi_l" class="" style="width:323px">Каталог, содержащий информацию обо всех СТО предприятия</td><td id="m`vv" class="" style="width:243px">Создается в системе, актуализируется по мере необходимости</td><td id="UJLp" class="" style="width:292px">Используется для доставки запчастей с центрального склада</td></tr></tbody></table><h2 id="a66ba206-5463-4e6c-81de-a6e25053bbe1" class="">ER-диаграмма</h2><figure id="ced661ea-7bcb-42e1-8c95-6e45f1d76320" class="image"><a href="ER-%25D0%25B4%25D0%25B8%25D0%25B0%25D0%25B3%25D1%2580%25D0%25B0%25D0%25BC%25D0%25BC%25D0%25B0.png"><img style="width:1351px" src="ER-%25D0%25B4%25D0%25B8%25D0%25B0%25D0%25B3%25D1%2580%25D0%25B0%25D0%25BC%25D0%25BC%25D0%25B0.png"/></a></figure><p id="1b67372b-d457-43b8-b397-58f0af5bcfaf" class="">
+</p><p id="d6acdd9e-979a-4307-9460-67bd17ddb491" class="">Ссылка на диаграмму в хорошем качестве <a href="https://drive.google.com/file/d/1Ef5zYUwmQiMVkb5FasmJTbNiQ7reeEnh/view?usp=sharing">https://drive.google.com/file/d/1Ef5zYUwmQiMVkb5FasmJTbNiQ7reeEnh/view?usp=sharing</a></p><h2 id="d13981dd-13bc-48f5-a4c7-fd1b5c89fac5" class="">Словарь данных </h2><table id="42a82f6a-fe38-4c68-ae3e-653b94b1b128" class="simple-table"><thead class="simple-table-header"><tr id="f1ded1e3-3852-4e77-9a08-762877a7d014"><th id="i[Np" class="simple-table-header-color simple-table-header" style="width:42px">№</th><th id="]LV@" class="simple-table-header-color simple-table-header" style="width:95px">Тип артефакта</th><th id="zo&lt;g" class="simple-table-header-color simple-table-header" style="width:175px">Наименование</th><th id="XIC^" class="simple-table-header-color simple-table-header" style="width:98px">Тип данных</th><th id="phzN" class="simple-table-header-color simple-table-header" style="width:72px">Длина</th><th id="FKuo" class="simple-table-header-color simple-table-header" style="width:126px">Обязательность</th><th id="WYyX" class="simple-table-header-color simple-table-header" style="width:101px">Описание </th><th id="qUr&gt;" class="simple-table-header-color simple-table-header" style="width:317px">Комментарии</th></tr></thead><tbody><tr id="7386d587-c6e9-4ffd-8c4f-f05589664c1c"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность </td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Клиент</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="ce0deabb-21ef-45f8-b982-164c66b28d0e"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDКлиент</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="7b675433-083e-4684-bfde-9db07b309331"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Фамилия</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">предусмотреть возможность ввода двойной фамилии через дефис </td></tr><tr id="f5194cd6-e2e5-40b2-af0d-83f3b782d0c5"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Имя</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="64541672-8b12-45d9-99f4-02564818cd68"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Отчество</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">нет</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="8b63958b-5e36-4b7a-9f4a-c3f3a4f024bc"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">номер телефона</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">автозамена 8 на +7; автоподстановка +7, если номер начали вводить с кода (с 9); формат финальной записи номера                  +7  (999) 999-99-99</td></tr><tr id="cc7cb9bc-fe55-4964-b750-927f48189003"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">адрес электронной почты </td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="ce3c4fb5-c79c-4674-968f-adee80ecacf1"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">дата регистрации клиента</td><td id="XIC^" class="" style="width:98px">date </td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">формат YYYYMMDD</td></tr><tr id="8cf82542-5a8e-4eb9-8cbc-118f3c373963"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Автомобиль</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="5c768435-9267-47eb-9ea9-dbbc21b464c9"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDАвтомобиль</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="e08d9f94-766e-45c0-b4f3-6efcd473b465"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDклиент</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="b3205dec-07b8-4a90-9260-788a2ad37714"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDмарка </td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="6e503cfe-fb63-4ddb-b830-d295e3978c80"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Модель </td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="4b4fa7a7-7db1-45be-a96a-e38e55e07ef5"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">VIN автомобиля</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px">17 </td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">ввод только букв латинского алфавита, кириллица не вводится </td></tr><tr id="d412be38-dfd9-4584-b572-8ee5c8bc5369"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Гос. номер автомобиля</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="08912f2b-914f-4acd-bc32-0e0b9810b3c1"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Мастер СТО</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="a765b5a0-5812-4aba-bf3c-8167648cefb9"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDмастер</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="ef82b322-d9af-4e46-a2e0-0bff6b7ddb7d"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Фамилия</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">предусмотреть возможность ввода двойной фамилии через дефис </td></tr><tr id="c66d1a44-8caf-4943-af5c-f9deeba8536e"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Имя</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="f94210ff-8481-4503-8890-8168980481ed"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Отчество</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">нет</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="3e3dec5e-b70b-409d-abb8-c34e3bf6caa5"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Квалификация</td><td id="XIC^" class="" style="width:98px">enum</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">одно из нескольких заранее определенных значений</td></tr><tr id="82fee286-e1d2-4257-a1af-b7f3712364eb"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Часовая ставка</td><td id="XIC^" class="" style="width:98px">real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="9e5a230e-c9e0-4e65-b02b-af60f53daefb"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность </td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Заказ-наряд</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="7e37e075-a8c1-40da-8648-89f140f6c0b8"><td id="i[Np" class="block-color-yellow_background" style="width:42px"></td><td id="]LV@" class="block-color-yellow_background" style="width:95px">блок </td><td id="zo&lt;g" class="block-color-yellow_background" style="width:175px">Заказ-наряд</td><td id="XIC^" class="block-color-yellow_background" style="width:98px"></td><td id="phzN" class="block-color-yellow_background" style="width:72px"></td><td id="FKuo" class="block-color-yellow_background" style="width:126px"></td><td id="WYyX" class="block-color-yellow_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-yellow_background" style="width:317px"></td></tr><tr id="ca0bd833-58d0-43af-8e63-38dbec0a04b9"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDзаказ-наряд</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="94cb4c4c-eeba-4bdb-aa6a-e4d14be27684"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDАвтомобиль</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="6750768c-d564-4608-913e-8b4b38e39027"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDМастер</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="bf5cf441-2792-4db1-89b3-9bc0509abe82"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDРаботыЗН</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="4ee46111-a371-4913-8ec3-7c411856d7bd"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗапчастиЗН</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="efdb67cc-27c3-4497-aa33-248e605b236a"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDКлиент</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">Необходимы будут ФИО в формате “Фамилия Имя Отчество”</td></tr><tr id="b6ca68ab-e3f3-4265-b686-15504f2b72cf"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDСТО</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="da5c7e3e-125f-473b-beaf-ed48776d3002"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Дата</td><td id="XIC^" class="" style="width:98px">DateTime</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">системные дата/время </td></tr><tr id="8df78977-5fb7-4f51-b258-f09e24e8e41f"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Номер</td><td id="XIC^" class="" style="width:98px">Integer </td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="ffa9ecbd-d636-4e63-9ac3-cb33b3615228"><td id="i[Np" class="block-color-yellow_background" style="width:42px"></td><td id="]LV@" class="block-color-yellow_background" style="width:95px">блок </td><td id="zo&lt;g" class="block-color-yellow_background" style="width:175px">Работы заказ-наряда</td><td id="XIC^" class="block-color-yellow_background" style="width:98px"></td><td id="phzN" class="block-color-yellow_background" style="width:72px"></td><td id="FKuo" class="block-color-yellow_background" style="width:126px"></td><td id="WYyX" class="block-color-yellow_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-yellow_background" style="width:317px"></td></tr><tr id="1cec61d2-714b-48b4-b961-6d4a75720f78"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDРаботыЗН</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="000907e8-acf0-4cc9-9497-dc8ed44c55da"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗаказ-наряд</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="e4a9551b-d058-49eb-acf9-7fb1942704ed"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDРабота</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">может быть выполнено несколько работ, один или несколько в блоке</td></tr><tr id="e672fbb0-755f-4e62-ba26-b82706778a56"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">№ п/п</td><td id="XIC^" class="" style="width:98px">Integer</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается автоматически в системе, начиная с 1 с шагом +1</td></tr><tr id="d532a1c0-2769-4fe9-b98b-f9b753eeffc8"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Количество</td><td id="XIC^" class="" style="width:98px">Integer</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="c071c1df-f1bf-4348-befe-36098e7064a3"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Сумма</td><td id="XIC^" class="" style="width:98px">Real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">считается по формуле: норма часов * на количество * часовую ставку мастера</td></tr><tr id="bad92c2a-514b-4e57-a15e-9c8223a0d428"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Итого </td><td id="XIC^" class="" style="width:98px">Real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">является результатом сложения всех данных &quot;сумма&quot; в данном блоке</td></tr><tr id="007c0d0b-b0fa-45ec-9ea2-af9f9324fab2"><td id="i[Np" class="block-color-yellow_background" style="width:42px"></td><td id="]LV@" class="block-color-yellow_background" style="width:95px">блок</td><td id="zo&lt;g" class="block-color-yellow_background" style="width:175px">запчасти заказ-наряда</td><td id="XIC^" class="block-color-yellow_background" style="width:98px"></td><td id="phzN" class="block-color-yellow_background" style="width:72px"></td><td id="FKuo" class="block-color-yellow_background" style="width:126px"></td><td id="WYyX" class="block-color-yellow_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-yellow_background" style="width:317px"></td></tr><tr id="68310f88-4ef7-427a-bf2d-c27c6497f284"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗапчастиЗН</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px"></td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="90e27541-1629-4380-8bc9-dc1f9156a608"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗаказ-наряд</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px"></td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="196d384e-9038-4bad-a8dd-6ea5d8b62901"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗапчасть</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px"></td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="f00966b2-6334-4fd6-b616-9916c83cfd2e"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">№ п/п</td><td id="XIC^" class="" style="width:98px">Integer</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается автоматически в системе, начиная с 1 с шагом +1</td></tr><tr id="303aea9c-588b-4789-b5fc-095da2896b4c"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Количество</td><td id="XIC^" class="" style="width:98px">Integer</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="4506f0ab-df40-47a9-9ae2-a9b3e4ff8ef6"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Сумма</td><td id="XIC^" class="" style="width:98px">Real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">считается по формуле: цена запчасти * на количество </td></tr><tr id="f9e99a19-0d52-4b7e-89e4-13692178fe7e"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Итого </td><td id="XIC^" class="" style="width:98px">Real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">является результатом сложения всех данных &quot;сумма&quot; в данном блоке</td></tr><tr id="c7d4cb49-c0e0-4a4e-8535-6aea1a588def"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность </td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Справочник работ</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="66023d78-f433-4630-ad11-6d96286d1aef"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDРабота</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="1739d825-be28-4f96-889f-4d95d2ecddf8"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Наименование работы</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">проверка на орфографию при заполнении</td></tr><tr id="a537fe4d-5aa7-4cce-8255-7465c77616f6"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Норма часов</td><td id="XIC^" class="" style="width:98px">real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="d91d6960-facf-411e-b646-9d5aec44ae2f"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Квалификация мастера</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">одно из нескольких заранее определенных значений</td></tr><tr id="b99fffe9-5be8-4a14-9b03-ddc87ada00a9"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Справочник запчастей</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="162fafaa-80ac-44ee-bf3a-b6c6e4e8cbf1"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗапчасть</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="9df22504-a1af-440e-9129-1c47b70508ea"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDМарка</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="f3a6f86a-5469-4fdf-99d0-bfead0158324"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Артикул</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="c4a8a905-143f-4610-af50-29a544e345e5"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Наименование </td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="f9c6730d-cb40-48bc-9b7b-02433ec5a2ef"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Цена</td><td id="XIC^" class="" style="width:98px">real</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="4516e090-9cec-4794-b09e-6b1b9a77228f"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">наличие на локальном складе</td><td id="XIC^" class="" style="width:98px">boolean</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">значения “да” и “нет”</td></tr><tr id="3472350e-a2df-4ffe-8484-0cbfb737bef0"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">Справочник автомобилей</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="2c395919-436f-466c-a427-5398ccdd3d2c"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDМарка</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да </td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="95e6e16e-c98b-4572-9788-6a58e7dbf2c8"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Наименование марки</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="e1babfed-09c9-4476-beec-6bc7ad646093"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Модель</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px"></td></tr><tr id="2d8c7508-16c0-4083-8dc3-eb578a35f834"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">заявка на заказ запчастей</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="619d8683-526d-4888-9242-f79dc4802761"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗаявка</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="4950a30d-3c3e-4a5f-87ca-2e1a25c16783"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDСТО</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="cc730073-7462-4e8d-966c-5630f29d5cb4"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗаказ-наряд</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="a108676b-2305-4fb8-b0f8-fd459f555aeb"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDЗапчастиЗН</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="666572e0-814e-4222-853e-b19d83a714e2"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDМастер</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="7a710260-cd4a-4c8f-b17a-fa29712d2c15"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Дата</td><td id="XIC^" class="" style="width:98px">DateTime</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">системные дата/время </td></tr><tr id="07fd95db-bffe-4fc4-a279-16453f5ca921"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Номер </td><td id="XIC^" class="" style="width:98px">Integer</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="975cdbf0-d46f-48ac-880a-a9c43cf8bf9b"><td id="i[Np" class="block-color-pink_background" style="width:42px"></td><td id="]LV@" class="block-color-pink_background" style="width:95px">сущность</td><td id="zo&lt;g" class="block-color-pink_background" style="width:175px">справочник СТО</td><td id="XIC^" class="block-color-pink_background" style="width:98px"></td><td id="phzN" class="block-color-pink_background" style="width:72px"></td><td id="FKuo" class="block-color-pink_background" style="width:126px"></td><td id="WYyX" class="block-color-pink_background" style="width:101px"></td><td id="qUr&gt;" class="block-color-pink_background" style="width:317px"></td></tr><tr id="a5eb14da-c806-4bc8-9678-e46472df07e0"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">IDСТО</td><td id="XIC^" class="" style="width:98px">ID</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">присваивается в системе автоматически</td></tr><tr id="acf06a39-3702-4f70-af30-92087407688e"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Адрес</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">связь с КЛАДР </td></tr><tr id="33800d43-b386-4d00-a154-868e7b35d430"><td id="i[Np" class="" style="width:42px"></td><td id="]LV@" class="" style="width:95px"></td><td id="zo&lt;g" class="" style="width:175px">Телефон СТО</td><td id="XIC^" class="" style="width:98px">string</td><td id="phzN" class="" style="width:72px"></td><td id="FKuo" class="" style="width:126px">да</td><td id="WYyX" class="" style="width:101px"></td><td id="qUr&gt;" class="" style="width:317px">номер в формате +7 (999) 999-99-99</td></tr></tbody></table></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

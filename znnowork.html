@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Создать заказ-наряд без работ и запчастей</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5361442f-9155-47a1-baa7-b68a43bb0791" class="page sans"><header><h1 class="page-title">Создать заказ-наряд без работ и запчастей</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><table id="16c192fe-421e-4939-90ee-8c8f5e5c434b" class="simple-table"><tbody><tr id="25afe6cb-c1d6-4837-8c4f-afa5fd22159f"><th id="Lyc[" class="simple-table-header-color simple-table-header">Контекст задачи</th><td id="utD|" class="" style="width:498px">Должен быть создать документ “Заказ-наряд”, чтобы отразить в нем информацию о клиенте и автомобиле, а потом добавить необходимые работы и запчасти.</td></tr><tr id="5c3f3a75-9d57-4a13-8c9d-14273c19179e"><th id="Lyc[" class="simple-table-header-color simple-table-header">Заинтересованные стороны</th><td id="utD|" class="" style="width:498px">Мастер СТО</td></tr><tr id="39f81943-ebb9-48b7-8350-49274fa4a272"><th id="Lyc[" class="simple-table-header-color simple-table-header">Ключевые источники информации</th><td id="utD|" class="" style="width:498px"><a href="%D0%A2%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%209acf1fd09ad04ec0a1afe3d7f76e9092.html">Требования к системе</a> </td></tr><tr id="cad171f4-c485-4ef2-a275-8e33467386ba"><th id="Lyc[" class="simple-table-header-color simple-table-header">Атрибуты качества и ограничения (НФТ)</th><td id="utD|" class="" style="width:498px"></td></tr></tbody></table><h3 id="0e22403a-e6af-43f9-87fa-8194474d2dfe" class="">Критерии приемки результата</h3><ol type="1" id="2354ecf8-18e5-4824-80e9-b63240379072" class="numbered-list" start="1"><li>При нажатии кнопки “Оформить заказ-наряд” система открывает экранную форму заказ-наряда.</li></ol><ol type="1" id="f842e0b5-5191-4f45-9339-68a1c50d6dd1" class="numbered-list" start="2"><li>Система присваивает и отражает дату и время создания заказ-наряда на форме. </li></ol><ol type="1" id="9ecba5f6-229c-4591-9b14-8ec9f71f4453" class="numbered-list" start="3"><li>Система позволяет заполнить поля “дата” и “время” вручную.</li></ol><ol type="1" id="a3abb02e-589b-4d7a-af3c-219742775f75" class="numbered-list" start="4"><li>Система позволяет сохранить заказ-наряд, если у клиента нет отчества.</li></ol><ol type="1" id="0cd9fe4c-b06f-4ce5-bec8-7f9f1854bbea" class="numbered-list" start="5"><li>Система при вводе номера телефона меняет 8 на +7</li></ol><ol type="1" id="e28b4f1c-75e0-417f-be02-10f20c6bfdc8" class="numbered-list" start="6"><li>Система подсвечивает поля ввода VIN номера красным, если введено меньше 17 символов. Под полем ввода VIN номера появляется надпись “Некорректный VIN”</li></ol><ol type="1" id="8b76951c-580a-4644-ae99-3554fdbfd800" class="numbered-list" start="7"><li>Система позволяет сохранить черновик заказ-наряда без выбранных работ.</li></ol><ol type="1" id="e9d7a97c-2e9d-4336-a00c-520efa1713d0" class="numbered-list" start="8"><li>Система позволяет сохранить черновик заказ-наряда без выбранных запчастей. </li></ol><ol type="1" id="d3c7595d-bfd5-4cf7-b465-24b799df7478" class="numbered-list" start="9"><li>Система присваивает заказ-наряду номер.</li></ol><ol type="1" id="70442936-827f-4c3d-9128-c63ae421ea88" class="numbered-list" start="10"><li>Пройдены сценарии тестирования. </li></ol><hr id="263fc11c-b325-497a-9e26-d7fdd757c38e"/><h2 id="e08ba2dc-9093-4851-8f32-20f98281ab5b" class="">Описание решения</h2><h3 id="8d499950-8b6f-46ee-89e8-eb95d8c32b8b" class="">Приложение 1. UC “Создание заказ-наряда”</h3><p id="43d24703-87f3-4698-bd30-2a1a8c874d1c" class=""><span style="border-bottom:0.05em solid">Основной сценарий:</span></p><ol type="1" id="895efe28-2dbf-47d9-a8da-70430740ae8d" class="numbered-list" start="1"><li>Мастер открывает форму ЗН в системе.</li></ol><ol type="1" id="df1cbd64-378c-4910-8629-e669562f7ba4" class="numbered-list" start="2"><li>Система фиксирует дату и время создания ЗН (текущее системное время).<p id="697d7312-399c-429c-b963-b1ded811a3ec" class="">2.1 Система не заполнила поля “дата” и “время создания”</p></li></ol><ol type="1" id="9caf8dcd-5094-4d04-9ae0-054378a65736" class="numbered-list" start="3"><li>Мастер вносит данные клиента: ФИО, дата рождения, номер телефона, адрес электронной почты. </li></ol><ol type="1" id="c6ff1d56-d70f-4fad-85e4-ae1b29dc3286" class="numbered-list" start="4"><li>Мастер вносит данные автомобиля клиента в заказ-наряд: марка, модель, VIN, гос. номер.  </li></ol><ol type="1" id="02f94512-3b2b-4b9b-a3b4-4499e99d6d02" class="numbered-list" start="5"><li>Мастер сохраняет заказ-наряд. </li></ol><ol type="1" id="22e905bf-69d9-4751-ae30-da86286fa75a" class="numbered-list" start="6"><li>Система присваивает заказ-наряду номер.  <p id="5ac23fa9-1e4d-4b2e-bca8-9791cbc0dc0e" class="">6.1 Система не присвоила заказ-наряду номер. </p></li></ol><p id="db88a7dc-bf57-461d-9626-74a6d82c51c2" class=""><span style="border-bottom:0.05em solid">Альтернативные сценарии:</span></p><p id="2f539edd-6d81-45da-806f-25180bfd5bab" class="">2.1 Система не заполнила поля “дата” и “время создания”<div class="indented"><ol type="1" id="fbfc9f76-d6b9-4649-aaf2-f8844c15f43a" class="numbered-list" start="1"><li>Мастер вводит текущую дату вручную.</li></ol><ol type="1" id="0e2a0a36-bb4a-4651-8dc2-551446501826" class="numbered-list" start="2"><li>Мастер вводит время создания вручную (часы, минуты)</li></ol></div></p><p id="9ea4e22c-f123-4551-a046-844666b84046" class="">6.1 Система не присвоила ЗН номер.</p><ol type="1" id="0db69ae3-a43c-48f5-9ceb-53b25b518255" class="numbered-list" start="1"><li>Мастер отправляет отчет об ошибке. </li></ol><hr id="1c2371e1-3396-4503-a75f-e23b61a5958a"/><h3 id="184062db-7b6f-4090-a7fc-dec69c8d41a4" class="">Приложение 2. ER-диаграмма </h3><p id="ce7cbd79-d5e8-4104-a1bd-28bf029ca0fb" class=""><a href="%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D0%B8%203e332949706a4779961c814568bc382c.html">https://www.notion.so/3e332949706a4779961c814568bc382c?pvs=4#a66ba20654634e6c81dea6e25053bbe1</a></p><h3 id="6ceae642-7cda-450e-803e-f7952f8fa762" class="">Приложение 3. Вайрфреймы. </h3><p id="bc31385c-306a-4ff6-aec9-a9b562a83d89" class="">
+</p><h3 id="a7bb90da-7879-4f98-a60a-84e694897e07" class="">Сценарии тестирования </h3><ul id="79a0b2b6-3243-4d32-ab5a-cad80e3cdebd" class="toggle"><li><details open=""><summary>Сценарий тестирования 01. “Создание заказ наряда без работ”</summary><table id="0d2190a4-7fb0-4e23-a1b1-3a8469b9be94" class="simple-table"><tbody><tr id="f2b52801-a227-4016-84c5-e03eb520bf68"><th id="XrUK" class="simple-table-header-color simple-table-header">id, название</th><td id="ZqMo" class="" style="width:539px">01. Создание заказ наряда без работ и запчастей.</td></tr><tr id="58ef8f1e-6492-43de-9671-948af645c5c0"><th id="XrUK" class="simple-table-header-color simple-table-header">предусловие</th><td id="ZqMo" class="" style="width:539px">Создана экранная форма заказ-наряда</td></tr><tr id="e84b087a-5f22-4a79-81fa-f63efaf7bdb6"><th id="XrUK" class="simple-table-header-color simple-table-header">шаги</th><td id="ZqMo" class="" style="width:539px">1. Нажать кнопку “Оформить заказ-наряд”</td></tr><tr id="e9431331-1785-4f2c-bf4e-666c867dcf99"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">2. Система открыла форму заказ-наряда</td></tr><tr id="b5ddece5-c089-4213-a706-008ac7b919cd"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">3. Ввести “Иванов” в поле “Фамилия”</td></tr><tr id="5d0ca65a-fb44-414e-9581-830ffc785dee"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">4. Ввести “Иван” в поле “Имя”</td></tr><tr id="4386b84d-af37-40b5-ac1e-d8e4975b14b4"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">5. Ввести “Иванович” в поле “Отчество”</td></tr><tr id="328a1b8e-80aa-434c-91ba-09a42d8beece"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">6. Ввести “01.01.1960” в поле “Дата рождения” </td></tr><tr id="61f65260-a8cb-48bb-bc36-4f29dfb3fd9f"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">7. Ввести “+7 911 111 11 11” в поле “Номер телефона”</td></tr><tr id="517590fb-d6a8-4b21-9541-c8b1910e4f02"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">8. Ввести “ivanov@mail.ru” в поле “e-mail”</td></tr><tr id="da3ec03a-b85c-4b46-8e6e-b2d1c321f8d8"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">9. Ввести “Ауди” в поле “Марка авто”</td></tr><tr id="1e26968e-fd2e-4768-8690-6e97a95c3073"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">10. Ввести “А6” в поле “Модель авто”</td></tr><tr id="e29d84b8-2704-42dd-959e-a4a251e1d5f1"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">11. Ввести “12345678912345678” в поле “VIN”</td></tr><tr id="f0662692-9fb0-419c-88a3-b76bd9380a61"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">12. Ввести “А001АО 198” в поле “Гос. номер”</td></tr><tr id="d8cc3590-e8c7-4ddf-84c1-e85471e28d7b"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">13. Нажать “Сохранить”</td></tr><tr id="8ce9ea18-1efd-430f-bf3c-1954b2e12350"><th id="XrUK" class="simple-table-header-color simple-table-header">ОР</th><td id="ZqMo" class="" style="width:539px">1. Система присвоила заказ-наряду номер. </td></tr><tr id="1e68afd0-c60e-41bd-87bd-ba3283f8f0ba"><th id="XrUK" class="simple-table-header-color simple-table-header"></th><td id="ZqMo" class="" style="width:539px">2. В системе сохранен заказ наряд с введенным данными. </td></tr><tr id="a3081009-489f-415b-a299-edac10329e3d"><th id="XrUK" class="simple-table-header-color simple-table-header">Постусловия</th><td id="ZqMo" class="" style="width:539px">удалить созданный заказ-наряд</td></tr></tbody></table></details></li></ul><ul id="7704b20a-fe4a-421d-8b35-f549214d75fe" class="toggle"><li><details open=""><summary>Сценарий тестирования 02. “Проверка автозамены 8 на +7”</summary><table id="ba9d7655-19a3-47d5-b1ad-8f2180569b05" class="simple-table"><tbody><tr id="dc690776-305a-4afe-b20e-5408e5806f07"><th id="_[KP" class="simple-table-header-color simple-table-header">id, название</th><td id="@:C&lt;" class="" style="width:540px">02. Проверка автозамены 8 на +7</td></tr><tr id="a80546ad-418b-465e-81e1-14280eba6a9b"><th id="_[KP" class="simple-table-header-color simple-table-header">предусловие</th><td id="@:C&lt;" class="" style="width:540px">открыта форма заказ-наряда</td></tr><tr id="761da579-4845-4dc5-a3fd-a4875cd6a48d"><th id="_[KP" class="simple-table-header-color simple-table-header">шаги</th><td id="@:C&lt;" class="" style="width:540px">1. Ввести “8 911 111 11 11” в поле “номер телефона”</td></tr><tr id="933fad08-e1e9-47e9-ba25-8a8ceb9c1a93"><th id="_[KP" class="simple-table-header-color simple-table-header"></th><td id="@:C&lt;" class="" style="width:540px">2. Перейти в поле ввода адреса электронной почты</td></tr><tr id="34335a11-11d5-4ba2-81fc-c53b5ab76010"><th id="_[KP" class="simple-table-header-color simple-table-header"></th><td id="@:C&lt;" class="" style="width:540px">3. Проверить, что система отражает номер телефона “+7 911 111 11 11”</td></tr><tr id="54828d73-4eb2-4925-84c9-3c1a9042dc55"><th id="_[KP" class="simple-table-header-color simple-table-header">ОР</th><td id="@:C&lt;" class="" style="width:540px">Система поменяла 8 на +7 в введенном номере телефона</td></tr><tr id="6ba8efab-13a8-49d1-bf34-036d1bb3bb0e"><th id="_[KP" class="simple-table-header-color simple-table-header">Постусловия</th><td id="@:C&lt;" class="" style="width:540px">закрыть форму заказ-наряда без сохранения</td></tr></tbody></table></details></li></ul><ul id="9f828237-0bcd-4ad1-a7fe-bba6c4ae9cc7" class="toggle"><li><details open=""><summary>Сценарий тестирования 03. “Отражение ошибки при некорректно введенном VIN” </summary><table id="8c1a2d29-2f5e-47ce-be42-8331d25aed2b" class="simple-table"><tbody><tr id="67bb1eac-21bd-4370-bd32-2e7730128323"><th id="l{P&gt;" class="simple-table-header-color simple-table-header">id, название</th><td id="VTBx" class="" style="width:541px">03. Отражение ошибки при некорректно введенном VIN</td></tr><tr id="145699d4-d6ea-402e-8be6-ce119074ccf1"><th id="l{P&gt;" class="simple-table-header-color simple-table-header">предусловие</th><td id="VTBx" class="" style="width:541px">Открыта форма заказ-наряда, заполнены данные клиента. </td></tr><tr id="0e8e9a10-3014-460d-829a-d57e501bf598"><th id="l{P&gt;" class="simple-table-header-color simple-table-header">шаги</th><td id="VTBx" class="" style="width:541px">1. Ввести “Ауди” в поле “Марка авто”</td></tr><tr id="822c2d9b-162c-4908-95ef-f19ead7f2abf"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">2. Ввести “А6” в поле “Модель авто”</td></tr><tr id="51afdbf7-35b7-4ef4-85e9-7e8a8659f5d8"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">3. Ввести “1234567891234567” в поле “VIN”</td></tr><tr id="9005a0bb-6be9-40aa-bef6-cd6d362a19c2"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">4. Перейти в поле ввода гос. номера</td></tr><tr id="ac7ae051-48df-4586-ae83-b1d8977bab1c"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">5. Система выделяет поле ввода VIN красным. Под полем появилась надпись “Некорректный VIN”</td></tr><tr id="9e3f024b-afd3-43fc-9617-d6a9975726a9"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">6. Вернуться в поле ввода VIN.</td></tr><tr id="8d7e2ec3-18bb-4208-b8b2-4bc4e41ce616"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">7. Ввести “12345678912345678” в поле “VIN”</td></tr><tr id="d5633781-6e2f-49ea-8ff7-b4d7f5aa9224"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">8. Перейти в поле ввода гос. номера</td></tr><tr id="b36fc34c-878b-49a4-b649-6567bdad9915"><th id="l{P&gt;" class="simple-table-header-color simple-table-header"></th><td id="VTBx" class="" style="width:541px">9. Выделение красным и надпись “некорректный VIN” исчезли. </td></tr><tr id="c460e439-7936-4df4-a648-bc136d53b311"><th id="l{P&gt;" class="simple-table-header-color simple-table-header">ОР</th><td id="VTBx" class="" style="width:541px">1. Система проверяет достаточность символов в поле VIN и уведомляет пользователя об ошибке. </td></tr><tr id="017a6988-aa98-41fc-9b83-e8183b510e67"><th id="l{P&gt;" class="simple-table-header-color simple-table-header">Постусловия</th><td id="VTBx" class="" style="width:541px">закрыть форму заказ-наряда без сохранения</td></tr></tbody></table></details></li></ul><h3 id="fd68f431-f19b-4a81-8f94-46837f8ccb1c" class="">Подзадачи (передача в разработку)</h3><ul id="254dc8ba-56e5-4f3b-921b-b6a9c5c944a9" class="toggle"><li><details open=""><summary><strong>001_Развернуть базу данных заказ-наряда на сервере.</strong></summary><table id="b59d2065-0154-4e50-a884-ee3f2fdab1d8" class="simple-table"><tbody><tr id="ade58eea-a4d2-47de-a793-19dfc287eb28"><th id="]YzB" class="simple-table-header-color simple-table-header">ID задачи</th><td id="uYUB" class="" style="width:500px">001</td></tr><tr id="ad4793ad-9eb5-4b30-9e14-91147ba671a7"><th id="]YzB" class="simple-table-header-color simple-table-header">название задачи</th><td id="uYUB" class="" style="width:500px">Развернуть базу данных заказ-наряда на сервере</td></tr><tr id="65488524-ef9d-45d1-b8f6-9b404abdc4a6"><th id="]YzB" class="simple-table-header-color simple-table-header">краткое описание</th><td id="uYUB" class="" style="width:500px">Создать базу данных, в которой буду храниться заказ-наряды. </td></tr><tr id="07cfd683-9298-4445-925f-e6ec81e9ff14"><th id="]YzB" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="uYUB" class="" style="width:500px">Создать заказ-наряда без работ и запчастей</td></tr><tr id="59267006-e9c0-40ab-9eb2-a97deb29c228"><th id="]YzB" class="simple-table-header-color simple-table-header">автор</th><td id="uYUB" class="" style="width:500px">Семенова Анна</td></tr><tr id="1afe7c6d-adc5-43d0-b890-f4e098987b95"><th id="]YzB" class="simple-table-header-color simple-table-header">кому назначено</th><td id="uYUB" class="" style="width:500px">отдел разработки, бэкэнд</td></tr><tr id="5c1c8275-fd9d-4684-984f-d17540b0471c"><th id="]YzB" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="uYUB" class="" style="width:500px">   </td></tr><tr id="1db9bdae-ec39-4bae-986a-40d60a706e57"><th id="]YzB" class="simple-table-header-color simple-table-header">статус</th><td id="uYUB" class="" style="width:500px"></td></tr><tr id="6e5ce78b-8c01-4f46-8c61-5de309b28a75"><th id="]YzB" class="simple-table-header-color simple-table-header">приоритет</th><td id="uYUB" class="" style="width:500px">средний</td></tr><tr id="22c94d5e-0cbd-4406-bc6c-e46cb5e45197"><th id="]YzB" class="simple-table-header-color simple-table-header">метка</th><td id="uYUB" class="" style="width:500px">#СТО</td></tr><tr id="04e8a66d-61d8-4993-8c4f-c175fe141b75"><th id="]YzB" class="simple-table-header-color simple-table-header">спринт</th><td id="uYUB" class="" style="width:500px"></td></tr><tr id="ab703da8-89f5-4157-a8d8-8934f093d107"><th id="]YzB" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="uYUB" class="" style="width:500px">выделен сервер для размещения базы данных</td></tr><tr id="e5724465-af87-41e4-9595-247d884f98bc"><th id="]YzB" class="simple-table-header-color simple-table-header">окружение</th><td id="uYUB" class="" style="width:500px"></td></tr></tbody></table></details></li></ul><ul id="0a8e9331-35cb-461b-953b-a67672e50fb6" class="toggle"><li><details open=""><summary><strong>002_Создать экранную форму заказ-наряда для планшета. </strong></summary><table id="8b5959d4-7fd5-4e72-b1ba-1454e3d2a070" class="simple-table"><tbody><tr id="424bbf49-eb5a-4b18-b200-a9365df164ca"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">ID задачи</th><td id="?MZp" class="" style="width:502px">002</td></tr><tr id="1fc3fc40-f8c9-4464-b900-f6fc341a384a"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">название задачи</th><td id="?MZp" class="" style="width:502px">Создать экранную форму заказ-наряда для планшета</td></tr><tr id="a1de5bee-7a0d-4716-bb31-4d302cd2cde8"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">краткое описание</th><td id="?MZp" class="" style="width:502px">Экранная форма “заказ-наряд” содержит шапку, блок “необходимые работы”, блок “необходимые запчасти”. В “шапку” пользователь с планшета будет вводить данные клиента, автомобиля, потом будет заполнять необходимые работы и запчасти. </td></tr><tr id="3d6643ae-533f-414e-ac36-cfc8fabacf93"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">вышестоящая задача</th><td id="?MZp" class="" style="width:502px">оформление заказ-наряда без работ и запчастей</td></tr><tr id="919ba9f4-ddd3-42f0-8589-82ba1dd841f9"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">автор</th><td id="?MZp" class="" style="width:502px">Семенова Анна</td></tr><tr id="5ca4e2fd-14d3-4bce-8f33-b68e47d6741a"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">кому назначено</th><td id="?MZp" class="" style="width:502px">отдел разработки, фронтенд</td></tr><tr id="b4133049-96c6-47f4-8c65-3a3b0ced42e6"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">размещение постановки</th><td id="?MZp" class="" style="width:502px">   </td></tr><tr id="b5aaceb6-1276-48c4-820b-98483cd7c911"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">статус</th><td id="?MZp" class="" style="width:502px">в разработке</td></tr><tr id="db7dee62-b87e-4d1a-a303-da5c3a9d565f"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">приоритет</th><td id="?MZp" class="" style="width:502px">средний</td></tr><tr id="fccd8ace-cff8-40a3-b40c-9b1cf05c0fea"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">метка</th><td id="?MZp" class="" style="width:502px">#СТО</td></tr><tr id="6b37f772-4100-4512-84b2-048eb2aff075"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">спринт</th><td id="?MZp" class="" style="width:502px"></td></tr><tr id="b8d00a2d-7cb8-44f0-bc96-8e62de8e5e4c"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">предусловие выполнения</th><td id="?MZp" class="" style="width:502px">создана БД заказ-наряда</td></tr><tr id="dbe6ea2e-7604-490d-a494-6fd5989c25de"><th id="gUYX" class="simple-table-header-color simple-table-header" style="width:160px">окружение</th><td id="?MZp" class="" style="width:502px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><ul id="de7d0faf-d5e1-4a5f-b51a-fc70b6b291d3" class="toggle"><li><details open=""><summary><strong>003_Проверить реализацию решения “Создание заказ-наряда без работ и запчастей”</strong></summary><table id="ee926b1a-3b0d-46e3-ac90-11032af5a6ae" class="simple-table"><tbody><tr id="36d1f9de-3a08-4706-9bd9-2ec2a41cf77c"><th id="mqIy" class="simple-table-header-color simple-table-header">ID задачи</th><td id="glkq" class="" style="width:480px">003</td></tr><tr id="278c8dc5-f417-4deb-b45d-d91e63923096"><th id="mqIy" class="simple-table-header-color simple-table-header">название задачи</th><td id="glkq" class="" style="width:480px">Проверить реализацию решения “Создание заказ-наряда без работ и запчастей”</td></tr><tr id="71eb4dd7-dfee-4804-a3a1-ca198bef0a64"><th id="mqIy" class="simple-table-header-color simple-table-header">краткое описание</th><td id="glkq" class="" style="width:480px">Необходимо проверить решение в соответствии со сценариями тестирования</td></tr><tr id="d4fcf56c-2333-4e81-b75d-3a6ad0f2537e"><th id="mqIy" class="simple-table-header-color simple-table-header">вышестоящая задача</th><td id="glkq" class="" style="width:480px">оформление заказ-наряда без работ и запчастей</td></tr><tr id="9dbddb7b-08aa-4dba-8800-f2eb8f513434"><th id="mqIy" class="simple-table-header-color simple-table-header">автор</th><td id="glkq" class="" style="width:480px">Семенова Анна</td></tr><tr id="408cba05-7169-4c01-8356-473ae4bb15a6"><th id="mqIy" class="simple-table-header-color simple-table-header">кому назначено</th><td id="glkq" class="" style="width:480px">отдел тестирования</td></tr><tr id="20067bbf-bb19-4616-a75d-9784825bf6ba"><th id="mqIy" class="simple-table-header-color simple-table-header">размещение постановки</th><td id="glkq" class="" style="width:480px">  </td></tr><tr id="b8a08190-dd7b-40db-ad9e-b4bf0e713a52"><th id="mqIy" class="simple-table-header-color simple-table-header">статус</th><td id="glkq" class="" style="width:480px">в разработке</td></tr><tr id="f02b4f90-0824-4a08-96c4-3d24b414806a"><th id="mqIy" class="simple-table-header-color simple-table-header">приоритет</th><td id="glkq" class="" style="width:480px">средний</td></tr><tr id="3ef241cc-3135-4d6d-b48b-a40e088181bd"><th id="mqIy" class="simple-table-header-color simple-table-header">метка</th><td id="glkq" class="" style="width:480px">#СТО</td></tr><tr id="2f956ee6-8e35-46cf-aab3-7055ceafe255"><th id="mqIy" class="simple-table-header-color simple-table-header">спринт</th><td id="glkq" class="" style="width:480px"></td></tr><tr id="5cb40401-fed8-4ae9-8201-df987e95d650"><th id="mqIy" class="simple-table-header-color simple-table-header">предусловие выполнения</th><td id="glkq" class="" style="width:480px">создана БД заказ-наряда, создана экранная форма заказ-наряда</td></tr><tr id="a8b561bb-4ac2-4e3a-87d9-788f5fbaaf7e"><th id="mqIy" class="simple-table-header-color simple-table-header">окружение</th><td id="glkq" class="" style="width:480px">планшет, диагональ экрана 8”, OC Android</td></tr></tbody></table></details></li></ul><p id="c2269ed9-8104-47c5-80ed-c5959ce4cc52" class="">
+</p><p id="520d0d2f-5a75-40c9-8d27-38d6cfe35284" class="">
+</p><p id="fb58d7ef-25e9-4730-8416-e51341bba757" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
